@@ -1,4 +1,4 @@
-package com.socize.App;
+package com.socize.app;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

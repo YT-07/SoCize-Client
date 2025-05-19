@@ -1,4 +1,4 @@
-package com.socize.App;
+package com.socize.app;
 
 public class Launcher {
     
