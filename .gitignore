@@ -1,0 +1,10 @@
+# Ignore everything first
+*
+
+# Whitelist all directory
+!*/
+
+# Whitelist necessary files
+!src/**/*.*
+!pom.xml
+!.gitignore
