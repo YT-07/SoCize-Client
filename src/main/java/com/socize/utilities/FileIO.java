@@ -39,7 +39,7 @@ public class FileIO {
             
         };
 
-        Files.createFile(filePath);
+        Files.createFile(filePath); // If exception occur here, will not register rollback function to stack
         
         if(rollbackStack != null) {
             rollbackStack.push(rollbackCreateFileTask);
