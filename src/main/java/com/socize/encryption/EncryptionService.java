@@ -292,45 +292,49 @@ public class EncryptionService {
         // Just in case
         resetBuffers();
         
-        try(FileChannel inputFile = FileChannel.open(fileToEncrypt, StandardOpenOption.READ);
-            FileChannel outputFile = FileChannel.open(fileToWrite, StandardOpenOption.APPEND)) {
+        try
+        (
+            FileChannel inputFile = FileChannel.open(fileToEncrypt, StandardOpenOption.READ);
+            FileChannel outputFile = FileChannel.open(fileToWrite, StandardOpenOption.APPEND)
+        ) 
+        {
 
-                // To make sure that during the actual file operation, the min file size 
-                // rule is still adhered to, even with preliminary checks earlier 
-                // e.g. file size may change after preliminary check but before actual file operation
-                FileSizeTracker fileSizeTracker = new FileSizeTracker(MIN_FILE_TO_ENCRYPT_SIZE);
+            // To make sure that during the actual file operation, the min file size 
+            // rule is still adhered to, even with preliminary checks earlier 
+            // e.g. file size may change after preliminary check but before actual file operation
+            FileSizeTracker fileSizeTracker = new FileSizeTracker(MIN_FILE_TO_ENCRYPT_SIZE);
 
-                while(true) {
+            while(true) {
 
-                    int bytesRead = inputFile.read(inputBuffer);
+                int bytesRead = inputFile.read(inputBuffer);
 
-                    inputBuffer.flip();
-                    fileSizeTracker.increment(bytesRead);
+                inputBuffer.flip();
+                fileSizeTracker.increment(bytesRead);
 
-                    if(bytesRead < 1) {
-                        
-                        if(fileSizeTracker.hasReachedMinFileSize()) {
-                            cipher.doFinal(inputBuffer, outputBuffer);
-
-                        } else {
-                            throw new FileTooSmallException("File size is too small, file must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte in size.");
-
-                        }
+                if(bytesRead < 1) {
+                    
+                    if(fileSizeTracker.hasReachedMinFileSize()) {
+                        cipher.doFinal(inputBuffer, outputBuffer);
 
                     } else {
-                        cipher.update(inputBuffer, outputBuffer);
+                        throw new FileTooSmallException("File size is too small, file must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte in size.");
 
                     }
 
-                    outputBuffer.flip();
-                    outputFile.write(outputBuffer);
+                } else {
+                    cipher.update(inputBuffer, outputBuffer);
 
-                    resetBuffers();
-
-                    if(bytesRead < 1) {
-                        break;
-                    }
                 }
+
+                outputBuffer.flip();
+                outputFile.write(outputBuffer);
+
+                resetBuffers();
+
+                if(bytesRead < 1) {
+                    break;
+                }
+            }
 
         }
     }
