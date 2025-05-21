@@ -92,7 +92,9 @@ public class DecryptionService {
                 throw new IllegalArgumentException("Invalid file size for file to decrypt, file size must be a multiple of 16 bytes, please select a valid file.");
             }
 
-            if(!fileToSave.isFile()) {
+            // User may provide existing or non-existing file through save dialog
+            // Just have to make sure file is not a directory
+            if(fileToSave.isDirectory()) {
                 throw new FileNotFoundException("File '" + fileToSave.getAbsolutePath() + "' is not a valid file to save, please select a valid file to save.");
             }
 
@@ -233,6 +235,7 @@ public class DecryptionService {
                     isReadingIvSection = false;
 
                     int ivBytesRead = inputChannel.read(ivBuffer);
+                    fileSizeTracker.increment(ivBytesRead);
 
                     // Assume that the iv buffer's' capacity is the same as the iv's size, e.g. 16 bytes ByteBuffer for 16 bytes iv size,
                     // and check if it fully filled the buffer or not, because constructing an iv object needs a byte array instead of a byte buffer, 
