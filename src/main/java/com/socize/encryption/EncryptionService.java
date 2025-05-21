@@ -69,19 +69,6 @@ public class EncryptionService {
         outputBuffer = ByteBuffer.allocate(EncryptionConfig.REQUIRED_OUTPUT_BUFFER_SIZE);
 
         encryptionRollbackTask = new Stack<>();
-
-        Thread shutdownHook = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                rollbackEncryption();
-            }
-            
-        });
-
-        // Encryption operations are atomic
-        // So if any error occurs, will attempt to rollback
-        Runtime.getRuntime().addShutdownHook(shutdownHook);
     }
 
     /**
