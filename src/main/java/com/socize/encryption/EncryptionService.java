@@ -29,6 +29,7 @@ import javax.crypto.ShortBufferException;
 import javax.crypto.spec.IvParameterSpec;
 
 import com.socize.exception.FileTooSmallException;
+import com.socize.utilities.FileSizeTracker;
 
 /**
  * Provides encryption and decryption service.
@@ -44,6 +45,8 @@ public class EncryptionService {
 
     private static final String ENCRYPTED_FILENAME_PREFIX = "encrypted_";
     private static final String ENCRYPTION_KEY_FILENAME_SUFFIX = ".key";
+
+    private static final int MIN_FILE_TO_ENCRYPT_SIZE = 1;
 
     private KeyGenerator keyGenerator;
     private SecureRandom secureRandom;
@@ -121,8 +124,8 @@ public class EncryptionService {
                 throw new IllegalArgumentException("File path '" + folderPath + "' is not a valid directory.");
             }
 
-            if(fileToEncrypt.length() < 1) {
-                throw new FileTooSmallException("File size is too small, must be at least 1 byte.");
+            if(fileToEncrypt.length() < MIN_FILE_TO_ENCRYPT_SIZE) {
+                throw new FileTooSmallException("File size is too small, must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte.");
             }
 
             // Encrypted file name and encryption key file name will have a prefix/suffix on their filename based on business logic
@@ -335,21 +338,31 @@ public class EncryptionService {
         try(FileChannel inputFile = FileChannel.open(fileToEncrypt, StandardOpenOption.READ);
             FileChannel outputFile = FileChannel.open(fileToWrite, StandardOpenOption.APPEND)) {
 
-                if(inputFile.size() < 1) {
-                    throw new FileTooSmallException("File size is too small, must be at least 1 byte.");
-                }
+                // To make sure that during the actual file operation, the min file size 
+                // rule is still adhered to, even with preliminary checks earlier 
+                // e.g. file size may change after preliminary check but before actual file operation
+                FileSizeTracker fileSizeTracker = new FileSizeTracker(MIN_FILE_TO_ENCRYPT_SIZE);
 
                 while(true) {
 
                     int bytesRead = inputFile.read(inputBuffer);
 
                     inputBuffer.flip();
+                    fileSizeTracker.increment(bytesRead);
 
                     if(bytesRead < 1) {
-                        cipher.doFinal(inputBuffer, outputBuffer);
+                        
+                        if(fileSizeTracker.hasReachedMinFileSize()) {
+                            cipher.doFinal(inputBuffer, outputBuffer);
+
+                        } else {
+                            throw new FileTooSmallException("File size is too small, must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte.");
+                            
+                        }
 
                     } else {
                         cipher.update(inputBuffer, outputBuffer);
+
                     }
 
                     outputBuffer.flip();
