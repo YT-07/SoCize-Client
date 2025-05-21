@@ -93,7 +93,11 @@ public class EncryptionService {
 
     /**
      * Encrypts a file specified at {@code fileToEncrypt} and writes the new 
-     * encrypted file and its encryption key to folder at {@code folderToSave} 
+     * encrypted file and its encryption key to folder at {@code folderToSave}. 
+     * 
+     * This method is {@code synchronized} because it is stateful, the encryption 
+     * service object will track the state of this encryption process for the purpose 
+     * of detecting error and rolling back the encryption process or such.
      * 
      * @param fileToEncrypt the file to encrypt
      * @param folderToSave the folder to save the encrypted file and its encryption key
