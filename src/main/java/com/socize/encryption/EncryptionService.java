@@ -107,15 +107,15 @@ public class EncryptionService {
             // Preliminary checks first, but DOES NOT guarantee that file path is still valid during actual file operation later on
             // e.g. user may delete file/folder after check but before actual file operation
             if(!fileToEncrypt.isFile()) {
-                throw new FileNotFoundException("File '" + fileToEncrypt.getAbsolutePath() + "' is not a valid file.");
+                throw new FileNotFoundException("File '" + fileToEncrypt.getAbsolutePath() + "' is not a valid file, please select a valid file.");
             }
 
             if(!folderToSave.isDirectory()) {
-                throw new IllegalArgumentException("File path '" + folderPath + "' is not a valid directory.");
+                throw new IllegalArgumentException("File path '" + folderPath + "' is not a valid folder, please select a valid folder.");
             }
 
             if(fileToEncrypt.length() < MIN_FILE_TO_ENCRYPT_SIZE) {
-                throw new FileTooSmallException("File size is too small, must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte.");
+                throw new FileTooSmallException("File size is too small, file must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte in size.");
             }
 
             // Encrypted file name and encryption key file name will have a prefix/suffix on their filename based on business logic
@@ -166,12 +166,12 @@ public class EncryptionService {
         } catch (FileAlreadyExistsException faee) {
             rollbackEncryption();
             completeEncryption();
-            throw new Exception("File '" + faee.getFile() + "' already exist, unable to create new file.");
+            throw new Exception("File '" + faee.getFile() + "' already exist, unable to create new file, please remove or rename the existing file.");
 
         } catch (IOException ioe) {
             rollbackEncryption();
             completeEncryption();
-            throw new Exception("Something went wrong during file operations...");
+            throw new Exception("Something went wrong during file operations, check error log to see what happened.");
 
         } catch (FileTooSmallException ftse) {
             rollbackEncryption();
@@ -181,7 +181,7 @@ public class EncryptionService {
         } catch (Exception e) {
             rollbackEncryption();
             completeEncryption();
-            throw new Exception("Unknown error occured...");
+            throw new Exception("Unknown error occured, check error log to see what happened.");
         }
     }
 
@@ -313,7 +313,7 @@ public class EncryptionService {
                             cipher.doFinal(inputBuffer, outputBuffer);
 
                         } else {
-                            throw new FileTooSmallException("File size is too small, must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte.");
+                            throw new FileTooSmallException("File size is too small, file must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte in size.");
 
                         }
 
