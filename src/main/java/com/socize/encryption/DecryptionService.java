@@ -26,6 +26,9 @@ import com.socize.exception.FileTooSmallException;
 import com.socize.exception.InvalidFileFormatException;
 import com.socize.utilities.FileSizeTracker;
 
+/**
+ * Provides decryption service.
+ */
 public class DecryptionService {
     private Cipher cipher;
 
@@ -47,6 +50,20 @@ public class DecryptionService {
         decryptionRollbackTask = new Stack<>();
     }
 
+    /**
+     * Decrypts a file specified at {@code fileToDecrypt} using the encryption key at {@code encryptionKeyFile}, 
+     * then writes the decrypted data to {@code fileToSave}.
+     * 
+     * This method is {@code synchronized} because it is stateful, the decryption 
+     * service object will track the state of this decryption process for the purpose 
+     * of detecting error and rolling back the decryption process or such.
+     * 
+     * @param fileToDecrypt the file to decrypt
+     * @param encryptionKeyFile the encryption key file
+     * @param fileToSave the file to save the decrypted data to
+     * @throws Exception if any error occur during the decryption process, provides user friendly messages by 
+     * calling {@code getMessage()} for this exception object, message can be displayed to user directly
+     */
     public synchronized void decryptFile(File fileToDecrypt, File encryptionKeyFile, File fileToSave) throws Exception {
 
         try {
@@ -125,6 +142,15 @@ public class DecryptionService {
         }
     }
 
+    /**
+     * Reads the file and uses the file data to construct a {@link javax.crypto.SecretKey SecretKey} object.
+     * 
+     * @param encryptionKeyFile the file that contains the encryption key
+     * @param encryptionKeySize the expected encryption key size in bytes
+     * @return the encryption key object
+     * @throws IOException if any error happen during file operation
+     * @throws InvalidKeyException if the size of the encryption key in the file does not match with {@code encryptionKeySize}
+     */
     private SecretKey readEncryptionKey(File encryptionKeyFile, int encryptionKeySize) throws IOException, InvalidKeyException {
         ByteBuffer buffer = ByteBuffer.allocate(encryptionKeySize);
 
