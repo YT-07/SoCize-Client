@@ -13,9 +13,12 @@ import ch.qos.logback.core.joran.spi.JoranException;
 public class Launcher {
     
     public static void main(String[] args) throws Exception {
-        InputStream logbackFileInputStream = Launcher.class.getClass().getResourceAsStream(FilePath.LOGBACK_CONFIG);
+        // Used for getting the class object then getting resources, as this app will be packaged in a jar file
+        Launcher launcher = new Launcher();
 
+        InputStream logbackFileInputStream = launcher.getClass().getResourceAsStream(FilePath.LOGBACK_CONFIG);
         configureLogback(logbackFileInputStream);
+        
         MainApp.main(args);
     }
 
@@ -29,6 +32,7 @@ public class Launcher {
         context.reset();
 
         JoranConfigurator configurator = new JoranConfigurator();
+        configurator.setContext(context);
         configurator.doConfigure(inputStream);
     }
 }
