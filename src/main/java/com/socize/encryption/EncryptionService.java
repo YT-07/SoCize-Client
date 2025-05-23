@@ -135,7 +135,6 @@ public class EncryptionService {
             FileIO.createFileAtomic(outputEncryptedFilePath, encryptionRollbackTask);
 
             IvParameterSpec ivParameterSpec = getIvSpec();
-            logger.info("Successfully generated the initialization vector.");
 
             Files.write(outputEncryptedFilePath, ivParameterSpec.getIV(), StandardOpenOption.WRITE);
             logger.info("Successfully written the initialization vector to file '{}'.", outputEncryptedFilePath.toString());
@@ -275,7 +274,10 @@ public class EncryptionService {
         byte[] iv = new byte[EncryptionConfig.IV_SIZE];
         secureRandom.nextBytes(iv);
 
-        return new IvParameterSpec(iv);
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+        logger.info("Successfully generated the initialization vector.");
+        
+        return ivParameterSpec;
     }
 
     /**
