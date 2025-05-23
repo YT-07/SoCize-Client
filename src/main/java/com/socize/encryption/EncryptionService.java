@@ -28,6 +28,9 @@ import javax.crypto.SecretKey;
 import javax.crypto.ShortBufferException;
 import javax.crypto.spec.IvParameterSpec;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.socize.config.EncryptionConfig;
 import com.socize.exception.FileTooSmallException;
 import com.socize.utilities.FileIO;
@@ -40,6 +43,7 @@ public class EncryptionService {
     private static final String ENCRYPTED_FILENAME_PREFIX = "encrypted_";
     private static final String ENCRYPTION_KEY_FILENAME_SUFFIX = ".key";
     private static final int MIN_FILE_TO_ENCRYPT_SIZE = 1;
+    private static final Logger logger = LoggerFactory.getLogger(EncryptionService.class);
 
     private KeyGenerator keyGenerator;
     private SecureRandom secureRandom;
@@ -79,17 +83,21 @@ public class EncryptionService {
      * service object will track the state of this encryption process for the purpose 
      * of detecting error and rolling back the encryption process or such.
      * 
+     * Note: DO NOT log exceptions thrown by this method, logging is handled internally.
+     * 
      * @param fileToEncrypt the file to encrypt
      * @param folderToSave the folder to save the encrypted file and its encryption key
      * @throws Exception if any error occur during the encryption process, provides user friendly messages by 
      * calling {@code getMessage()} for this exception object, message can be displayed to user directly
      */
     public synchronized void encryptFile(File fileToEncrypt, File folderToSave) throws Exception {
-        
+
         try {
 
             String folderPath = folderToSave.getAbsolutePath();
             String filename = fileToEncrypt.getName();
+
+            logger.info("Encryption process started, encrypting file '{}' and save to '{}' folder.", fileToEncrypt.getAbsolutePath(), folderPath);
 
             // Preliminary checks first, but DOES NOT guarantee that file path is still valid during actual file operation later on
             // e.g. user may delete file/folder after check but before actual file operation
@@ -107,20 +115,31 @@ public class EncryptionService {
 
             // Encrypted file name and encryption key file name will have a prefix/suffix on their filename based on business logic
             String outputEncryptedFileName = ENCRYPTED_FILENAME_PREFIX + filename;
+            logger.info("Output encrypted file's name determined to be '{}'", outputEncryptedFileName);
+
             String outputEncryptionKeyFileName = filename + ENCRYPTION_KEY_FILENAME_SUFFIX;
+            logger.info("Output encryption key file's name determined to be '{}'", outputEncryptionKeyFileName);
 
             // Use Paths.get() to ensure compatibility between different OS
             // e.g. unix systems like linux use "/" as file path separator while Windows/MacOS use "\" or such
             Path outputEncryptedFilePath = Paths.get(folderPath, outputEncryptedFileName);
+            logger.info("Full encrypted file's path determined to be '{}'", outputEncryptedFilePath.toString());
+
             Path outputEncryptionKeyFilePath = Paths.get(folderPath, outputEncryptionKeyFileName);
+            logger.info("Full encryption key file's path determined to be '{}'", outputEncryptionKeyFilePath.toString());
 
             SecretKey secretKey = getSecretKey();
+            logger.info("Successfully generated encryption key.");
+
             saveSecretKey(secretKey, outputEncryptionKeyFilePath, encryptionRollbackTask);
             
             FileIO.createFileAtomic(outputEncryptedFilePath, encryptionRollbackTask);
 
             IvParameterSpec ivParameterSpec = getIvSpec();
+            logger.info("Successfully generated the initialization vector.");
+
             Files.write(outputEncryptedFilePath, ivParameterSpec.getIV(), StandardOpenOption.WRITE);
+            logger.info("Successfully written the initialization vector to file '{}'.", outputEncryptedFilePath.toString());
 
             encrypt(fileToEncrypt.toPath(), outputEncryptedFilePath, secretKey, ivParameterSpec);
 
@@ -135,37 +154,51 @@ public class EncryptionService {
             completeEncryption();
 
             // Exceptions need to have user friendly messages as they'll be displayed directly to the user
-        } catch (FileNotFoundException fnfe) { // TODO: Log detailed error messages for debugging
+        } catch (FileNotFoundException fnfe) {
+            logger.error(fnfe.getMessage(), fnfe);
+
             rollbackEncryption();
             completeEncryption();
             throw new Exception(fnfe.getMessage());
 
         } catch(InvalidPathException ipe) {
+            logger.error("Failed to convert '{}' to a valid file path. Reason: {}.", ipe.getInput(), ipe.getReason(), ipe);
+
             rollbackEncryption();
             completeEncryption();
-            throw new Exception("Failed to obtain file path '" + ipe.getInput() + "', " + ipe.getReason());
+            throw new Exception("Failed to convert '" + ipe.getInput() + "' to a valid file path. Reason: " + ipe.getReason());
 
         } catch (IllegalArgumentException iae) {
+            logger.error(iae.getMessage(), iae);
+
             rollbackEncryption();
             completeEncryption();
             throw new Exception(iae.getMessage());
 
         } catch (FileAlreadyExistsException faee) {
+            logger.error("File '{}' already exist, unable to create new file.", faee.getFile(), faee);
+
             rollbackEncryption();
             completeEncryption();
             throw new Exception("File '" + faee.getFile() + "' already exist, unable to create new file, please remove or rename the existing file.");
 
         } catch (IOException ioe) {
+            logger.error("An I/O exception had occured.", ioe);
+
             rollbackEncryption();
             completeEncryption();
             throw new Exception("Something went wrong during file operations, check error log to see what happened.");
 
         } catch (FileTooSmallException ftse) {
+            logger.error(ftse.getMessage(), ftse);
+
             rollbackEncryption();
             completeEncryption();
             throw new Exception(ftse.getMessage());
 
         } catch (Exception e) {
+            logger.error("An unhandled exception had occured.", e);
+
             rollbackEncryption();
             completeEncryption();
             throw new Exception("Unknown error occured, check error log to see what happened.");
@@ -201,7 +234,7 @@ public class EncryptionService {
                     Files.deleteIfExists(filePath);
 
                 } catch (Exception e) {
-                    // TODO: Log error if fail to delete key file
+                    logger.error("Failed to delete encryption key file at '{}'.", filePath.toString(), e);
                 }
             }
             
@@ -210,12 +243,14 @@ public class EncryptionService {
         boolean keyFileCreated = false;
         
         try (FileChannel fileChannel = FileChannel.open(filePath, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
-            
+            logger.info("Encryption key file successfully created at '{}'", filePath.toString());
+
             keyFileCreated = true;
             byte[] keyBytes = key.getEncoded();
             ByteBuffer buffer = ByteBuffer.wrap(keyBytes);
 
             fileChannel.write(buffer);
+            logger.info("Encryption key successfully written to file.");
 
         } catch (FileAlreadyExistsException faee) {
             // DO NOT delete file if file already exist, could be another key file or such, deleting file may cause user to lose important data
@@ -230,6 +265,7 @@ public class EncryptionService {
 
             if(keyFileCreated && rollbackStack != null) {
                 rollbackStack.push(rollbackSaveSecretKeyTask);
+                logger.info("Successfully registered rollback task to delete the encryption key file at '{}'.", filePath.toString());
             }
 
         }
@@ -275,6 +311,7 @@ public class EncryptionService {
     FileTooSmallException 
     {
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
+        logger.info("Cipher successfully initialized to encrypt mode with encryption key and initialization vector.");
 
         // Just in case
         resetBuffers();
@@ -285,11 +322,15 @@ public class EncryptionService {
             FileChannel outputFile = FileChannel.open(fileToWrite, StandardOpenOption.APPEND)
         ) 
         {
+            logger.info("File channel for file to encrypt and file to write successfully opened.");
 
             // To make sure that during the actual file operation, the min file size 
             // rule is still adhered to, even with preliminary checks earlier 
             // e.g. file size may change after preliminary check but before actual file operation
             FileSizeTracker fileSizeTracker = new FileSizeTracker(MIN_FILE_TO_ENCRYPT_SIZE);
+            logger.info("File size tracker created to ensure file size for file to encrypt is at least {} bytes.", MIN_FILE_TO_ENCRYPT_SIZE);
+
+            logger.info("File encryption started.");
 
             while(true) {
 
@@ -301,6 +342,7 @@ public class EncryptionService {
                 if(bytesRead < 1) {
                     
                     if(fileSizeTracker.hasReachedMinFileSize()) {
+                        logger.info("File size for file to encrypt had successfully reached the minimum file size required.");
                         cipher.doFinal(inputBuffer, outputBuffer);
 
                     } else {
@@ -323,6 +365,7 @@ public class EncryptionService {
                 }
             }
 
+            logger.info("File encryption completed without error.");
         }
     }
 
@@ -334,6 +377,8 @@ public class EncryptionService {
         while(!encryptionRollbackTask.isEmpty()) {
             encryptionRollbackTask.pop().run();
         }
+
+        logger.info("Encryption process successfully rollback.");
     }
 
     /**
@@ -342,6 +387,8 @@ public class EncryptionService {
     private void completeEncryption() {
         encryptionRollbackTask.clear();
         resetBuffers();
+
+        logger.info("Encryption process completed successfully.");
     }
 
     /**
