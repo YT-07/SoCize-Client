@@ -226,6 +226,7 @@ public class EncryptionService {
                 try {
 
                     Files.deleteIfExists(filePath);
+                    logger.info("File '{}' successfully deleted.", filePath.toString());
 
                 } catch (Exception e) {
                     logger.error("Failed to delete encryption key file at '{}'.", filePath.toString(), e);
@@ -276,7 +277,7 @@ public class EncryptionService {
 
         IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
         logger.info("Successfully generated the initialization vector.");
-        
+
         return ivParameterSpec;
     }
 
@@ -372,6 +373,7 @@ public class EncryptionService {
      * @see com.socize.encryption.EncryptionService#completeEncryption() completeEncryption()
      */
     private void rollbackEncryption() {
+        logger.info("Rolling back this encryption process.");
 
         while(!encryptionRollbackTask.isEmpty()) {
             encryptionRollbackTask.pop().run();
@@ -385,6 +387,8 @@ public class EncryptionService {
      * Perform all clean up task to complete an encryption process.
      */
     private void completeEncryption() {
+        logger.info("Completing this encryption process.");
+
         encryptionRollbackTask.clear();
         resetBuffers();
 

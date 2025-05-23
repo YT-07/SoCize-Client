@@ -35,6 +35,7 @@ public class FileIO {
                 try {
 
                     Files.deleteIfExists(filePath);
+                    logger.info("File '{}' successfully deleted.", filePath.toString());
 
                 } catch (Exception e) {
                     logger.error("Failed to delete file '{}'.", filePath.toString(), e);

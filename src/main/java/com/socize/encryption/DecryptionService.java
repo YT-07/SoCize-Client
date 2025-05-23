@@ -238,6 +238,7 @@ public class DecryptionService {
                 try {
 
                     Files.deleteIfExists(fileToSave.toPath());
+                    logger.info("File '{}' successfully deleted.", fileToSave.getAbsolutePath());
 
                 } catch (IOException e) {
                     logger.error("Failed to delete decrypted file at '{}'.", fileToSave.getAbsolutePath(), e);
@@ -348,6 +349,7 @@ public class DecryptionService {
      * @see com.socize.encryption.DecryptionService#completeDecryption() completeDecryption()
      */
     private void rollbackDecryption() {
+        logger.info("Rolling back this decryption process.");
 
         while(!decryptionRollbackTask.isEmpty()) {
             decryptionRollbackTask.pop().run();
@@ -361,6 +363,8 @@ public class DecryptionService {
      * Perform all clean up task to complete a decryption process.
      */
     private void completeDecryption() {
+        logger.info("Completing this decryption process.");
+
         decryptionRollbackTask.clear();
         resetBuffers();
 
