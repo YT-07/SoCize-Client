@@ -101,6 +101,7 @@ public class DecryptionService {
             }
 
             // AES operates on 16 bytes blocks, so file must also be a factor of 16 bytes
+            // The actual validation and verification will be handled by the cipher during actual file decryption, this is just for early warning
             if(fileToDecrypt.length() % 16 != 0) {
                 throw new IllegalArgumentException("Invalid file size for file to decrypt, file size must be a multiple of 16 bytes, please select a valid file.");
             }
