@@ -158,49 +158,42 @@ public class EncryptionService {
             logger.error(fnfe.getMessage(), fnfe);
 
             rollbackEncryption();
-            completeEncryption();
             throw new Exception(fnfe.getMessage());
 
         } catch(InvalidPathException ipe) {
             logger.error("Failed to convert '{}' to a valid file path. Reason: {}.", ipe.getInput(), ipe.getReason(), ipe);
 
             rollbackEncryption();
-            completeEncryption();
             throw new Exception("Failed to convert '" + ipe.getInput() + "' to a valid file path. Reason: " + ipe.getReason());
 
         } catch (IllegalArgumentException iae) {
             logger.error(iae.getMessage(), iae);
 
             rollbackEncryption();
-            completeEncryption();
             throw new Exception(iae.getMessage());
 
         } catch (FileAlreadyExistsException faee) {
             logger.error("File '{}' already exist, unable to create new file.", faee.getFile(), faee);
 
             rollbackEncryption();
-            completeEncryption();
             throw new Exception("File '" + faee.getFile() + "' already exist, unable to create new file, please remove or rename the existing file.");
 
         } catch (IOException ioe) {
             logger.error("An I/O exception had occured.", ioe);
 
             rollbackEncryption();
-            completeEncryption();
             throw new Exception("Something went wrong during file operations, check error log to see what happened.");
 
         } catch (FileTooSmallException ftse) {
             logger.error(ftse.getMessage(), ftse);
 
             rollbackEncryption();
-            completeEncryption();
             throw new Exception(ftse.getMessage());
 
         } catch (Exception e) {
             logger.error("An unhandled exception had occured.", e);
 
             rollbackEncryption();
-            completeEncryption();
             throw new Exception("Unknown error occured, check error log to see what happened.");
         }
     }
@@ -370,7 +363,9 @@ public class EncryptionService {
     }
 
     /**
-     * Perform all registered rollback functions to rollback the encryption process.
+     * Perform all registered rollback functions to rollback the encryption process and completes it.
+     * 
+     * @see com.socize.encryption.EncryptionService#completeEncryption() completeEncryption()
      */
     private void rollbackEncryption() {
 
@@ -379,6 +374,7 @@ public class EncryptionService {
         }
 
         logger.info("Encryption process successfully rollback.");
+        completeEncryption();
     }
 
     /**
