@@ -129,49 +129,42 @@ public class DecryptionService {
             logger.error(fnfe.getMessage(), fnfe);
 
             rollbackDecryption();
-            completeDecryption();
             throw new Exception(fnfe.getMessage());
 
         } catch (InvalidKeyException ike) {
             logger.error(ike.getMessage(), ike);
 
             rollbackDecryption();
-            completeDecryption();
             throw new Exception(ike.getMessage());
 
         } catch (IllegalArgumentException iae) {
             logger.error(iae.getMessage(), iae);
 
             rollbackDecryption();
-            completeDecryption();
             throw new Exception(iae.getMessage());
 
         } catch (InvalidFileFormatException iffe) {
             logger.error(iffe.getMessage(), iffe);
 
             rollbackDecryption();
-            completeDecryption();
             throw new Exception(iffe.getMessage());
 
         } catch (IOException ioe) {
             logger.error("An I/O exception had occured.", ioe);
 
             rollbackDecryption();
-            completeDecryption();
             throw new Exception("Something went wrong during file operations, check error log to see what happened.");
 
         } catch (FileTooSmallException ftse) {
             logger.error(ftse.getMessage(), ftse);
 
             rollbackDecryption();
-            completeDecryption();
             throw new Exception(ftse.getMessage());
 
         } catch (Exception e) {
             logger.error("An unhandled exception had occured.", e);
 
             rollbackDecryption();
-            completeDecryption();
             throw new Exception("Unknown error occured, check error log to see what happened.");
         }
     }
@@ -350,7 +343,9 @@ public class DecryptionService {
     }
 
     /**
-     * Perform all registered rollback functions to rollback the decryption process.
+     * Perform all registered rollback functions to rollback the decryption process and completes it.
+     * 
+     * @see com.socize.encryption.DecryptionService#completeDecryption() completeDecryption()
      */
     private void rollbackDecryption() {
 
@@ -359,6 +354,7 @@ public class DecryptionService {
         }
 
         logger.info("Decryption process successfully rollback.");
+        completeDecryption();
     }
 
     /**
