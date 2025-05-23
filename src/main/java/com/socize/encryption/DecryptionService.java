@@ -21,6 +21,9 @@ import javax.crypto.ShortBufferException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.socize.config.EncryptionConfig;
 import com.socize.exception.FileTooSmallException;
 import com.socize.exception.InvalidFileFormatException;
@@ -39,6 +42,7 @@ public class DecryptionService {
     private Stack<Runnable> decryptionRollbackTask;
 
     private static final int MIN_FILE_TO_DECRYPT_SIZE = EncryptionConfig.IV_SIZE + EncryptionConfig.AES_BLOCK_SIZE;
+    private static final Logger logger = LoggerFactory.getLogger(DecryptionService.class);
 
     public DecryptionService() throws NoSuchAlgorithmException, NoSuchPaddingException {
         cipher = Cipher.getInstance(EncryptionConfig.TRANSFORMATION);
@@ -67,6 +71,15 @@ public class DecryptionService {
     public synchronized void decryptFile(File fileToDecrypt, File encryptionKeyFile, File fileToSave) throws Exception {
 
         try {
+
+            logger.info
+            (
+                "Decryption process started, decrypting file '{}', with encryption key at '{}', and save to '{}'.",
+                fileToDecrypt.getAbsolutePath(),
+                encryptionKeyFile.getAbsolutePath(),
+                fileToSave.getAbsolutePath()
+            );
+
             // Preliminary checks, but DOES NOT guarantee that file path is still valid during actual file operation later on
             // e.g. user may delete file/folder after check but before actual file operation
             if(!encryptionKeyFile.isFile()) {
@@ -112,32 +125,51 @@ public class DecryptionService {
             completeDecryption();
 
             // Exceptions need to have user friendly messages as they'll be displayed directly to the user
-        } catch (FileNotFoundException fnfe) { // TODO: Log detailed error messages for debugging
+        } catch (FileNotFoundException fnfe) {
+            logger.error(fnfe.getMessage(), fnfe);
+
             rollbackDecryption();
             completeDecryption();
             throw new Exception(fnfe.getMessage());
 
         } catch (InvalidKeyException ike) {
+            logger.error(ike.getMessage(), ike);
+
             rollbackDecryption();
             completeDecryption();
             throw new Exception(ike.getMessage());
 
+        } catch (IllegalArgumentException iae) {
+            logger.error(iae.getMessage(), iae);
+
+            rollbackDecryption();
+            completeDecryption();
+            throw new Exception(iae.getMessage());
+
         } catch (InvalidFileFormatException iffe) {
+            logger.error(iffe.getMessage(), iffe);
+
             rollbackDecryption();
             completeDecryption();
             throw new Exception(iffe.getMessage());
 
         } catch (IOException ioe) {
+            logger.error("An I/O exception had occured.", ioe);
+
             rollbackDecryption();
             completeDecryption();
             throw new Exception("Something went wrong during file operations, check error log to see what happened.");
 
         } catch (FileTooSmallException ftse) {
+            logger.error(ftse.getMessage(), ftse);
+
             rollbackDecryption();
             completeDecryption();
             throw new Exception(ftse.getMessage());
 
         } catch (Exception e) {
+            logger.error("An unhandled exception had occured.", e);
+
             rollbackDecryption();
             completeDecryption();
             throw new Exception("Unknown error occured, check error log to see what happened.");
@@ -157,6 +189,8 @@ public class DecryptionService {
         ByteBuffer buffer = ByteBuffer.allocate(encryptionKeySize);
 
         try (FileChannel fileChannel = FileChannel.open(encryptionKeyFile.toPath(), StandardOpenOption.READ)){
+            logger.info("Encryption key file successfully opened.");
+
             fileChannel.read(buffer);
             buffer.flip();
 
@@ -164,7 +198,10 @@ public class DecryptionService {
                 throw new InvalidKeyException("Invalid encryption key, expected file size to be " + encryptionKeySize + " bytes.");
             }
 
-            return new SecretKeySpec(buffer.array(), EncryptionConfig.ALGORITHM);
+            SecretKey key = new SecretKeySpec(buffer.array(), EncryptionConfig.ALGORITHM);
+            logger.info("Successfully parsed encryption key from encryption key file.");
+
+            return key;
         }
     }
 
@@ -210,7 +247,7 @@ public class DecryptionService {
                     Files.deleteIfExists(fileToSave.toPath());
 
                 } catch (IOException e) {
-                    // TODO: Log error if fail to delete file
+                    logger.error("Failed to delete decrypted file at '{}'.", fileToSave.getAbsolutePath(), e);
                 }
             }
             
@@ -222,17 +259,25 @@ public class DecryptionService {
             FileChannel outputChannel = FileChannel.open(fileToSave.toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE)
         ) 
         {
+            logger.info("File channel for file to decrypt and file to save successfully opened.");
+
             boolean isReadingIvSection = true; // First few bytes in file will be the initialization vector, so is reading iv first
             boolean cipherIsInitialized = false;
 
             resetBuffers(); // Just in case
             IvParameterSpec iv = null;
+
             FileSizeTracker fileSizeTracker = new FileSizeTracker(MIN_FILE_TO_DECRYPT_SIZE);
+            logger.info("File size tracker created to ensure file size for file to decrypt is at least {} bytes.", MIN_FILE_TO_DECRYPT_SIZE);
+
+            logger.info("File decryption started.");
 
             while(true) {
 
                 if(isReadingIvSection) {
                     isReadingIvSection = false;
+
+                    logger.info("Attempting to read initialization vector from file.");
 
                     int ivBytesRead = inputChannel.read(ivBuffer);
                     fileSizeTracker.increment(ivBytesRead);
@@ -245,6 +290,8 @@ public class DecryptionService {
                     }
 
                     iv = new IvParameterSpec(ivBuffer.array());
+                    logger.info("Initialization vector successfully read and parsed from file.");
+
                     continue;
                 }
 
@@ -252,6 +299,8 @@ public class DecryptionService {
                     cipher.init(Cipher.DECRYPT_MODE, key, iv);
 
                     cipherIsInitialized = true;
+                    logger.info("Cipher successfully initialized to decrypt mode with encryption key and initialization vector.");
+
                     continue;
                 }
 
@@ -263,6 +312,7 @@ public class DecryptionService {
                 if(bytesRead < 1) {
 
                     if(fileSizeTracker.hasReachedMinFileSize()) {
+                        logger.info("File size for file to decrypt had successfully reached the minimum file size required.");
                         cipher.doFinal(inputBuffer, outputBuffer);
 
                     } else {
@@ -285,12 +335,15 @@ public class DecryptionService {
                 }
             }
 
+            logger.info("File decryption completed without error.");
+
         } finally {
 
             // Register the rollback task regardless, if anything goes wrong during decryption, 
             // file to save should not exist.
             if(rollbackStack != null) {
                 rollbackStack.push(rollbackTask);
+                logger.info("Successfully registered rollback task to delete the decrypted file at '{}'.", fileToSave.getAbsolutePath());
             }
 
         }
@@ -304,6 +357,8 @@ public class DecryptionService {
         while(!decryptionRollbackTask.isEmpty()) {
             decryptionRollbackTask.pop().run();
         }
+
+        logger.info("Decryption process successfully rollback.");
     }
 
     /**
@@ -312,6 +367,8 @@ public class DecryptionService {
     private void completeDecryption() {
         decryptionRollbackTask.clear();
         resetBuffers();
+
+        logger.info("Decryption process completed successfully.");
     }
 
     /**
