@@ -28,22 +28,18 @@ import javax.crypto.SecretKey;
 import javax.crypto.ShortBufferException;
 import javax.crypto.spec.IvParameterSpec;
 
+import com.socize.config.EncryptionConfig;
 import com.socize.exception.FileTooSmallException;
+import com.socize.utilities.FileIO;
+import com.socize.utilities.FileSizeTracker;
 
 /**
- * Provides encryption and decryption service.
+ * Provides encryption service.
  */
 public class EncryptionService {
-    private static final String ALGORITHM = "AES";
-    private static final String TRANSFORMATION = "AES/CBC/PKCS5Padding";
-    private static final int IV_SIZE = 16;
-    private static final int KEY_SIZE = 256;
-
-    private static final int AES_INPUT_BLOCK_SIZE = 16;
-    private static final int REQUIRED_OUTPUT_BUFFER_SIZE = 32;
-
     private static final String ENCRYPTED_FILENAME_PREFIX = "encrypted_";
     private static final String ENCRYPTION_KEY_FILENAME_SUFFIX = ".key";
+    private static final int MIN_FILE_TO_ENCRYPT_SIZE = 1;
 
     private KeyGenerator keyGenerator;
     private SecureRandom secureRandom;
@@ -51,10 +47,9 @@ public class EncryptionService {
     private ByteBuffer inputBuffer;
     private ByteBuffer outputBuffer;
 
-    // Encryption & Decryption process involves creating new files etc, and thus is intended to be atomic (whole process happens or doesn't happen at all)
-    // These stacks are used for rolling back the encryption/decryption process in case something went wrong in the middle of it
+    // Encryption process involves creating new files etc, and thus is intended to be atomic (whole process happens or doesn't happen at all)
+    // These stacks are used for rolling back the encryption process in case something went wrong in the middle of it
     private Stack<Runnable> encryptionRollbackTask;
-    private Stack<Runnable> decryptionRollbackTask;
 
     /**
      * Creates a new encryption service with default settings.
@@ -63,37 +58,26 @@ public class EncryptionService {
      * @throws NoSuchPaddingException
      */
     public EncryptionService() throws NoSuchAlgorithmException, NoSuchPaddingException {
-        keyGenerator = KeyGenerator.getInstance(ALGORITHM);
-        keyGenerator.init(KEY_SIZE);
+        keyGenerator = KeyGenerator.getInstance(EncryptionConfig.ALGORITHM);
+        keyGenerator.init(EncryptionConfig.KEY_SIZE);
 
         secureRandom = SecureRandom.getInstanceStrong();
 
-        cipher = Cipher.getInstance(TRANSFORMATION);
+        cipher = Cipher.getInstance(EncryptionConfig.TRANSFORMATION);
 
-        inputBuffer = ByteBuffer.allocate(AES_INPUT_BLOCK_SIZE);
-        outputBuffer = ByteBuffer.allocate(REQUIRED_OUTPUT_BUFFER_SIZE);
+        inputBuffer = ByteBuffer.allocate(EncryptionConfig.AES_BLOCK_SIZE);
+        outputBuffer = ByteBuffer.allocate(EncryptionConfig.REQUIRED_OUTPUT_BUFFER_SIZE);
 
         encryptionRollbackTask = new Stack<>();
-        decryptionRollbackTask = new Stack<>();
-
-        Thread shutdownHook = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                rollbackEncryption();
-                rollbackDecryption();
-            }
-            
-        });
-
-        // Encryption & Decryption operations are atomic
-        // So if any error occurs, will attempt to rollback
-        Runtime.getRuntime().addShutdownHook(shutdownHook);
     }
 
     /**
      * Encrypts a file specified at {@code fileToEncrypt} and writes the new 
-     * encrypted file and its encryption key to folder at {@code folderToSave} 
+     * encrypted file and its encryption key to folder at {@code folderToSave}. 
+     * 
+     * This method is {@code synchronized} because it is stateful, the encryption 
+     * service object will track the state of this encryption process for the purpose 
+     * of detecting error and rolling back the encryption process or such.
      * 
      * @param fileToEncrypt the file to encrypt
      * @param folderToSave the folder to save the encrypted file and its encryption key
@@ -110,15 +94,15 @@ public class EncryptionService {
             // Preliminary checks first, but DOES NOT guarantee that file path is still valid during actual file operation later on
             // e.g. user may delete file/folder after check but before actual file operation
             if(!fileToEncrypt.isFile()) {
-                throw new FileNotFoundException("File '" + fileToEncrypt.getAbsolutePath() + "' is not a valid file.");
+                throw new FileNotFoundException("File '" + fileToEncrypt.getAbsolutePath() + "' is not a valid file, please select a valid file.");
             }
 
             if(!folderToSave.isDirectory()) {
-                throw new IllegalArgumentException("File path '" + folderPath + "' is not a valid directory.");
+                throw new IllegalArgumentException("File path '" + folderPath + "' is not a valid folder, please select a valid folder.");
             }
 
-            if(fileToEncrypt.length() < 1) {
-                throw new FileTooSmallException("File size is too small, must be at least 1 byte.");
+            if(fileToEncrypt.length() < MIN_FILE_TO_ENCRYPT_SIZE) {
+                throw new FileTooSmallException("File size is too small, file must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte in size.");
             }
 
             // Encrypted file name and encryption key file name will have a prefix/suffix on their filename based on business logic
@@ -133,7 +117,7 @@ public class EncryptionService {
             SecretKey secretKey = getSecretKey();
             saveSecretKey(secretKey, outputEncryptionKeyFilePath, encryptionRollbackTask);
             
-            createFileAtomic(outputEncryptedFilePath, encryptionRollbackTask);
+            FileIO.createFileAtomic(outputEncryptedFilePath, encryptionRollbackTask);
 
             IvParameterSpec ivParameterSpec = getIvSpec();
             Files.write(outputEncryptedFilePath, ivParameterSpec.getIV(), StandardOpenOption.WRITE);
@@ -169,12 +153,12 @@ public class EncryptionService {
         } catch (FileAlreadyExistsException faee) {
             rollbackEncryption();
             completeEncryption();
-            throw new Exception("File '" + faee.getFile() + "' already exist, unable to create new file.");
+            throw new Exception("File '" + faee.getFile() + "' already exist, unable to create new file, please remove or rename the existing file.");
 
         } catch (IOException ioe) {
             rollbackEncryption();
             completeEncryption();
-            throw new Exception("Something went wrong during file operations...");
+            throw new Exception("Something went wrong during file operations, check error log to see what happened.");
 
         } catch (FileTooSmallException ftse) {
             rollbackEncryption();
@@ -184,7 +168,7 @@ public class EncryptionService {
         } catch (Exception e) {
             rollbackEncryption();
             completeEncryption();
-            throw new Exception("Unknown error occured... ");
+            throw new Exception("Unknown error occured, check error log to see what happened.");
         }
     }
 
@@ -257,42 +241,10 @@ public class EncryptionService {
      * @return a new initialization vector
      */
     private IvParameterSpec getIvSpec() {
-        byte[] iv = new byte[IV_SIZE];
+        byte[] iv = new byte[EncryptionConfig.IV_SIZE];
         secureRandom.nextBytes(iv);
 
         return new IvParameterSpec(iv);
-    }
-
-    /**
-     * Creates a file at {@code filePath} and registers a rollback function for this operation in {@code rollbackStack}
-     * 
-     * @param filePath the file path of the new file to create
-     * @param rollbackStack the stack to register a rollback function for this operation, or {@code null} if registration of rollback function is not required
-     * @throws IOException if any error occurs during file operation
-     */
-    private void createFileAtomic(Path filePath, Stack<Runnable> rollbackStack) throws IOException {
-
-        Runnable rollbackCreateFileTask = new Runnable() {
-
-            @Override
-            public void run() {
-
-                try {
-
-                    Files.deleteIfExists(filePath);
-
-                } catch (Exception e) {
-                    // TODO: Log error if fail to delete file
-                }
-            }
-            
-        };
-
-        Files.createFile(filePath);
-        
-        if(rollbackStack != null) {
-            rollbackStack.push(rollbackCreateFileTask);
-        }
     }
 
     /**
@@ -325,39 +277,51 @@ public class EncryptionService {
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
 
         // Just in case
-        inputBuffer.clear();
-        outputBuffer.clear();
+        resetBuffers();
         
-        try(FileChannel inputFile = FileChannel.open(fileToEncrypt, StandardOpenOption.READ);
-            FileChannel outputFile = FileChannel.open(fileToWrite, StandardOpenOption.APPEND)) {
+        try
+        (
+            FileChannel inputFile = FileChannel.open(fileToEncrypt, StandardOpenOption.READ);
+            FileChannel outputFile = FileChannel.open(fileToWrite, StandardOpenOption.APPEND)
+        ) 
+        {
 
-                if(inputFile.size() < 1) {
-                    throw new FileTooSmallException("File size is too small, must be at least 1 byte.");
-                }
+            // To make sure that during the actual file operation, the min file size 
+            // rule is still adhered to, even with preliminary checks earlier 
+            // e.g. file size may change after preliminary check but before actual file operation
+            FileSizeTracker fileSizeTracker = new FileSizeTracker(MIN_FILE_TO_ENCRYPT_SIZE);
 
-                while(true) {
+            while(true) {
 
-                    int bytesRead = inputFile.read(inputBuffer);
+                int bytesRead = inputFile.read(inputBuffer);
 
-                    inputBuffer.flip();
+                inputBuffer.flip();
+                fileSizeTracker.increment(bytesRead);
 
-                    if(bytesRead < 1) {
+                if(bytesRead < 1) {
+                    
+                    if(fileSizeTracker.hasReachedMinFileSize()) {
                         cipher.doFinal(inputBuffer, outputBuffer);
 
                     } else {
-                        cipher.update(inputBuffer, outputBuffer);
+                        throw new FileTooSmallException("File size is too small, file must be at least " + MIN_FILE_TO_ENCRYPT_SIZE + " byte in size.");
+
                     }
 
-                    outputBuffer.flip();
-                    outputFile.write(outputBuffer);
+                } else {
+                    cipher.update(inputBuffer, outputBuffer);
 
-                    inputBuffer.clear();
-                    outputBuffer.clear();
-
-                    if(bytesRead < 1) {
-                        break;
-                    }
                 }
+
+                outputBuffer.flip();
+                outputFile.write(outputBuffer);
+
+                resetBuffers();
+
+                if(bytesRead < 1) {
+                    break;
+                }
+            }
 
         }
     }
@@ -381,28 +345,11 @@ public class EncryptionService {
     }
 
     /**
-     * Perform all registered rollback functions to rollback the decryption process.
-     */
-    private void rollbackDecryption() {
-
-        while(!decryptionRollbackTask.isEmpty()) {
-            decryptionRollbackTask.pop().run();
-        }
-    }
-
-    /**
-     * Perform all clean up task to complete a decryption process.
-     */
-    private void completeDecryption() {
-        decryptionRollbackTask.clear();
-        resetBuffers();
-    }
-
-    /**
-     * Reset buffers to prepare for further operations.
+     * Reset buffers to prepare for further encryption operations.
      */
     private void resetBuffers() {
         inputBuffer.clear();
         outputBuffer.clear();
     }
+
 }
