@@ -66,15 +66,6 @@ public class FileSizeTracker {
     }
 
     /**
-     * Gets the file size that's being tracked.
-     * 
-     * @return the total file size
-     */
-    public long getTotalFileSize() {
-        return totalFileSize;
-    }
-
-    /**
      * Updates the current status of this instance to check 
      * if the file size had already reached the minumum 
      * file size specified.
