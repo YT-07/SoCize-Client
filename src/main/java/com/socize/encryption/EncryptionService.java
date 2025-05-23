@@ -129,7 +129,6 @@ public class EncryptionService {
             logger.info("Full encryption key file's path determined to be '{}'", outputEncryptionKeyFilePath.toString());
 
             SecretKey secretKey = getSecretKey();
-            logger.info("Successfully generated encryption key.");
 
             saveSecretKey(secretKey, outputEncryptionKeyFilePath, encryptionRollbackTask);
             
@@ -204,7 +203,10 @@ public class EncryptionService {
      * @return a new secret key
      */
     private SecretKey getSecretKey() {
-        return keyGenerator.generateKey();
+        SecretKey key = keyGenerator.generateKey();
+        logger.info("Successfully generated encryption key.");
+
+        return key;
     }
 
     /**
