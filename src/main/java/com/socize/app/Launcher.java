@@ -25,6 +25,7 @@ public class Launcher {
     /**
      * Perform configurations for the Logback logging framework.
      * 
+     * @param inputStream the input stream of the logback xml configuration file
      * @throws JoranException
      */
     private static void configureLogback(InputStream inputStream) throws JoranException {
