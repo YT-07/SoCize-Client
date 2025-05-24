@@ -18,13 +18,13 @@ import com.socize.config.EncryptionConfig;
 
 class EncryptionServiceTest {
     
-    EncryptionService encryptionService;
+    private EncryptionService encryptionService;
 
     @TempDir
-    Path tempDir;
+    private Path tempDir;
 
-    File testFile;
-    File saveFolder;
+    private File testFile;
+    private File saveFolder;
 
     @BeforeEach
     void setup() throws NoSuchAlgorithmException, NoSuchPaddingException, IOException {
