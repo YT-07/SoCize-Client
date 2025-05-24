@@ -5,11 +5,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Stack;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Class to provide common method for file I/O operations.
  */
 public class FileIO {
-    
+    private static final Logger logger = LoggerFactory.getLogger(FileIO.class);
+
     private FileIO() {
         throw new UnsupportedOperationException("Utility class not meant to be instantiated.");
     }
@@ -31,18 +35,21 @@ public class FileIO {
                 try {
 
                     Files.deleteIfExists(filePath);
+                    logger.info("File '{}' successfully deleted.", filePath.toString());
 
                 } catch (Exception e) {
-                    // TODO: Log error if fail to delete file
+                    logger.error("Failed to delete file '{}'.", filePath.toString(), e);
                 }
             }
             
         };
 
         Files.createFile(filePath); // If exception occur here, will not register rollback function to stack
+        logger.info("File '{}' successfully created.", filePath.toString());
         
         if(rollbackStack != null) {
             rollbackStack.push(rollbackCreateFileTask);
+            logger.info("Successfully registered rollback task to delete file '{}'.", filePath.toString());
         }
     }
 }

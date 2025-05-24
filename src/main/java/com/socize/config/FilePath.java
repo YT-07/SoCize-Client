@@ -1,0 +1,13 @@
+package com.socize.config;
+
+/**
+ * Represents and holds a reference to the file path of all resource files for this app.
+ */
+public class FilePath {
+    
+    private FilePath() {
+        throw new UnsupportedOperationException("Config file not meant to be instantiated.");
+    }
+
+    public static final String LOGBACK_CONFIG = "/config/logback.xml";
+}
