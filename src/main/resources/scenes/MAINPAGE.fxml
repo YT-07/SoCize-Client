@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/mainpage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox id="top-bar" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text id="main-title" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(gaussian, rgba(40, 40, 160, 0.5), 4, 0.3, 0, 0);;" text=" SOCIZE">
+               <font>
+                  <Font name="Agency FB" size="70.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="0.4137115839243499" endY="0.4633569739952719" startX="0.4137115839243499" startY="0.6453900709219857">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.47636452317237854" green="0.8947368264198303" blue="0.6088491082191467" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox id="side-bar" prefHeight="300.0" prefWidth="136.0" style="-fx-background-color: deepskyblue;" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="encryption-button" mnemonicParsing="false" prefHeight="53.0" prefWidth="118.0" style="-fx-cursor: hand; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-insets: -1; -fx-border-color: lightblue;" text="Encryption" textFill="#6522eb">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Segoe UI Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button id="decryption-button" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="118.0" style="-fx-cursor: hand; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-insets: -1; -fx-border-color: lightblue;" text="Decryption" textFill="#6522eb">
+               <font>
+                  <Font name="Segoe UI Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button id="file-server-button" layoutX="10.0" layoutY="83.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="118.0" style="-fx-cursor: hand; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-insets: -1; -fx-border-color: lightblue;" text="File Server" textFill="#6522eb">
+               <font>
+                  <Font name="Segoe UI Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

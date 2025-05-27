@@ -1,0 +1,87 @@
+#top-bar{
+    -fx-background-color: linear-gradient(to bottom, #44b699, #8d72dc);
+}
+
+#side-bar{
+    -fx-background-color: #00bfff;
+}
+
+/*encryption-button*/
+#encryption-button{
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 3;
+    -fx-border-inset: -1;
+    -fx-border-color: #add8e6;
+    -fx-text-fill: rgb(16, 66, 194);
+    -fx-background-color: linear-gradient(to bottom, #e5dfff, #aca8eb);
+
+}
+
+#encryption-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #715ff5, #4085fc);
+    -fx-text-fill: rgb(217, 226, 249);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#encryption-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+
+/*decryption-button*/
+#decryption-button{
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 3;
+    -fx-border-inset: -1;
+    -fx-border-color: #add8e6;
+    -fx-text-fill: rgb(16, 66, 194);
+    -fx-background-color: linear-gradient(to bottom, #e5dfff, #aca8eb);
+
+}
+
+#decryption-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #715ff5, #4085fc);
+    -fx-text-fill: rgb(217, 226, 249);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#decryption-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+
+/*file-server-button*/
+#file-server-button{
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 3;
+    -fx-border-inset: -1;
+    -fx-border-color: #add8e6;
+    -fx-text-fill: rgb(16, 66, 194);
+    -fx-background-color: linear-gradient(to bottom, #e5dfff, #aca8eb);
+
+}
+
+#file-server-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #715ff5, #4085fc);
+    -fx-text-fill: rgb(217, 226, 249);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#file-server-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
