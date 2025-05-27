@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/signuppage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="433.0" prefWidth="398.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane id="form-box" layoutX="177.0" layoutY="8.0" prefHeight="381.0" prefWidth="249.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10; -fx-border-color: linear-gradient(to top, #44b699, #8d72dc);">
+               <children>
+                  <Label id="sign-up-title" layoutX="81.0" prefHeight="42.0" prefWidth="90.0" text="Sign Up">
+                     <font>
+                        <Font name="Agency FB Bold" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="16.0" layoutY="36.0" prefHeight="20.0" prefWidth="64.0" style="-fx-text-fill: black;" text="Username">
+                     <font>
+                        <Font name="Agency FB Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField id="text-field-box" layoutX="15.0" layoutY="56.0" prefHeight="26.0" prefWidth="220.0" promptText="Enter your username" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
+                     <font>
+                        <Font name="Tw Cen MT" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Text fill="RED" layoutX="16.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message" wrappingWidth="104.31509399414062">
+                     <font>
+                        <Font name="Tw Cen MT" size="10.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="17.0" layoutY="104.0" prefHeight="20.0" prefWidth="64.0" style="-fx-text-fill: black;" text="Password">
+                     <font>
+                        <Font name="Agency FB Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Text fill="RED" layoutX="17.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message" wrappingWidth="104.31509399414062">
+                     <font>
+                        <Font name="Tw Cen MT" size="10.0" />
+                     </font>
+                  </Text>
+                  <PasswordField id="password-field-box" layoutX="17.0" layoutY="124.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter your password" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
+                     <font>
+                        <Font name="Tw Cen MT" size="12.0" />
+                     </font>
+                  </PasswordField>
+                  <Label layoutX="16.0" layoutY="170.0" prefHeight="20.0" prefWidth="64.0" style="-fx-text-fill: black;" text="Email">
+                     <font>
+                        <Font name="Agency FB Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField id="text-field-box" layoutX="15.0" layoutY="190.0" prefHeight="26.0" prefWidth="220.0" promptText="Enter your email" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
+                     <font>
+                        <Font name="Tw Cen MT" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Text fill="RED" layoutX="16.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message" wrappingWidth="104.31509399414062">
+                     <font>
+                        <Font name="Tw Cen MT" size="10.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="16.0" layoutY="236.0" prefHeight="20.0" prefWidth="64.0" style="-fx-text-fill: black;" text="Address">
+                     <font>
+                        <Font name="Agency FB Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField id="text-field-box" layoutX="15.0" layoutY="256.0" prefHeight="26.0" prefWidth="220.0" promptText="Enter your address" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;" styleClass="text-field-box">
+                     <font>
+                        <Font name="Tw Cen MT" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Text fill="RED" layoutX="16.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message" wrappingWidth="104.31509399414062">
+                     <font>
+                        <Font name="Tw Cen MT" size="10.0" />
+                     </font>
+                  </Text>
+                  <Button id="sign-up-button" layoutX="40.0" layoutY="312.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="160.0" text="Sign Up">
+                     <font>
+                        <Font name="System Bold" size="1.0" />
+                     </font>
+                  </Button>
+                  <Text fill="RED" layoutX="92.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error Message" wrappingWidth="68.81509399414062">
+                     <font>
+                        <Font name="Tw Cen MT" size="11.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
