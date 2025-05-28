@@ -1,0 +1,112 @@
+#side-bar-title{
+    -fx-background-color: linear-gradient(to bottom, #44b699, #8d72dc);
+}
+
+#socize-title{
+    -fx-text-fill: linear-gradient(from 41.3712% 64.539% to 41.3712% 46.3357%, #79e49b 0.0%, #ffffff 100.0%)
+}
+
+#sign-in-title{
+    -fx-text-fill: linear-gradient(to bottom, #44b699, #8d72dc);
+}
+
+#form-box{
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-border-color:  linear-gradient(to top, #44b699, #8d72dc);
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-insets: -1;
+}
+
+#username-box{
+    -fx-border-colour: linear-gradient(to top, #f79533, #dd2a7b);
+    -fx-border-width: 2;
+    -fx-border-radius: 4; 
+    -fx-background-radius: 4;
+}
+
+#password-box{
+    -fx-border-colour: linear-gradient(to top, #f79533, #dd2a7b);
+    -fx-border-width: 2;
+    -fx-border-radius: 4; 
+    -fx-background-radius: 4;
+}
+
+#sign-in-button {
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 4;
+    -fx-text-fill: white;
+    -fx-background-color:  linear-gradient(to left, #f79533, #dd2a7b);
+}
+
+#sign-in-button:hover {
+    -fx-background-color: linear-gradient(to left, #e9ffe3, #e4eeff);
+    -fx-text-fill:  linear-gradient(to right, #f79533, #dd2a7b);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#sign-in-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color: linear-gradient(to right, #e9ffe3, #e4eeff);
+
+}
+
+#home-button {
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 4;
+    -fx-text-fill: white;
+    -fx-background-color:  linear-gradient(to left, #88878c, #9342fc);
+}
+
+#home-button:hover {
+    -fx-background-color:  linear-gradient(to left, #fefeff, #e8d6ff);
+    -fx-text-fill: linear-gradient(to right, #88878c, #9342fc);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#home-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color:  linear-gradient(to right, #fefeff, #e8d6ff);
+
+}
+
+#sign-up-button {
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 4;
+    -fx-text-fill: white;
+    -fx-background-color:  linear-gradient(to left, #88878c, #9342fc);
+}
+
+#sign-up-button:hover {
+    -fx-background-color:  linear-gradient(to left, #fefeff, #e8d6ff);
+    -fx-text-fill: linear-gradient(to right, #88878c, #9342fc);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#sign-up-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color:  linear-gradient(to right, #fefeff, #e8d6ff);
+
+}
