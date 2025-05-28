@@ -6,9 +6,9 @@ import com.socize.app.sceneloader.spi.SceneLoader;
 /**
  * Interface to get the default scene loader for this app.
  */
-public class SceneLoaderService {
+public class SceneLoaders {
     
-    public static SceneLoader getLoader() {
+    public static SceneLoader getDefault() {
         return DefaultSceneLoader.getInstance();
     }
 }
