@@ -12,7 +12,7 @@ import com.socize.app.sceneloader.spi.SceneFactory;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 
-public class DefaultSceneLoaderTest {
+class DefaultSceneLoaderTest {
     
     @Test
     void shouldCacheAndReturnSameParent_IfParentIsRequestedMultipleTimes() {
