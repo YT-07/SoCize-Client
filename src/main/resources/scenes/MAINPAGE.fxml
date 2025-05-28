@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/mainpage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/mainpage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox id="top-bar" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -42,7 +42,7 @@
    <left>
       <VBox id="side-bar" prefHeight="300.0" prefWidth="136.0" style="-fx-background-color: deepskyblue;" BorderPane.alignment="CENTER">
          <children>
-            <Button id="encryption-button" mnemonicParsing="false" prefHeight="53.0" prefWidth="118.0" style="-fx-cursor: hand; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-insets: -1; -fx-border-color: lightblue;" text="Encryption" textFill="#6522eb">
+            <Button id="encryption-button" fx:id="encryptionButton" mnemonicParsing="false" prefHeight="53.0" prefWidth="118.0" style="-fx-cursor: hand; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-insets: -1; -fx-border-color: lightblue;" text="Encryption" textFill="#6522eb">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -50,7 +50,7 @@
                   <Font name="Segoe UI Bold" size="16.0" />
                </font>
             </Button>
-            <Button id="decryption-button" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="118.0" style="-fx-cursor: hand; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-insets: -1; -fx-border-color: lightblue;" text="Decryption" textFill="#6522eb">
+            <Button id="decryption-button" fx:id="decryptionButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="118.0" style="-fx-cursor: hand; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-insets: -1; -fx-border-color: lightblue;" text="Decryption" textFill="#6522eb">
                <font>
                   <Font name="Segoe UI Bold" size="16.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="file-server-button" layoutX="10.0" layoutY="83.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="118.0" style="-fx-cursor: hand; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-insets: -1; -fx-border-color: lightblue;" text="File Server" textFill="#6522eb">
+            <Button id="file-server-button" fx:id="fileServerButton" layoutX="10.0" layoutY="83.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="118.0" style="-fx-cursor: hand; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3; -fx-border-insets: -1; -fx-border-color: lightblue;" text="File Server" textFill="#6522eb">
                <font>
                   <Font name="Segoe UI Bold" size="16.0" />
                </font>
