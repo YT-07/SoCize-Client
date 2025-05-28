@@ -27,6 +27,11 @@ public class DefaultSceneLoader implements SceneLoader {
         return instance;
     }
 
+    // For testing, for injecting a mock scene factory
+    static DefaultSceneLoader createTestingLoader(SceneFactory sceneFactory) {
+        return new DefaultSceneLoader(sceneFactory);
+    }
+
     @Override
     public Parent getScene(AppScene scene) {
         
