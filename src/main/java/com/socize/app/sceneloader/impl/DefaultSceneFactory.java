@@ -1,6 +1,5 @@
 package com.socize.app.sceneloader.impl;
 
-import java.io.IOException;
 import java.net.URL;
 
 import org.slf4j.Logger;
@@ -30,8 +29,8 @@ public class DefaultSceneFactory implements SceneFactory {
 
             parent = loader.load();
 
-        } catch (IOException ioe) {
-            logger.error("Error loading scene '{}'", scene.name(), ioe);
+        } catch (Exception e) {
+            logger.error("Error loading scene '{}'", scene.name(), e);
             throw new RuntimeException();
         }
 
