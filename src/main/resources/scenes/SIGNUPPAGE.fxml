@@ -26,89 +26,89 @@
             </ImageView>
             <AnchorPane id="form-box" layoutX="177.0" layoutY="8.0" prefHeight="381.0" prefWidth="249.0" style="-fx-border-width: 2; -fx-border-radius: 10; -fx-border-color: linear-gradient(to top, #44b699, #8d72dc); -fx-background-radius: 10;">
                <children>
-                  <Label id="sign-up-title" layoutX="81.0" prefHeight="42.0" prefWidth="90.0" text="Sign Up">
+                  <Label id="sign-up-title" layoutX="65.0" text="Sign Up">
                      <font>
                         <Font name="Agency FB Bold" size="34.0" />
                      </font>
                   </Label>
-                  <Label layoutX="16.0" layoutY="36.0" prefHeight="20.0" prefWidth="64.0" text="Username">
+                  <Label layoutX="15.0" layoutY="41.0" text="Username">
                      <font>
                         <Font name="Agency FB Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextField id="username-box" layoutX="15.0" layoutY="56.0" prefHeight="26.0" prefWidth="220.0" promptText="Enter your username" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-radius: 4; -fx-background-radius: 4;">
+                  <TextField id="username-box" fx:id="usernameField" layoutX="14.0" layoutY="61.0" prefHeight="26.0" prefWidth="220.0" promptText="Enter your username" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-radius: 4; -fx-background-radius: 4;">
                      <font>
                         <Font name="Tw Cen MT" size="12.0" />
                      </font>
                   </TextField>
-                  <Text fill="RED" layoutX="16.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message" wrappingWidth="104.31509399414062">
+                  <Text fx:id="usernameErrorText" fill="RED" layoutX="15.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="104.31509399414062">
                      <font>
                         <Font name="Tw Cen MT" size="10.0" />
                      </font>
                   </Text>
-                  <Label layoutX="17.0" layoutY="104.0" prefHeight="20.0" prefWidth="64.0" text="Password">
+                  <Label layoutX="16.0" layoutY="109.0" text="Password">
                      <font>
                         <Font name="Agency FB Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Text fill="RED" layoutX="17.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message" wrappingWidth="104.31509399414062">
+                  <Text fx:id="passwordErrorText" fill="RED" layoutX="16.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="104.31509399414062">
                      <font>
                         <Font name="Tw Cen MT" size="10.0" />
                      </font>
                   </Text>
-                  <PasswordField id="password-box" layoutX="17.0" layoutY="124.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter your password" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
+                  <PasswordField id="password-box" fx:id="passwordField" layoutX="16.0" layoutY="129.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter your password" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
                      <font>
                         <Font name="Tw Cen MT" size="12.0" />
                      </font>
                   </PasswordField>
-                  <Label layoutX="16.0" layoutY="170.0" prefHeight="20.0" prefWidth="64.0" text="Email">
+                  <Label layoutX="15.0" layoutY="175.0" text="Email">
                      <font>
                         <Font name="Agency FB Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextField id="email-box" layoutX="15.0" layoutY="190.0" prefHeight="26.0" prefWidth="220.0" promptText="Enter your email" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
+                  <TextField id="email-box" fx:id="emailField" layoutX="14.0" layoutY="195.0" prefHeight="26.0" prefWidth="220.0" promptText="Enter your email" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
                      <font>
                         <Font name="Tw Cen MT" size="12.0" />
                      </font>
                   </TextField>
-                  <Text fill="RED" layoutX="16.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message" wrappingWidth="104.31509399414062">
+                  <Text fx:id="emailErrorText" fill="RED" layoutX="15.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="104.31509399414062">
                      <font>
                         <Font name="Tw Cen MT" size="10.0" />
                      </font>
                   </Text>
-                  <Label layoutX="16.0" layoutY="236.0" prefHeight="20.0" prefWidth="64.0" text="Address">
+                  <Label layoutX="15.0" layoutY="241.0" text="Address">
                      <font>
                         <Font name="Agency FB Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextField id="address-box" layoutX="15.0" layoutY="256.0" prefHeight="26.0" prefWidth="220.0" promptText="Enter your address" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
+                  <TextField id="address-box" fx:id="addressField" layoutX="14.0" layoutY="261.0" prefHeight="26.0" prefWidth="220.0" promptText="Enter your address" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
                      <font>
                         <Font name="Tw Cen MT" size="12.0" />
                      </font>
                   </TextField>
-                  <Text fill="RED" layoutX="16.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error message" wrappingWidth="104.31509399414062">
+                  <Text fx:id="addressErrorText" fill="RED" layoutX="15.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="104.31509399414062">
                      <font>
                         <Font name="Tw Cen MT" size="10.0" />
                      </font>
                   </Text>
-                  <Button id="sign-up-button" layoutX="40.0" layoutY="312.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="160.0" text="Sign Up">
+                  <Button id="sign-up-button" fx:id="signUpButton" layoutX="39.0" layoutY="317.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="160.0" text="Sign Up">
                      <font>
                         <Font name="System Bold" size="1.0" />
                      </font>
                   </Button>
-                  <Text fill="RED" layoutX="92.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error Message" wrappingWidth="68.81509399414062">
+                  <Text fx:id="signUpErrorText" fill="RED" layoutX="73.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="94.81509399414062">
                      <font>
                         <Font name="Tw Cen MT" size="11.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <Button id="home-button" layoutX="433.0" layoutY="14.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Home">
+            <Button id="home-button" fx:id="homeButton" layoutX="433.0" layoutY="14.0" mnemonicParsing="false" text="Home">
                <font>
                   <Font name="System Bold" size="1.0" />
                </font>
             </Button>
-            <Button id="sign-in-button" layoutX="514.0" layoutY="14.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Sign In">
+            <Button id="sign-in-button" fx:id="signInButton" layoutX="514.0" layoutY="14.0" mnemonicParsing="false" text="Sign In">
                <font>
                   <Font name="System Bold" size="1.0" />
                </font>

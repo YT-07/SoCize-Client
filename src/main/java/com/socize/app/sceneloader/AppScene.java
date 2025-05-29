@@ -1,0 +1,34 @@
+package com.socize.app.sceneloader;
+
+import com.socize.app.sceneloader.impl.DefaultMainMenuControllerFactory;
+import com.socize.app.sceneloader.impl.DefaultSignInControllerFactory;
+import com.socize.app.sceneloader.impl.DefaultSignUpControllerFactory;
+import com.socize.app.sceneloader.spi.SceneControllerFactory;
+import com.socize.config.FilePath;
+
+/**
+ * Represent and hold references to all scenes for this app and 
+ * their respective file path and controller factory.
+ */
+public enum AppScene {
+    MAIN_PAGE(new DefaultMainMenuControllerFactory(), FilePath.MAIN_PAGE_FXML),
+    SIGN_IN_PAGE(new DefaultSignInControllerFactory(), FilePath.SIGN_IN_PAGE_FXML),
+    SIGN_UP_PAGE(new DefaultSignUpControllerFactory(), FilePath.SIGN_UP_PAGE_FXML);
+
+    private SceneControllerFactory controllerFactory;
+    private String sceneResourcePath;
+
+    private AppScene(SceneControllerFactory controllerFactory, String sceneResourcePath) {
+        this.controllerFactory = controllerFactory;
+        this.sceneResourcePath = sceneResourcePath;
+    }
+
+    public SceneControllerFactory getControllerFactory() {
+        return controllerFactory;
+    }
+
+    public String getPath() {
+        return sceneResourcePath;
+    }
+
+}
