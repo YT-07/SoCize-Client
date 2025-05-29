@@ -34,7 +34,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Button layoutX="433.0" layoutY="14.0" mnemonicParsing="false" styleClass="common-button" text="Sign Up">
+            <Button fx:id="signUpButton" layoutX="433.0" layoutY="14.0" mnemonicParsing="false" styleClass="common-button" text="Sign Up">
                <font>
                   <Font name="Agency FB" size="1.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                </padding>
             </Button>
-            <Button layoutX="514.0" layoutY="14.0" mnemonicParsing="false" styleClass="common-button" text="Sign In">
+            <Button fx:id="signInButton" layoutX="518.0" layoutY="14.0" mnemonicParsing="false" styleClass="common-button" text="Sign In">
                <font>
                   <Font name="Agency FB" size="1.0" />
                </font>
