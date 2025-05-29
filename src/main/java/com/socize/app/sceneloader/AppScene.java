@@ -1,5 +1,6 @@
 package com.socize.app.sceneloader;
 
+import com.socize.app.sceneloader.impl.DefaultHomeControllerFactory;
 import com.socize.app.sceneloader.impl.DefaultMainMenuControllerFactory;
 import com.socize.app.sceneloader.impl.DefaultSignInControllerFactory;
 import com.socize.app.sceneloader.impl.DefaultSignUpControllerFactory;
@@ -13,7 +14,8 @@ import com.socize.config.FilePath;
 public enum AppScene {
     MAIN_PAGE(new DefaultMainMenuControllerFactory(), FilePath.MAIN_PAGE_FXML),
     SIGN_IN_PAGE(new DefaultSignInControllerFactory(), FilePath.SIGN_IN_PAGE_FXML),
-    SIGN_UP_PAGE(new DefaultSignUpControllerFactory(), FilePath.SIGN_UP_PAGE_FXML);
+    SIGN_UP_PAGE(new DefaultSignUpControllerFactory(), FilePath.SIGN_UP_PAGE_FXML),
+    HOME_PAGE(new DefaultHomeControllerFactory(), FilePath.HOME_PAGE_FXML);
 
     private SceneControllerFactory controllerFactory;
     private String sceneResourcePath;
