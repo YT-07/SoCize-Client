@@ -1,0 +1,6 @@
+.text-field-box{
+    -fx-border-colour: linear-gradient(to top, #f79533, #dd2a7b);
+    -fx-border-width: 2;
+    -fx-border-radius: 4; 
+    -fx-background-radius: 4;
+}

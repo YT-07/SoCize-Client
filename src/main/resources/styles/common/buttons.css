@@ -1,0 +1,25 @@
+.common-button {
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 4;
+    -fx-text-fill: white;
+    -fx-background-color:  linear-gradient(to left, #88878c, #9342fc);
+}
+
+.common-button:hover {
+    -fx-background-color:  linear-gradient(to left, #fefeff, #e8d6ff);
+    -fx-text-fill: linear-gradient(to right, #88878c, #9342fc);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.common-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color:  linear-gradient(to right, #fefeff, #e8d6ff);
+
+}
