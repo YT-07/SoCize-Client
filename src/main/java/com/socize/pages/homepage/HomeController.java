@@ -1,4 +1,4 @@
-package com.socize.pages.signin;
+package com.socize.pages.homepage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,13 +9,8 @@ import com.socize.shared.spi.MainMenuPageState;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
-public class SignInController implements Initializable {
-
-    @FXML
-    private Button homeButton;
+public class HomeController implements Initializable {
 
     @FXML
     private Button signUpButton;
@@ -23,31 +18,16 @@ public class SignInController implements Initializable {
     @FXML
     private Button signInButton;
 
-    @FXML
-    private TextField usernameField;
-
-    @FXML
-    private TextField passwordField;
-
-    @FXML
-    private Text usernameErrorText;
-
-    @FXML
-    private Text passwordErrorText;
-
-    @FXML
-    private Text signInErrorText;
-
     private final MainMenuPageState mainMenuPageState;
 
-    public SignInController(MainMenuPageState mainMenuPageState) {
+    public HomeController(MainMenuPageState mainMenuPageState) {
         this.mainMenuPageState = mainMenuPageState;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        homeButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.HOME_PAGE);
+        signInButton.setOnAction(e -> {
+            mainMenuPageState.setPage(AppScene.SIGN_IN_PAGE);
         });
 
         signUpButton.setOnAction(e -> {

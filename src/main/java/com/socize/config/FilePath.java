@@ -14,4 +14,5 @@ public class FilePath {
     public static final String MAIN_PAGE_FXML = "/scenes/MAINPAGE.fxml";
     public static final String SIGN_IN_PAGE_FXML = "/scenes/SIGNINPAGE.fxml";
     public static final String SIGN_UP_PAGE_FXML = "/scenes/SIGNUPPAGE.fxml";
+    public static final String HOME_PAGE_FXML = "/scenes/HOMEPAGE.fxml";
 }
