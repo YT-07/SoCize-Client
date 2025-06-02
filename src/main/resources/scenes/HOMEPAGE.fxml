@@ -22,7 +22,7 @@
             <AnchorPane id="introduction-box" layoutX="96.0" layoutY="128.0" prefHeight="141.0" prefWidth="409.0" style="-fx-border-width: 2; -fx-border-radius: 10; -fx-border-color: linear-gradient(to top, #44b699, #8d72dc); -fx-background-radius: 10;">
                <children>
                   <Label id="introduction-text" layoutX="14.0" layoutY="7.0" prefHeight="140.0" prefWidth="270.0" textAlignment="JUSTIFY" wrapText="true">
-                     <text>Welcome to SoCize — Your Privacy, Reinvented. In today’s digital world, data privacy is no longer a luxury — it’s a necessity. SoCize is a file encryption and secure storage platform designed to give users full control over their personal data. Only you and your chosen recipients can access your files — not even our servers.</text>
+                     <text>Welcome to SoCize ,Your Privacy, Reinvented. In today’s digital world, data privacy is no longer a luxury — it’s a necessity. SoCize is a file encryption and secure storage platform designed to give users full control over their personal data. Only you and your chosen recipients can access your files, not even our servers.</text>
                      <font>
                         <Font name="Tw Cen MT Bold" size="12.0" />
                      </font>

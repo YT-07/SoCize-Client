@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="433.0" prefWidth="398.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="426.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/page-background.jpg" />
+               </image>
+            </ImageView>
+            <AnchorPane id="username-box" layoutX="481.0" layoutY="22.0" prefHeight="27.0" prefWidth="105.0">
+               <children>
+                  <Label id="username-text" layoutX="6.0" layoutY="6.0" prefHeight="15.0" prefWidth="101.0" textAlignment="JUSTIFY" wrapText="true">
+                     <text>Username</text>
+                     <font>
+                        <Font name="Tw Cen MT Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane id="file-box" layoutX="69.0" layoutY="260.0" />
+            <Button id="file-button" layoutX="514.0" layoutY="158.0" mnemonicParsing="false" text="Select" />
+            <Button id="file-button" layoutX="514.0" layoutY="213.0" mnemonicParsing="false" text="Upload" />
+            <ListView id="list-view-box" layoutX="53.0" layoutY="161.0" prefHeight="119.0" prefWidth="217.0" />
+            <TextField id="filename-textfield" layoutX="355.0" layoutY="214.0" text="file.txt">
+               <font>
+                  <Font name="Tw Cen MT Bold" size="13.0" />
+               </font>
+            </TextField>
+            <Button id="file-button" layoutX="53.0" layoutY="295.0" mnemonicParsing="false" text="Download" />
+            <Button id="delete-button" layoutX="217.0" layoutY="295.0" mnemonicParsing="false" text="Delete" />
+            <Label layoutX="300.0" layoutY="220.0" prefHeight="16.0" prefWidth="53.0" text="File name :">
+               <font>
+                  <Font name="Agency FB Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label id="successful-feedback-message" layoutX="122.0" layoutY="323.0" text="Successful!">
+               <font>
+                  <Font name="Agency FB Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label id="error-feedback-message" layoutX="399.0" layoutY="250.0" text="Error :(">
+               <font>
+                  <Font name="Agency FB Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
+            <Label layoutX="300.0" layoutY="164.0" prefHeight="16.0" prefWidth="53.0" text="Select File :">
+               <font>
+                  <Font name="Agency FB Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label id="file-box" layoutX="356.0" layoutY="159.0" prefHeight="26.0" prefWidth="139.0" text="/path">
+               <font>
+                  <Font name="Tw Cen MT Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </Label>
+            <Label id="title-text" layoutX="92.0" layoutY="112.0" text="Download File">
+               <font>
+                  <Font name="Agency FB Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label id="title-text" layoutX="375.0" layoutY="112.0" text="Upload File">
+               <font>
+                  <Font name="Agency FB Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+   <stylesheets>
+      <URL value="@../styles/userpage.css" />
+      <URL value="@../styles/common/buttons.css" />
+   </stylesheets>
+</BorderPane>
