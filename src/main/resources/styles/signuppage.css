@@ -27,6 +27,7 @@
     -fx-border-radius: 4;
     -fx-text-fill: white;
     -fx-background-color:  linear-gradient(to left, #f79533, #dd2a7b);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0.2, 1, 1);
 }
 
 #sign-up-button:hover {
