@@ -1,0 +1,29 @@
+#top-bar{
+    -fx-background-color: #ff44e6;
+}
+
+#admin-page-button{
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 3;
+    -fx-border-inset: -1;
+    -fx-border-color: #00bffe;
+    -fx-text-fill:linear-gradient(to bottom, #d9ccff, #18f3e4);
+    -fx-background-color: linear-gradient(to bottom, #8157f3, #2eb4d9);
+}
+
+#admin-page-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #d9ccff, #18f3e4);
+    -fx-text-fill: linear-gradient(to bottom, #8157f3, #2eb4d9);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#admin-page-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color: linear-gradient(to top, #d9ccff, #18f3e4);
+    -fx-text-fill: linear-gradient(to bottom, #9472f2, rgb(12, 170, 213));
+}
