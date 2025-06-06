@@ -1,0 +1,108 @@
+#successful-feedback-message {
+    -fx-text-fill: linear-gradient(to bottom, #00ff44, #ade8b4);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.3, 2, 2);
+}
+
+#error-feedback-message{
+    -fx-text-fill: linear-gradient(to bottom, #ff8fd2, #ff0000, #ff8fd2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 6, 0.2, 1, 1);
+}
+
+#username-box{
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-border-color:  linear-gradient(to bottom, #39b092, #9077db);
+    -fx-background-color: linear-gradient(to right, #f1f1f1, #dec5ff, #dee4ff) ;
+    -fx-background-radius: 10;
+    -fx-border-insets: -1;
+}
+
+#list-view-box{
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-border-color:  linear-gradient(to top, #018da0, #6641d8);
+    -fx-background-color: linear-gradient(to right, #ffffff, #f0eaff, #ffffff) ;
+    -fx-background-radius: 10;
+    -fx-border-insets: -2;
+}   
+
+#username-text{
+    -fx-text-fill: linear-gradient(to right, #ff0800, #9001ce);
+}
+
+#page-title-text{
+    -fx-text-fill:linear-gradient(to top, #88878c, #9342fc);
+}
+
+#title-text{
+    -fx-text-fill: linear-gradient(to right, #937eff, #c56d9d);
+}
+
+#view-details-button {
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 4;
+    -fx-text-fill: white;
+    -fx-background-color:  linear-gradient(to left, #abaaaf, #fa5bcf);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0.2, 1, 1);
+}
+
+#view-details-button:hover {
+    -fx-background-color:  linear-gradient(to left, #c4bae6, #ffdcf6);
+    -fx-text-fill: linear-gradient(to left, #89859f, #f04ec5);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#view-details-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color:  linear-gradient(to right, #c4bae6, #ffdcf6);
+
+}
+
+#delete-button {
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 4;
+    -fx-text-fill: white;
+    -fx-background-color:  linear-gradient(to left, #ff0000, rgb(249, 108, 143));
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0.2, 1, 1);
+}
+
+#delete-button:hover {
+    -fx-background-color:  linear-gradient(to left, #ffb0b0, rgb(255, 224, 232));
+    -fx-text-fill: linear-gradient(to left, #ff0000, rgb(249, 108, 143));
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#delete-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color:  linear-gradient(to right, #ffb0b0, rgb(255, 224, 232));
+
+}
+
+#user-detail-area{
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-border-color:  linear-gradient(to top, #44b699, #8d72dc);
+    -fx-background-color: linear-gradient(to right, #e9f1ff, #ffffff, #e7eafd) ;
+    -fx-background-radius: 10;
+    -fx-border-insets: -1;
+}
+
+#user-details{
+    -fx-text-fill: linear-gradient(to bottom, #600f72, #f37dbe);
+}

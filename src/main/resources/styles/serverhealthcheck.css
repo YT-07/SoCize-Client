@@ -1,0 +1,59 @@
+#username-box{
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-border-color:  linear-gradient(to bottom, #39b092, #9077db);
+    -fx-background-color: linear-gradient(to right, #f1f1f1, #dec5ff, #dee4ff) ;
+    -fx-background-radius: 10;
+    -fx-border-insets: -1;
+}
+
+#username-text{
+    -fx-text-fill: linear-gradient(to right, #ff0800, #9001ce);
+}
+
+#page-title-text{
+    -fx-text-fill:linear-gradient(to top, #88878c, #9342fc);
+}
+
+#title-text{
+    -fx-text-fill: linear-gradient(to right, #937eff, #c56d9d);
+}
+
+#check-server-button {
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 4;
+    -fx-text-fill: white;
+    -fx-background-color:  linear-gradient(to left, #f1487e, #da5bfa);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0.2, 1, 1);
+}
+
+#check-server-button:hover {
+    -fx-background-color:  linear-gradient(to left, #ffd7e3, #f3c4ff);
+    -fx-text-fill: linear-gradient(to left, #f1487e, #da5bfa);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#check-server-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color:  linear-gradient(to right, #ffd7e3, #f3c4ff);
+
+}
+
+#server-details-area{
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-color: linear-gradient(to top, #44b699, #8d72dc);
+    -fx-background-radius: 10;
+    -fx-border-insets: -1;
+}
+
+#server-details{
+    -fx-text-fill: white;
+}
