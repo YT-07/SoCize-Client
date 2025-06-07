@@ -1,4 +1,4 @@
-package com.socize.shared.spi;
+package com.socize.shared.mainmenupagestate.spi;
 
 import java.util.function.Consumer;
 
