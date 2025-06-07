@@ -4,8 +4,8 @@ import com.socize.app.sceneloader.SceneLoaders;
 import com.socize.app.sceneloader.spi.SceneControllerFactory;
 import com.socize.app.sceneloader.spi.SceneLoader;
 import com.socize.pages.mainmenu.MainMenuController;
-import com.socize.shared.impl.DefaultMainMenuPageState;
-import com.socize.shared.spi.MainMenuPageState;
+import com.socize.shared.mainmenupagestate.impl.DefaultMainMenuPageState;
+import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
 
 public class DefaultMainMenuControllerFactory implements SceneControllerFactory {
 
