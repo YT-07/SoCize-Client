@@ -78,7 +78,7 @@
                         <Font name="Tw Cen MT" size="10.0" />
                      </font>
                   </Text>
-                  <Label layoutX="15.0" layoutY="241.0" text="Address">
+                  <Label layoutX="15.0" layoutY="241.0" text="Phone number">
                      <font>
                         <Font name="Agency FB Bold" size="16.0" />
                      </font>
