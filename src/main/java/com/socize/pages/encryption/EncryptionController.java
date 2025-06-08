@@ -56,6 +56,8 @@ public class EncryptionController implements Initializable {
         selectFileToEncryptButton.setOnAction(e -> selectFileToEncrypt());
 
         selectFolderToSaveButton.setOnAction(e -> selectFolderToSave());
+
+        encryptButton.setOnAction(e -> encrypt());
     }
     
     /**
@@ -78,5 +80,29 @@ public class EncryptionController implements Initializable {
         folderToSave = directoryChooser.showDialog(window);
 
         folderToSavePath.setText(folderToSave.getAbsolutePath());
+    }
+
+    /**
+     * Helper function to orchestrate the encryption process.
+     */
+    private void encrypt() {
+        if(fileToEncrypt == null) {
+            encryptFeedbackField.setText("Please select a file to encrypt.");
+            return;
+        }
+
+        if(folderToSave == null) {
+            encryptFeedbackField.setText("Please select a folder to save.");
+            return;
+        }
+
+        try {
+
+            encryptionService.encryptFile(fileToEncrypt, folderToSave);
+            encryptFeedbackField.setText("File successfully encrypted.");
+
+        } catch (Exception e) {
+            encryptFeedbackField.setText(e.getMessage());
+        }
     }
 }
