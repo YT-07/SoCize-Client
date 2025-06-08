@@ -3,16 +3,6 @@
     -fx-text-fill: linear-gradient(to top, #44b699, #8d72dc);
 }
 
-#successful-feedback-message {
-    -fx-text-fill: linear-gradient(to bottom, #00ff44, #ade8b4);
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.3, 2, 2);
-}
-
-#error-feedback-message{
-    -fx-text-fill: linear-gradient(to bottom, #ff8fd2, #ff0000, #ff8fd2);
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 6, 0.2, 1, 1);
-}
-
 #select-button {
     -fx-font-family: "Agency FB";
     -fx-font-weight: bold;
