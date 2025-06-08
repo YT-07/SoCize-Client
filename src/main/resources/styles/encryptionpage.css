@@ -1,0 +1,41 @@
+#encryption-title{
+    -fx-font-family: "Agency FB";
+    -fx-text-fill: linear-gradient(to bottom, #44b699, #8d72dc);
+}
+
+#successful-feedback-message {
+    -fx-text-fill: linear-gradient(to bottom, #00ff44, #ade8b4);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.3, 2, 2);
+}
+
+#error-feedback-message{
+    -fx-text-fill: linear-gradient(to bottom, #ff8fd2, #ff0000, #ff8fd2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 6, 0.2, 1, 1);
+}
+
+#select-button {
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-cursor:hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 4;
+    -fx-text-fill: white;
+    -fx-background-color:  linear-gradient(to left, #abaaaf, #d418c5);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0.2, 1, 1);
+}
+
+#select-button:hover {
+    -fx-background-color:  linear-gradient(to left, #c4bae6, #ffdcf6);
+    -fx-text-fill: linear-gradient(to left, #89859f, #f04ec5);
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+#select-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color:  linear-gradient(to right, #c4bae6, #ffdcf6);
+
+}

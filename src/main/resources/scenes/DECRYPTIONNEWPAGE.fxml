@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="433.0" prefWidth="398.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="426.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/page-background.jpg" />
+               </image>
+            </ImageView>
+            <Label id="decryption-title" layoutX="225.0" layoutY="36.0" text="Decryption">
+               <font>
+                  <Font name="Agency FB Bold" size="41.0" />
+               </font>
+            </Label>
+            <Button id="select-button" layoutX="327.0" layoutY="133.0" mnemonicParsing="false" text="Select" />
+            <Button id="select-button" layoutX="327.0" layoutY="195.0" mnemonicParsing="false" text="Select" />
+            <Button layoutX="430.0" layoutY="284.0" mnemonicParsing="false" styleClass="common-button" text="Decrypt" />
+            <Label layoutX="101.0" layoutY="129.0" text="Select file to decrypt" textFill="#7530ae">
+               <font>
+                  <Font name="Agency FB Bold" size="21.0" />
+               </font></Label>
+            <Label layoutX="101.0" layoutY="189.0" text="Select path to encryption key" textFill="#7232ad">
+               <font>
+                  <Font name="Agency FB Bold" size="19.0" />
+               </font></Label>
+            <Label layoutX="101.0" layoutY="249.0" prefHeight="26.0" prefWidth="177.0" text="Select folder to save file" textFill="#7530ae" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Agency FB Bold" size="21.0" />
+               </font>
+            </Label>
+            <Button id="select-button" layoutX="327.0" layoutY="253.0" mnemonicParsing="false" text="Select" />
+            <Label layoutX="133.0" layoutY="153.0" prefHeight="17.0" prefWidth="158.0" text="/path/to/file/to/decrypt" textAlignment="CENTER">
+               <font>
+                  <Font name="Agency FB" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="133.0" layoutY="209.0" prefHeight="17.0" prefWidth="158.0" text="/path/to/encryption/key">
+               <font>
+                  <Font name="Agency FB" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="127.0" layoutY="273.0" prefHeight="17.0" prefWidth="158.0" text="/path/to/save/decypted/file">
+               <font>
+                  <Font name="Agency FB" size="13.0" />
+               </font>
+            </Label>
+            <Label id="successful-feedback-message" layoutX="426.0" layoutY="319.0" text="Succesful!">
+               <font>
+                  <Font name="Agency FB Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label id="error-feedback-message" layoutX="436.0" layoutY="342.0" text="Error:(">
+               <font>
+                  <Font name="Agency FB Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+   <stylesheets>
+      <URL value="@../styles/decryptionpage.css" />
+      <URL value="@../styles/common/buttons.css" />
+   </stylesheets>
+</BorderPane>
