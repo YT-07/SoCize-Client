@@ -1,4 +1,4 @@
-package com.socize.encryption;
+package com.socize.encryption.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import com.socize.config.EncryptionConfig;
-import com.socize.encryption.impl.DefaultEncryptionService;
 
 class EncryptionServiceTest {
     
