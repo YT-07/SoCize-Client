@@ -50,6 +50,10 @@ public class MainMenuController implements Initializable {
             pageState.setPage(AppScene.ENCRYPTION_PAGE);
         });
 
+        decryptionButton.setOnAction(e -> {
+            pageState.setPage(AppScene.DECRYPTION_PAGE);
+        });
+
         fileServerButton.setOnAction(e -> {
             pageState.setPage(AppScene.HOME_PAGE);
         });
