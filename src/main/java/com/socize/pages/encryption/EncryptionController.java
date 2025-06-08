@@ -72,7 +72,7 @@ public class EncryptionController implements Initializable {
         fileToEncrypt = fileChooser.showOpenDialog(window);
 
         if(fileToEncrypt != null) {
-            fileToEncryptPath.setText(fileToEncrypt.getAbsolutePath());
+            fileToEncryptPath.setText(fileToEncrypt.getName());
 
         } else {
             fileToEncryptPath.setText(null);
@@ -89,7 +89,7 @@ public class EncryptionController implements Initializable {
         folderToSave = directoryChooser.showDialog(window);
 
         if(folderToSave != null) {
-            folderToSavePath.setText(folderToSave.getAbsolutePath());
+            folderToSavePath.setText(folderToSave.getName());
 
         } else {
             folderToSavePath.setText(null);
