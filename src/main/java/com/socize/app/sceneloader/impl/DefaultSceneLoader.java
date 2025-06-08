@@ -9,8 +9,6 @@ import com.socize.app.sceneloader.spi.SceneLoader;
 import javafx.scene.Parent;
 
 public class DefaultSceneLoader implements SceneLoader {
-    private static DefaultSceneLoader instance;
-
     private final HashMap<AppScene, Parent> scenes;
     private final SceneFactory sceneFactory;
 
@@ -19,12 +17,12 @@ public class DefaultSceneLoader implements SceneLoader {
         this.sceneFactory = sceneFactory;
     }
 
-    public static DefaultSceneLoader getInstance() {
-        if(instance == null) {
-            instance = new DefaultSceneLoader(new DefaultSceneFactory());
-        }
+    private static class SingletonInstanceHolder {
+        private static final DefaultSceneLoader INSTANCE = new DefaultSceneLoader(new DefaultSceneFactory());
+    } 
 
-        return instance;
+    public static DefaultSceneLoader getInstance() {
+        return SingletonInstanceHolder.INSTANCE;
     }
 
     // For testing, for injecting a mock scene factory
