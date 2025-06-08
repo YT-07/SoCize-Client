@@ -39,7 +39,7 @@
                   <Font name="Agency FB Bold" size="21.0" />
                </font>
             </Label>
-            <Button id="select-button" fx:id="selectFileToSave" layoutX="373.0" layoutY="234.0" mnemonicParsing="false" text="Select" />
+            <Button id="select-button" fx:id="selectFileToSaveButton" layoutX="373.0" layoutY="234.0" mnemonicParsing="false" text="Select" />
             <Label fx:id="fileToDecryptPath" layoutX="121.0" layoutY="129.0" maxHeight="38.0" maxWidth="210.0" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Agency FB" size="13.0" />
