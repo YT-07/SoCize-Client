@@ -43,7 +43,12 @@ public class MainMenuController implements Initializable {
             borderPane.setRight(newParent);
         });
 
-        // TODO: Set page to encryption page by default
+        // Default page to display
+        pageState.setPage(AppScene.ENCRYPTION_PAGE);
+
+        encryptionButton.setOnAction(e -> {
+            pageState.setPage(AppScene.ENCRYPTION_PAGE);
+        });
 
         fileServerButton.setOnAction(e -> {
             pageState.setPage(AppScene.HOME_PAGE);
