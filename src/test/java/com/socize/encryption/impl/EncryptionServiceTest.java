@@ -1,4 +1,4 @@
-package com.socize.encryption;
+package com.socize.encryption.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +18,7 @@ import com.socize.config.EncryptionConfig;
 
 class EncryptionServiceTest {
     
-    private EncryptionService encryptionService;
+    private DefaultEncryptionService encryptionService;
 
     @TempDir
     private Path tempDir;
@@ -28,7 +28,7 @@ class EncryptionServiceTest {
 
     @BeforeEach
     void setup() throws NoSuchAlgorithmException, NoSuchPaddingException, IOException {
-        encryptionService = new EncryptionService();
+        encryptionService = new DefaultEncryptionService();
 
         testFile = tempDir.resolve("test.txt").toFile();
         Files.write(testFile.toPath(), "Hello World".getBytes());

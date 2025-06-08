@@ -25,27 +25,35 @@ public class DefaultMainMenuPageState implements MainMenuPageState {
 
     @Override
     public void subscribe(Consumer<AppScene> observer) {
-        observers.add(observer);
+        
+        synchronized(observers) {
+            observers.add(observer);
+        }
+
     }
 
     @Override
     public void unsubscribe(Consumer<AppScene> observer) {
-        observers.remove(observer);
+        
+        synchronized(observers) {
+            observers.remove(observer);
+        }
+
     }
 
     @Override
-    public void setPage(AppScene scene) {
-        
-        synchronized(scene) {
-            this.scene = scene;
-            notifyObservers();
-        }
+    public synchronized void setPage(AppScene scene) {
+        this.scene = scene;
+        notifyObservers();
     }
     
     private void notifyObservers() {
 
-        for(Consumer<AppScene> observer : observers) {
-            observer.accept(scene);
+        synchronized(observers) {
+            for(Consumer<AppScene> observer : observers) {
+                observer.accept(scene);
+            }
         }
+        
     }
 }

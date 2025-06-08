@@ -15,8 +15,12 @@ public class FilePath {
     public static final String SIGN_IN_PAGE_FXML = "/scenes/SIGNINPAGE.fxml";
     public static final String SIGN_UP_PAGE_FXML = "/scenes/SIGNUPPAGE.fxml";
     public static final String HOME_PAGE_FXML = "/scenes/HOMEPAGE.fxml";
+
     public static final String ADMIN_PAGE_FXML = "/scenes/ADMINPAGE.fxml";
     public static final String REMOVE_ACCOUNT_PAGE_FXML = "/scenes/REMOVEACCOUNT.fxml";
     public static final String SERVER_HEALTHCHECK_PAGE = "/scenes/SERVERHEALTHCHECK.fxml";
-    public static final String USER_PAGE = "USERPAGE.fxml";
+
+    public static final String USER_PAGE = "/scenes/USERPAGE.fxml";
+    public static final String ENCRYPTION_PAGE = "/scenes/ENCRYPTIONPAGE.fxml";
+    public static final String DECRYPTION_PAGE = "/scenes/DECRYPTIONPAGE.fxml";
 }

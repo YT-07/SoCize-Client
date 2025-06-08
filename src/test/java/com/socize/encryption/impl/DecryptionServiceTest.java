@@ -1,4 +1,4 @@
-package com.socize.encryption;
+package com.socize.encryption.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,8 +16,8 @@ import org.junit.jupiter.api.io.TempDir;
 import com.socize.config.EncryptionConfig;
 
 class DecryptionServiceTest {
-    private EncryptionService encryptionService;
-    private DecryptionService decryptionService;
+    private DefaultEncryptionService encryptionService;
+    private DefaultDecryptionService decryptionService;
     private static final String dataToEncrypt = "Hello World";
     private static final String testFileName = "test.txt";
 
@@ -33,8 +33,8 @@ class DecryptionServiceTest {
 
     @BeforeEach
     void setup() throws Exception {
-        encryptionService = new EncryptionService();
-        decryptionService = new DecryptionService();
+        encryptionService = new DefaultEncryptionService();
+        decryptionService = new DefaultDecryptionService();
 
         fileToEncrypt = tempDir.resolve(testFileName).toFile();
         Files.write(fileToEncrypt.toPath(), dataToEncrypt.getBytes());
