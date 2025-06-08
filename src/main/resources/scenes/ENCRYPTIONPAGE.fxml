@@ -26,30 +26,12 @@
             <Button id="select-button" fx:id="selectFileToEncryptButton" layoutX="340.0" layoutY="144.0" mnemonicParsing="false" text="Select" />
             <Button id="select-button" fx:id="selectFolderToSaveButton" layoutX="341.0" layoutY="214.0" mnemonicParsing="false" styleClass="common-button" text="Select" />
             <Button fx:id="encryptButton" layoutX="334.0" layoutY="293.0" mnemonicParsing="false" styleClass="common-button" text="Encrypt" />
-            <Label layoutX="95.0" layoutY="154.0">
-               <font>
-                  <Font name="Agency FB" size="16.0" />
-               </font></Label>
-            <Label layoutX="96.0" layoutY="217.0">
-               <font>
-                  <Font name="Agency FB" size="16.0" />
-               </font></Label>
-            <Label layoutX="96.0" layoutY="176.0">
-               <font>
-                  <Font name="Agency FB" size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="95.0" layoutY="238.0">
-               <font>
-                  <Font name="Agency FB" size="16.0" />
-               </font>
-            </Label>
             <Label layoutX="122.0" layoutY="144.0" text="Select file to encrypt" textFill="#6209bc">
                <font>
                   <Font name="Agency FB Bold" size="21.0" />
                </font>
             </Label>
-            <Label fx:id="fileToEncryptPath" layoutX="140.0" layoutY="168.0" maxHeight="47.0" maxWidth="178.0">
+            <Label fx:id="fileToEncryptPath" layoutX="140.0" layoutY="168.0" maxHeight="47.0" maxWidth="178.0" wrapText="true">
                <font>
                   <Font name="Agency FB" size="13.0" />
                </font>
@@ -59,14 +41,14 @@
                   <Font name="Agency FB Bold" size="21.0" />
                </font>
             </Label>
-            <Label fx:id="folderToSavePath" layoutX="140.0" layoutY="240.0" maxHeight="47.0" maxWidth="177.0">
+            <Label fx:id="folderToSavePath" layoutX="140.0" layoutY="240.0" maxHeight="47.0" maxWidth="177.0" wrapText="true">
                <font>
                   <Font name="Agency FB" size="13.0" />
                </font>
             </Label>
-            <Label id="successful-feedback-message" fx:id="encryptFeedbackField" layoutX="315.0" layoutY="331.0" maxHeight="55.0" maxWidth="130.0">
+            <Label id="successful-feedback-message" fx:id="encryptFeedbackField" layoutX="315.0" layoutY="331.0" maxHeight="60.0" maxWidth="280.0" wrapText="true">
                <font>
-                  <Font name="Agency FB Bold" size="20.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
          </children>
