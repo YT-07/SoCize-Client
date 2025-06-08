@@ -4,6 +4,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.socize.encryption.spi.EncryptionService;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,16 +36,19 @@ public class EncryptionController implements Initializable {
 
     private final FileChooser fileChooser;
     private final DirectoryChooser directoryChooser;
+    private final EncryptionService encryptionService;
 
     private File folderToSave;
     private File fileToEncrypt;
 
-    public EncryptionController() {
+    public EncryptionController(EncryptionService encryptionService) {
         this.fileChooser = new FileChooser();
         this.fileChooser.setTitle("Select file to encrypt");
 
         this.directoryChooser = new DirectoryChooser();
         this.directoryChooser.setTitle("Select folder to save");
+
+        this.encryptionService = encryptionService;
     }
 
     @Override
