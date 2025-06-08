@@ -15,10 +15,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import com.socize.config.EncryptionConfig;
+import com.socize.encryption.impl.DefaultEncryptionService;
 
 class EncryptionServiceTest {
     
-    private EncryptionService encryptionService;
+    private DefaultEncryptionService encryptionService;
 
     @TempDir
     private Path tempDir;
@@ -28,7 +29,7 @@ class EncryptionServiceTest {
 
     @BeforeEach
     void setup() throws NoSuchAlgorithmException, NoSuchPaddingException, IOException {
-        encryptionService = new EncryptionService();
+        encryptionService = new DefaultEncryptionService();
 
         testFile = tempDir.resolve("test.txt").toFile();
         Files.write(testFile.toPath(), "Hello World".getBytes());
