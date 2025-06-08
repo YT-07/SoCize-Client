@@ -18,5 +18,5 @@ public class FilePath {
     public static final String ADMIN_PAGE_FXML = "/scenes/ADMINPAGE.fxml";
     public static final String REMOVE_ACCOUNT_PAGE_FXML = "/scenes/REMOVEACCOUNT.fxml";
     public static final String SERVER_HEALTHCHECK_PAGE = "/scenes/SERVERHEALTHCHECK.fxml";
-    public static final String USER_PAGE = "USERPAGE.fxml";
+    public static final String USER_PAGE = "/scenes/USERPAGE.fxml";
 }
