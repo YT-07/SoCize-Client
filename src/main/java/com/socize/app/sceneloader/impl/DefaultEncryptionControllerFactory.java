@@ -7,6 +7,8 @@ import com.socize.app.sceneloader.spi.SceneControllerFactory;
 import com.socize.encryption.impl.DefaultEncryptionService;
 import com.socize.encryption.spi.EncryptionService;
 import com.socize.pages.encryption.EncryptionController;
+import com.socize.utilities.textstyler.impl.DefaultTextStyler;
+import com.socize.utilities.textstyler.spi.TextStyler;
 
 public class DefaultEncryptionControllerFactory implements SceneControllerFactory {
     private static final Logger logger = LoggerFactory.getLogger(DefaultEncryptionControllerFactory.class);
@@ -24,7 +26,9 @@ public class DefaultEncryptionControllerFactory implements SceneControllerFactor
             throw new RuntimeException();
         }
 
-        return new EncryptionController(encryptionService);
+        TextStyler textStyler = DefaultTextStyler.getInstance();
+
+        return new EncryptionController(encryptionService, textStyler);
     }
     
 }
