@@ -94,5 +94,6 @@
       <URL value="@../styles/signinpage.css" />
       <URL value="@../styles/common/buttons.css" />
       <URL value="@../styles/common/textfield.css" />
+      <URL value="@../styles/common/feedbackmessage.css" />
    </stylesheets>
 </BorderPane>
