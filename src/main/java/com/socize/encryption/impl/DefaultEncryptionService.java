@@ -1,4 +1,4 @@
-package com.socize.encryption;
+package com.socize.encryption.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.socize.config.EncryptionConfig;
+import com.socize.encryption.spi.EncryptionService;
 import com.socize.exception.FileTooSmallException;
 import com.socize.utilities.FileIO;
 import com.socize.utilities.FileSizeTracker;
@@ -39,11 +40,11 @@ import com.socize.utilities.FileSizeTracker;
 /**
  * Provides encryption service.
  */
-public class EncryptionService {
+public class DefaultEncryptionService implements EncryptionService {
     private static final String ENCRYPTED_FILENAME_PREFIX = "encrypted_";
     private static final String ENCRYPTION_KEY_FILENAME_SUFFIX = ".key";
     private static final int MIN_FILE_TO_ENCRYPT_SIZE = 1;
-    private static final Logger logger = LoggerFactory.getLogger(EncryptionService.class);
+    private static final Logger logger = LoggerFactory.getLogger(DefaultEncryptionService.class);
 
     private KeyGenerator keyGenerator;
     private SecureRandom secureRandom;
@@ -61,7 +62,7 @@ public class EncryptionService {
      * @throws NoSuchAlgorithmException
      * @throws NoSuchPaddingException
      */
-    public EncryptionService() throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public DefaultEncryptionService() throws NoSuchAlgorithmException, NoSuchPaddingException {
         keyGenerator = KeyGenerator.getInstance(EncryptionConfig.ALGORITHM);
         keyGenerator.init(EncryptionConfig.KEY_SIZE);
 
@@ -90,6 +91,7 @@ public class EncryptionService {
      * @throws Exception if any error occur during the encryption process, provides user friendly messages by 
      * calling {@code getMessage()} for this exception object, message can be displayed to user directly
      */
+    @Override
     public synchronized void encryptFile(File fileToEncrypt, File folderToSave) throws Exception {
 
         try {
@@ -361,7 +363,7 @@ public class EncryptionService {
     /**
      * Perform all registered rollback functions to rollback the encryption process and completes it.
      * 
-     * @see com.socize.encryption.EncryptionService#completeEncryption() completeEncryption()
+     * @see com.socize.encryption.impl.DefaultEncryptionService#completeEncryption() completeEncryption()
      */
     private void rollbackEncryption() {
         logger.info("Rolling back this encryption process.");

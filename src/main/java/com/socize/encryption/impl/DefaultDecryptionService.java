@@ -1,4 +1,4 @@
-package com.socize.encryption;
+package com.socize.encryption.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.socize.config.EncryptionConfig;
+import com.socize.encryption.spi.DecryptionService;
 import com.socize.exception.FileTooSmallException;
 import com.socize.exception.InvalidFileFormatException;
 import com.socize.utilities.FileSizeTracker;
@@ -32,7 +33,7 @@ import com.socize.utilities.FileSizeTracker;
 /**
  * Provides decryption service.
  */
-public class DecryptionService {
+public class DefaultDecryptionService implements DecryptionService {
     private Cipher cipher;
 
     private ByteBuffer inputBuffer;
@@ -42,9 +43,9 @@ public class DecryptionService {
     private Stack<Runnable> decryptionRollbackTask;
 
     private static final int MIN_FILE_TO_DECRYPT_SIZE = EncryptionConfig.IV_SIZE + EncryptionConfig.AES_BLOCK_SIZE;
-    private static final Logger logger = LoggerFactory.getLogger(DecryptionService.class);
+    private static final Logger logger = LoggerFactory.getLogger(DefaultDecryptionService.class);
 
-    public DecryptionService() throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public DefaultDecryptionService() throws NoSuchAlgorithmException, NoSuchPaddingException {
         cipher = Cipher.getInstance(EncryptionConfig.TRANSFORMATION);
 
         inputBuffer = ByteBuffer.allocate(EncryptionConfig.AES_BLOCK_SIZE);
@@ -68,6 +69,7 @@ public class DecryptionService {
      * @throws Exception if any error occur during the decryption process, provides user friendly messages by 
      * calling {@code getMessage()} for this exception object, message can be displayed to user directly
      */
+    @Override
     public synchronized void decryptFile(File fileToDecrypt, File encryptionKeyFile, File fileToSave) throws Exception {
 
         try {
@@ -347,7 +349,7 @@ public class DecryptionService {
     /**
      * Perform all registered rollback functions to rollback the decryption process and completes it.
      * 
-     * @see com.socize.encryption.DecryptionService#completeDecryption() completeDecryption()
+     * @see com.socize.encryption.impl.DefaultDecryptionService#completeDecryption() completeDecryption()
      */
     private void rollbackDecryption() {
         logger.info("Rolling back this decryption process.");
