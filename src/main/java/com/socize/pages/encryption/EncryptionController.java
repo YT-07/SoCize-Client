@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.encryption.spi.EncryptionService;
+import com.socize.utilities.textstyler.spi.TextStyler;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,11 +38,12 @@ public class EncryptionController implements Initializable {
     private final FileChooser fileChooser;
     private final DirectoryChooser directoryChooser;
     private final EncryptionService encryptionService;
+    private final TextStyler textStyler;
 
     private File folderToSave;
     private File fileToEncrypt;
 
-    public EncryptionController(EncryptionService encryptionService) {
+    public EncryptionController(EncryptionService encryptionService, TextStyler textStyler) {
         this.fileChooser = new FileChooser();
         this.fileChooser.setTitle("Select file to encrypt");
 
@@ -49,6 +51,7 @@ public class EncryptionController implements Initializable {
         this.directoryChooser.setTitle("Select folder to save");
 
         this.encryptionService = encryptionService;
+        this.textStyler = textStyler;
     }
 
     @Override
@@ -68,7 +71,13 @@ public class EncryptionController implements Initializable {
         Window window = selectFileToEncryptButton.getScene().getWindow();
         fileToEncrypt = fileChooser.showOpenDialog(window);
 
-        fileToEncryptPath.setText(fileToEncrypt.getAbsolutePath());
+        if(fileToEncrypt != null) {
+            fileToEncryptPath.setText(fileToEncrypt.getAbsolutePath());
+
+        } else {
+            fileToEncryptPath.setText(null);
+
+        }
     }
 
     /**
@@ -79,7 +88,12 @@ public class EncryptionController implements Initializable {
         Window window = selectFolderToSaveButton.getScene().getWindow();
         folderToSave = directoryChooser.showDialog(window);
 
-        folderToSavePath.setText(folderToSave.getAbsolutePath());
+        if(folderToSave != null) {
+            folderToSavePath.setText(folderToSave.getAbsolutePath());
+
+        } else {
+            folderToSavePath.setText(null);
+        }
     }
 
     /**
@@ -87,22 +101,22 @@ public class EncryptionController implements Initializable {
      */
     private void encrypt() {
         if(fileToEncrypt == null) {
-            encryptFeedbackField.setText("Please select a file to encrypt.");
+            textStyler.showErrorMessage(encryptFeedbackField, "Please select a file to encrypt.");
             return;
         }
 
         if(folderToSave == null) {
-            encryptFeedbackField.setText("Please select a folder to save.");
+            textStyler.showErrorMessage(encryptFeedbackField, "Please select a folder to save.");
             return;
         }
 
         try {
 
             encryptionService.encryptFile(fileToEncrypt, folderToSave);
-            encryptFeedbackField.setText("File successfully encrypted.");
+            textStyler.showSuccessMessage(encryptFeedbackField, "File successfully encrypted.");
 
         } catch (Exception e) {
-            encryptFeedbackField.setText(e.getMessage());
+            textStyler.showErrorMessage(encryptFeedbackField, e.getMessage());
         }
     }
 }
