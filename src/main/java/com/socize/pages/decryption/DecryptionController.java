@@ -77,7 +77,7 @@ public class DecryptionController implements Initializable {
         fileToDecrypt = fileChooser.showOpenDialog(window);
 
         if(fileToDecrypt != null) {
-            fileToDecryptPath.setText(fileToDecrypt.getAbsolutePath());
+            fileToDecryptPath.setText(fileToDecrypt.getName());
 
         } else {
             fileToDecryptPath.setText(null);
@@ -95,7 +95,7 @@ public class DecryptionController implements Initializable {
         encryptionKeyFile = fileChooser.showOpenDialog(window);
 
         if(encryptionKeyFile != null) {
-            encryptionKeyPath.setText(encryptionKeyFile.getAbsolutePath());
+            encryptionKeyPath.setText(encryptionKeyFile.getName());
 
         } else {
             encryptionKeyPath.setText(null);
@@ -114,7 +114,7 @@ public class DecryptionController implements Initializable {
         fileToSave = fileChooser.showSaveDialog(window);
 
         if(fileToSave != null) {
-            fileToSavePath.setText(fileToSave.getAbsolutePath());
+            fileToSavePath.setText(fileToSave.getName());
 
         } else {
             fileToSavePath.setText(null);
