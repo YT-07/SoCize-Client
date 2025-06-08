@@ -55,7 +55,7 @@
                   <Font name="Agency FB" size="13.0" />
                </font>
             </Label>
-            <Label id="successful-feedback-message" fx:id="decrypFeedbackField" layoutX="295.0" layoutY="332.0" maxHeight="68.0" maxWidth="222.0" wrapText="true">
+            <Label id="successful-feedback-message" fx:id="decryptFeedbackField" layoutX="295.0" layoutY="332.0" maxHeight="68.0" maxWidth="222.0" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
