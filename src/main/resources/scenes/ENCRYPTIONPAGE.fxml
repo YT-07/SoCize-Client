@@ -23,9 +23,9 @@
                   <Font name="Agency FB Bold" size="41.0" />
                </font>
             </Label>
-            <Button id="select-button" layoutX="324.0" layoutY="150.0" mnemonicParsing="false" text="Select" />
-            <Button id="select-button" layoutX="324.0" layoutY="223.0" mnemonicParsing="false" styleClass="common-button" text="Select" />
-            <Button layoutX="424.0" layoutY="277.0" mnemonicParsing="false" styleClass="common-button" text="Encrypt" />
+            <Button id="select-button" fx:id="selectFileToEncryptButton" layoutX="340.0" layoutY="144.0" mnemonicParsing="false" text="Select" />
+            <Button id="select-button" fx:id="selectFolderToSaveButton" layoutX="341.0" layoutY="214.0" mnemonicParsing="false" styleClass="common-button" text="Select" />
+            <Button fx:id="encryptButton" layoutX="334.0" layoutY="293.0" mnemonicParsing="false" styleClass="common-button" text="Encrypt" />
             <Label layoutX="95.0" layoutY="154.0">
                <font>
                   <Font name="Agency FB" size="16.0" />
@@ -49,7 +49,7 @@
                   <Font name="Agency FB Bold" size="21.0" />
                </font>
             </Label>
-            <Label layoutX="140.0" layoutY="168.0" text="/path/of/file/to/encrypt">
+            <Label fx:id="fileToEncryptPath" layoutX="140.0" layoutY="168.0" maxHeight="47.0" maxWidth="178.0">
                <font>
                   <Font name="Agency FB" size="13.0" />
                </font>
@@ -59,17 +59,12 @@
                   <Font name="Agency FB Bold" size="21.0" />
                </font>
             </Label>
-            <Label layoutX="140.0" layoutY="240.0" text="/folder/to/save/encrypted/file">
+            <Label fx:id="folderToSavePath" layoutX="140.0" layoutY="240.0" maxHeight="47.0" maxWidth="177.0">
                <font>
                   <Font name="Agency FB" size="13.0" />
                </font>
             </Label>
-            <Label id="successful-feedback-message" layoutX="376.0" layoutY="307.0" prefHeight="25.0" prefWidth="117.0" text="Successful!">
-               <font>
-                  <Font name="Agency FB Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label id="error-feedback-message" layoutX="463.0" layoutY="308.0" text="Error!">
+            <Label id="successful-feedback-message" fx:id="encryptFeedbackField" layoutX="315.0" layoutY="331.0" maxHeight="55.0" maxWidth="130.0">
                <font>
                   <Font name="Agency FB Bold" size="20.0" />
                </font>
