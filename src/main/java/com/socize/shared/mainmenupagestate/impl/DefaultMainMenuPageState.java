@@ -1,15 +1,13 @@
-package com.socize.shared.impl;
+package com.socize.shared.mainmenupagestate.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 import com.socize.app.sceneloader.AppScene;
-import com.socize.shared.spi.MainMenuPageState;
+import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
 
 public class DefaultMainMenuPageState implements MainMenuPageState {
-    private static DefaultMainMenuPageState instance;
-
     private AppScene scene;
     private final List<Consumer<AppScene>> observers;
 
@@ -17,12 +15,12 @@ public class DefaultMainMenuPageState implements MainMenuPageState {
         observers = new ArrayList<>();
     }
 
-    public static DefaultMainMenuPageState getInstance() {
-        if(instance == null) {
-            instance = new DefaultMainMenuPageState();
-        }
+    private static class SingletonInstanceHolder {
+        private static final DefaultMainMenuPageState INSTANCE = new DefaultMainMenuPageState();
+    }
 
-        return instance;
+    public static DefaultMainMenuPageState getInstance() {
+        return SingletonInstanceHolder.INSTANCE;
     }
 
     @Override
