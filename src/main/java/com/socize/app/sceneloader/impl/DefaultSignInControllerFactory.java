@@ -6,6 +6,8 @@ import com.socize.app.sceneloader.spi.SceneControllerFactory;
 import com.socize.pages.signin.SignInController;
 import com.socize.shared.mainmenupagestate.impl.DefaultMainMenuPageState;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
+import com.socize.utilities.textstyler.impl.DefaultTextStyler;
+import com.socize.utilities.textstyler.spi.TextStyler;
 
 public class DefaultSignInControllerFactory implements SceneControllerFactory {
 
@@ -13,8 +15,9 @@ public class DefaultSignInControllerFactory implements SceneControllerFactory {
     public Object createDefault() {
         MainMenuPageState mainMenuPageState = DefaultMainMenuPageState.getInstance();
         SignInApi signInApi = new DefaultSignInApi();
+        TextStyler textStyler = DefaultTextStyler.getInstance();
 
-        return new SignInController(mainMenuPageState, signInApi);
+        return new SignInController(mainMenuPageState, signInApi, textStyler);
     }
     
 }
