@@ -9,6 +9,8 @@ import com.socize.pages.signin.impl.DefaultSignInModel;
 import com.socize.pages.signin.spi.SignInModel;
 import com.socize.shared.mainmenupagestate.impl.DefaultMainMenuPageState;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
+import com.socize.shared.sessionid.impl.DefaultSessionIdManager;
+import com.socize.shared.sessionid.spi.SessionIdManager;
 import com.socize.utilities.objectmapper.impl.DefaultObjectMapperProvider;
 import com.socize.utilities.textstyler.impl.DefaultTextStyler;
 import com.socize.utilities.textstyler.spi.TextStyler;
@@ -25,7 +27,9 @@ public class DefaultSignInControllerFactory implements SceneControllerFactory {
         
         SignInModel signInModel = new DefaultSignInModel(signInApi, objectMapper);
 
-        return new SignInController(mainMenuPageState, textStyler, signInModel);
+        SessionIdManager sessionIdManager = DefaultSessionIdManager.getInstance();
+
+        return new SignInController(mainMenuPageState, textStyler, signInModel, sessionIdManager);
     }
     
 }
