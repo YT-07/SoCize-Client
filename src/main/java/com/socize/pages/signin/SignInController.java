@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import com.socize.api.signin.spi.SignInApi;
 import com.socize.app.sceneloader.AppScene;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
+import com.socize.utilities.textstyler.spi.TextStyler;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,10 +42,12 @@ public class SignInController implements Initializable {
 
     private final MainMenuPageState mainMenuPageState;
     private final SignInApi signInApi;
+    private final TextStyler textStyler;
 
-    public SignInController(MainMenuPageState mainMenuPageState, SignInApi signInApi) {
+    public SignInController(MainMenuPageState mainMenuPageState, SignInApi signInApi, TextStyler textStyler) {
         this.mainMenuPageState = mainMenuPageState;
         this.signInApi = signInApi;
+        this.textStyler = textStyler;
     }
 
     @Override
@@ -61,6 +64,14 @@ public class SignInController implements Initializable {
     }
     
     private void signin() {
+        clearTextFields();
 
+
+    }
+
+    private void clearTextFields() {
+        usernameErrorText.setText(null);
+        passwordErrorText.setText(null);
+        signInErrorText.setText(null);
     }
 }
