@@ -11,6 +11,7 @@ import com.socize.utilities.textstyler.spi.TextStyler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -32,13 +33,13 @@ public class SignInController implements Initializable {
     private TextField passwordField;
 
     @FXML
-    private Text usernameErrorText;
+    private Label usernameFeedbackField;
 
     @FXML
-    private Text passwordErrorText;
+    private Label passwordFeedbackField;
 
     @FXML
-    private Text signInErrorText;
+    private Label signinFeedbackField;
 
     private final MainMenuPageState mainMenuPageState;
     private final SignInApi signInApi;
@@ -66,12 +67,17 @@ public class SignInController implements Initializable {
     private void signin() {
         clearTextFields();
 
+        String username = usernameField.getText();
+        String password = passwordField.getText();
 
+        if(username == null) {
+            
+        }
     }
 
     private void clearTextFields() {
-        usernameErrorText.setText(null);
-        passwordErrorText.setText(null);
-        signInErrorText.setText(null);
+        usernameFeedbackField.setText(null);
+        passwordFeedbackField.setText(null);
+        signinFeedbackField.setText(null);
     }
 }
