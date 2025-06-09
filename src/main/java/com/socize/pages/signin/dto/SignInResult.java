@@ -4,8 +4,14 @@ public record SignInResult
 (
     boolean success,
     String sessionId,
-    String role,
+    UserRole role,
     String errorMessage,
     SignInValidationError validationError
 ) 
-{}
+{
+    private static enum UserRole 
+    {
+        admin,
+        user;
+    }
+}
