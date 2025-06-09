@@ -3,6 +3,7 @@ package com.socize.pages.signin;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.socize.api.signin.spi.SignInApi;
 import com.socize.app.sceneloader.AppScene;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
 
@@ -39,9 +40,11 @@ public class SignInController implements Initializable {
     private Text signInErrorText;
 
     private final MainMenuPageState mainMenuPageState;
+    private final SignInApi signInApi;
 
-    public SignInController(MainMenuPageState mainMenuPageState) {
+    public SignInController(MainMenuPageState mainMenuPageState, SignInApi signInApi) {
         this.mainMenuPageState = mainMenuPageState;
+        this.signInApi = signInApi;
     }
 
     @Override
@@ -53,6 +56,11 @@ public class SignInController implements Initializable {
         signUpButton.setOnAction(e -> {
             mainMenuPageState.setPage(AppScene.SIGN_UP_PAGE);
         });
+
+        signInButton.setOnAction(e -> signin());
     }
     
+    private void signin() {
+
+    }
 }
