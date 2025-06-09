@@ -9,7 +9,7 @@ public record SignInResult
     SignInValidationError validationError
 ) 
 {
-    private static enum UserRole 
+    public static enum UserRole 
     {
         admin,
         user;
