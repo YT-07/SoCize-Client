@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
@@ -39,21 +38,11 @@
                         <Font name="Tw Cen MT" size="12.0" />
                      </font>
                   </TextField>
-                  <Text fx:id="usernameErrorText" fill="RED" layoutX="17.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="216.31509399414062">
-                     <font>
-                        <Font name="Tw Cen MT" size="10.0" />
-                     </font>
-                  </Text>
                   <Label layoutX="16.0" layoutY="130.0" text="Password">
                      <font>
                         <Font name="Agency FB Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Text fx:id="passwordErrorText" fill="RED" layoutX="16.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="219.31509399414062">
-                     <font>
-                        <Font name="Tw Cen MT" size="10.0" />
-                     </font>
-                  </Text>
                   <PasswordField id="password-box" fx:id="passwordField" layoutX="16.0" layoutY="152.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter your password" style="-fx-border-color: linear-gradient(to top, #f79533, #dd2a7b); -fx-border-width: 2; -fx-border-radius: 4; -fx-background-radius: 4;">
                      <font>
                         <Font name="Tw Cen MT" size="12.0" />
@@ -64,11 +53,9 @@
                         <Font name="System Bold" size="1.0" />
                      </font>
                   </Button>
-                  <Text fx:id="signInErrorText" fill="RED" layoutX="51.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="137.81509399414062">
-                     <font>
-                        <Font name="Tw Cen MT" size="11.0" />
-                     </font>
-                  </Text>
+                  <Label fx:id="usernameFeedbackField" layoutX="15.0" layoutY="111.0" maxHeight="18.0" maxWidth="212.0" wrapText="true" />
+                  <Label fx:id="passwordFeedbackField" layoutX="24.0" layoutY="181.0" maxHeight="18.0" maxWidth="212.0" wrapText="true" />
+                  <Label fx:id="signinFeedbackField" layoutX="43.0" layoutY="242.0" maxHeight="34.0" maxWidth="151.0" textAlignment="CENTER" wrapText="true" />
                </children>
             </AnchorPane>
             <Button fx:id="homeButton" layoutX="433.0" layoutY="14.0" mnemonicParsing="false" styleClass="common-button" text="Home">
