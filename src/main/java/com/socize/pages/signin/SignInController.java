@@ -3,9 +3,13 @@ package com.socize.pages.signin;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.socize.app.sceneloader.AppScene;
 import com.socize.dto.SignInRequest;
 import com.socize.pages.signin.dto.SignInResult;
+import com.socize.pages.signin.dto.SignInResult.UserRole;
 import com.socize.pages.signin.spi.SignInModel;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
 import com.socize.shared.sessionid.spi.SessionIdManager;
@@ -18,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class SignInController implements Initializable {
+    private static final Logger logger = LoggerFactory.getLogger(SignInController.class); 
 
     @FXML
     private Button homeButton;
@@ -141,12 +146,39 @@ public class SignInController implements Initializable {
         }
     }
 
+    /**
+     * Helper function to handle the logic of storing the user session id and 
+     * redirecting user to their relevant page.
+     * 
+     * @param result the sign in result
+     */
     private void redirectIfSuccess(SignInResult result) {
 
         if(!result.success()) {
             return;
         }
 
+        if(result.sessionId() == null) {
+            logger.error("Login is successful but session id is null.", result);
+            textStyler.showErrorMessage(signinFeedbackField, "Something went wrong, sign in is successful but failed to retrieve your session.");
 
+            return;
+        }
+
+        sessionIdManager.setSessionId(result.sessionId());
+
+        // So next visit to login page won't store old data
+        clearTextFields(); 
+
+        if(result.role() == UserRole.admin) {
+            // TODO: Redirect to admin page
+
+        } else if(result.role() == UserRole.user) {
+            // TODO: Redirect to user page
+
+        } else {
+            logger.error("User login is successful but unable to match user role to redirect user.", result);
+            textStyler.showErrorMessage(signinFeedbackField, "Something went wrong, unable to redirect you to the next page...");
+        }
     }
 }
