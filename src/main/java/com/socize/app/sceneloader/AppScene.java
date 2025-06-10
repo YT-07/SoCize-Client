@@ -1,5 +1,6 @@
 package com.socize.app.sceneloader;
 
+import com.socize.app.sceneloader.impl.DefaultAdminControllerFactory;
 import com.socize.app.sceneloader.impl.DefaultDecryptionControllerFactory;
 import com.socize.app.sceneloader.impl.DefaultEncryptionControllerFactory;
 import com.socize.app.sceneloader.impl.DefaultHomeControllerFactory;
@@ -19,7 +20,8 @@ public enum AppScene {
     SIGN_UP_PAGE(new DefaultSignUpControllerFactory(), FilePath.SIGN_UP_PAGE_FXML),
     HOME_PAGE(new DefaultHomeControllerFactory(), FilePath.HOME_PAGE_FXML),
     ENCRYPTION_PAGE(new DefaultEncryptionControllerFactory(), FilePath.ENCRYPTION_PAGE),
-    DECRYPTION_PAGE(new DefaultDecryptionControllerFactory(), FilePath.DECRYPTION_PAGE);
+    DECRYPTION_PAGE(new DefaultDecryptionControllerFactory(), FilePath.DECRYPTION_PAGE),
+    ADMIN_PAGE(new DefaultAdminControllerFactory(), FilePath.ADMIN_PAGE_FXML);
 
     private SceneControllerFactory controllerFactory;
     private String sceneResourcePath;
