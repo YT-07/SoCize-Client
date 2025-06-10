@@ -13,7 +13,7 @@ import com.socize.pages.signin.dto.SignInResult;
 import com.socize.pages.signin.dto.SignInResult.UserRole;
 import com.socize.pages.signin.spi.SignInModel;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
-import com.socize.shared.sessionid.spi.SessionManager;
+import com.socize.shared.session.spi.SessionManager;
 import com.socize.utilities.textstyler.spi.TextStyler;
 
 import javafx.fxml.FXML;

@@ -1,4 +1,4 @@
-package com.socize.shared.sessionid.spi;
+package com.socize.shared.session.spi;
 
 public interface SessionManager {
 
