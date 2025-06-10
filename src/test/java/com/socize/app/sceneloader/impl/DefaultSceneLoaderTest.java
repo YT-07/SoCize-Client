@@ -19,7 +19,13 @@ class DefaultSceneLoaderTest {
         
         SceneFactory mockFactory = mock(SceneFactory.class);
 
-        doReturn(new SceneResult<TransitionablePage>(null, null), new SceneResult<TransitionablePage>(null, null)).when(mockFactory).load(mockScene);
+        doReturn
+        (
+            new SceneResult<TransitionablePage>(null, null), 
+            new SceneResult<TransitionablePage>(null, null)
+        )
+        .when(mockFactory)
+        .load(mockScene);
 
         DefaultSceneLoader loader = DefaultSceneLoader.createTestingLoader(mockFactory);
 
