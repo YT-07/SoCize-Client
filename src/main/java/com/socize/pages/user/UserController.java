@@ -54,8 +54,15 @@ public class UserController implements Initializable, TransitionablePage {
 
     @Override
     public void onEnter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+        downloadFileListView.getItems().clear();
+
+        downloadFileFeedbackMessage.setText(null);
+        selectFileToUploadPath.setText(null);
+        uploadFileFeedbackArea.setText(null);
+        filenameToSave.setText(null);
+
+        // TODO: Get username to display
+        // TODO: Get file to download from API and display in listview
     }
     
 }

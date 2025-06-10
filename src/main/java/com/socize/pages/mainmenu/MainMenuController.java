@@ -63,8 +63,7 @@ public class MainMenuController implements Initializable, TransitionablePage {
 
     @Override
     public void onEnter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+        
     }
 
 }

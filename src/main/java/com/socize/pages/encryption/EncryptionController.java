@@ -123,8 +123,11 @@ public class EncryptionController implements Initializable, TransitionablePage {
 
     @Override
     public void onEnter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+        fileToEncryptPath.setText(null);
+        folderToSavePath.setText(null);
+        encryptFeedbackField.setText(null);
+        folderToSave = null;
+        fileToEncrypt = null;
     }
 
 }

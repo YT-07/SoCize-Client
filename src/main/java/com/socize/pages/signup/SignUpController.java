@@ -147,8 +147,16 @@ public class SignUpController implements Initializable, TransitionablePage {
 
     @Override
     public void onEnter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+        usernameField.clear();
+        passwordField.clear();
+        emailField.clear();
+        phoneNumberField.clear();
+
+        usernameErrorText.setText(null);
+        passwordErrorText.setText(null);
+        emailErrorText.setText(null);
+        phoneNumberErrorText.setText(null);
+        signUpFeedbackText.setText(null);
     }
 
 }

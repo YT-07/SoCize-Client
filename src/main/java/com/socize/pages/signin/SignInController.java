@@ -190,8 +190,11 @@ public class SignInController implements Initializable, TransitionablePage {
 
     @Override
     public void onEnter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+        usernameField.clear();
+        passwordField.clear();
+        usernameFeedbackField.setText(null);
+        passwordFeedbackField.setText(null);
+        signinFeedbackField.setText(null);
     }
 
 }

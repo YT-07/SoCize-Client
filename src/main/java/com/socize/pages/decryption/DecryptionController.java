@@ -154,8 +154,13 @@ public class DecryptionController implements Initializable, TransitionablePage {
 
     @Override
     public void onEnter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+        fileToDecryptPath.setText(null);
+        encryptionKeyPath.setText(null);
+        fileToSavePath.setText(null);
+        decryptFeedbackField.setText(null);
+        fileToDecrypt = null;
+        encryptionKeyFile = null;
+        fileToSave = null;
     }
 
 }
