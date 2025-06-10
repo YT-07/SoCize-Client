@@ -19,9 +19,6 @@ public class UserController implements Initializable {
     private Button downloadFileButton;
 
     @FXML
-    private Button downloadFileFeedbackMessage;
-
-    @FXML
     private Button logoutButton;
 
     @FXML
@@ -29,6 +26,9 @@ public class UserController implements Initializable {
 
     @FXML
     private Button uploadFileButton;
+
+    @FXML
+    private Label downloadFileFeedbackMessage;
 
     @FXML
     private Label selectFileToUploadPath;
