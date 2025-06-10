@@ -5,4 +5,5 @@ public interface SessionManager {
     void setSession(String sessionId, String username);
     String getSessionId();
     String getUsername();
+    void clearSession();
 }
