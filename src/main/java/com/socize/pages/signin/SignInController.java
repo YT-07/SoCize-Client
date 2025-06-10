@@ -160,7 +160,7 @@ public class SignInController implements Initializable {
         }
 
         if(result.sessionId() == null) {
-            logger.error("Login is successful but session id is null.", result);
+            logger.error("Login is successful but session id is null. Sign in data received: {}", result.toString());
             textStyler.showErrorMessage(signinFeedbackField, "Something went wrong, sign in is successful but failed to retrieve your session.");
 
             return;
@@ -171,14 +171,18 @@ public class SignInController implements Initializable {
         // So next visit to login page won't store old data
         clearTextFields(); 
 
-        if(result.role() == UserRole.admin) {
+        if(result.role() == null) {
+            logger.error("User login is successful but user role received is null, unable to redirect user to next page.");
+            textStyler.showErrorMessage(signinFeedbackField, "Something went wrong, unable to redirect you to the next page...");
+
+        } else if(result.role() == UserRole.admin) {
             mainMenuPageState.setPage(AppScene.ADMIN_PAGE);
 
         } else if(result.role() == UserRole.user) {
             mainMenuPageState.setPage(AppScene.USER_PAGE);
 
         } else {
-            logger.error("User login is successful but unable to match user role to redirect user.", result);
+            logger.error("User login is successful but unable to match user role to redirect user. User role received: '{}'.", result.role().name());
             textStyler.showErrorMessage(signinFeedbackField, "Something went wrong, unable to redirect you to the next page...");
         }
     }
