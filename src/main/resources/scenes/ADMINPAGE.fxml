@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="646.0" stylesheets="@../styles/adminpage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/adminpage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox id="top-bar" prefHeight="93.0" prefWidth="646.0" BorderPane.alignment="CENTER">
+      <HBox id="top-bar" BorderPane.alignment="CENTER">
          <children>
             <Button id="admin-page-button" fx:id="userManagementButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="164.0" text="User Management">
                <font>
