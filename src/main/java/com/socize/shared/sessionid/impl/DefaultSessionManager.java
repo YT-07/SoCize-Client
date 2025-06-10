@@ -5,7 +5,7 @@ import com.socize.shared.sessionid.spi.SessionManager;
 public class DefaultSessionManager implements SessionManager {
     private String sessionId;
     private String username;
-    private Object sessionLock;
+    private final Object sessionLock;
 
     private DefaultSessionManager() {
         sessionLock = new Object();
