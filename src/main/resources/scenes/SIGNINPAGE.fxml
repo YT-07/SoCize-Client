@@ -55,7 +55,7 @@
                   </Button>
                   <Label fx:id="usernameFeedbackField" layoutX="15.0" layoutY="111.0" maxHeight="18.0" maxWidth="212.0" wrapText="true" />
                   <Label fx:id="passwordFeedbackField" layoutX="24.0" layoutY="181.0" maxHeight="18.0" maxWidth="212.0" wrapText="true" />
-                  <Label fx:id="signinFeedbackField" layoutX="43.0" layoutY="242.0" maxHeight="34.0" maxWidth="151.0" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="signinFeedbackField" layoutX="43.0" layoutY="242.0" maxWidth="151.0" textAlignment="CENTER" wrapText="true" />
                </children>
             </AnchorPane>
             <Button fx:id="homeButton" layoutX="433.0" layoutY="14.0" mnemonicParsing="false" styleClass="common-button" text="Home">
