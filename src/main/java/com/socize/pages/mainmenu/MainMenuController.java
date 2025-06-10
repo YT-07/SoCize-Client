@@ -4,16 +4,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.app.sceneloader.AppScene;
+import com.socize.app.sceneloader.dto.SceneResult;
 import com.socize.app.sceneloader.spi.SceneLoader;
+import com.socize.pages.TransitionablePage;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
-public class MainMenuController implements Initializable {
+public class MainMenuController implements Initializable, TransitionablePage {
 
     @FXML
     private Button encryptionButton;
@@ -39,8 +40,9 @@ public class MainMenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         pageState.subscribe(scene -> {
-            Parent newParent = loader.getScene(scene);
-            borderPane.setRight(newParent);
+            SceneResult<TransitionablePage> sceneResult = loader.getScene(scene);
+            sceneResult.controller().onEnter();
+            borderPane.setRight(sceneResult.parent());
         });
 
         // Default page to display
@@ -59,5 +61,10 @@ public class MainMenuController implements Initializable {
         });
     }
 
+    @Override
+    public void onEnter() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+    }
 
 }

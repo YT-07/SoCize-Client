@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.socize.app.sceneloader.AppScene;
+import com.socize.app.sceneloader.dto.SceneResult;
 import com.socize.app.sceneloader.spi.SceneControllerFactory;
 import com.socize.app.sceneloader.spi.SceneFactory;
+import com.socize.pages.TransitionablePage;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,12 +18,13 @@ public class DefaultSceneFactory implements SceneFactory {
     private static final Logger logger = LoggerFactory.getLogger(DefaultSceneFactory.class);
 
     @Override
-    public Parent load(AppScene scene) {
+    public SceneResult<TransitionablePage> load(AppScene scene) {
         URL scenePath = getClass().getResource(scene.getPath());
         FXMLLoader loader = new FXMLLoader(scenePath);
 
         SceneControllerFactory controllerFactory = scene.getControllerFactory();
-        loader.setController(controllerFactory.createDefault());
+        TransitionablePage controller = controllerFactory.createDefault();
+        loader.setController(controller);
 
         Parent parent;
 
@@ -34,7 +37,7 @@ public class DefaultSceneFactory implements SceneFactory {
             throw new RuntimeException();
         }
 
-        return parent;
+        return new SceneResult<TransitionablePage>(parent, controller);
     }
     
 }

@@ -1,8 +1,8 @@
 package com.socize.app.sceneloader.spi;
 
 import com.socize.app.sceneloader.AppScene;
-
-import javafx.scene.Parent;
+import com.socize.app.sceneloader.dto.SceneResult;
+import com.socize.pages.TransitionablePage;
 
 /**
  * Interface to create new scenes
@@ -15,5 +15,5 @@ public interface SceneFactory {
      * @param scene the scene to create
      * @return the scene
      */
-    Parent load(AppScene scene);
+    SceneResult<TransitionablePage> load(AppScene scene);
 }

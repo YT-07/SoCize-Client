@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.encryption.spi.DecryptionService;
+import com.socize.pages.TransitionablePage;
 import com.socize.utilities.textstyler.spi.TextStyler;
 
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
-public class DecryptionController implements Initializable {
+public class DecryptionController implements Initializable, TransitionablePage {
 
     @FXML
     private Button selectFileToDecryptButton;
@@ -150,4 +151,11 @@ public class DecryptionController implements Initializable {
             textStyler.showErrorMessage(decryptFeedbackField, e.getMessage());
         }
     }
+
+    @Override
+    public void onEnter() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+    }
+
 }
