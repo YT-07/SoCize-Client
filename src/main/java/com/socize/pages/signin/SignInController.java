@@ -12,7 +12,7 @@ import com.socize.pages.signin.dto.SignInResult;
 import com.socize.pages.signin.dto.SignInResult.UserRole;
 import com.socize.pages.signin.spi.SignInModel;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
-import com.socize.shared.sessionid.spi.SessionIdManager;
+import com.socize.shared.sessionid.spi.SessionManager;
 import com.socize.utilities.textstyler.spi.TextStyler;
 
 import javafx.fxml.FXML;
@@ -51,20 +51,20 @@ public class SignInController implements Initializable {
     private final MainMenuPageState mainMenuPageState;
     private final TextStyler textStyler;
     private final SignInModel signInModel;
-    private final SessionIdManager sessionIdManager;
+    private final SessionManager sessionManager;
 
     public SignInController
     (
         MainMenuPageState mainMenuPageState, 
         TextStyler textStyler, 
         SignInModel signInModel,
-        SessionIdManager sessionIdManager
+        SessionManager sessionIdManager
     ) 
     {
         this.mainMenuPageState = mainMenuPageState;
         this.textStyler = textStyler;
         this.signInModel = signInModel;
-        this.sessionIdManager = sessionIdManager;
+        this.sessionManager = sessionIdManager;
     }
 
     @Override
@@ -105,7 +105,7 @@ public class SignInController implements Initializable {
         SignInResult result = signInModel.signin(signInRequest);
 
         displayFeedbackMessages(result);
-        redirectIfSuccess(result);
+        redirectIfSuccess(result, signInRequest.username());
     }
 
     /**
@@ -147,12 +147,13 @@ public class SignInController implements Initializable {
     }
 
     /**
-     * Helper function to handle the logic of storing the user session id and 
+     * Helper function to handle the logic of storing the user session and 
      * redirecting user to their relevant page.
      * 
      * @param result the sign in result
+     * @param username the username of the user to store for this session
      */
-    private void redirectIfSuccess(SignInResult result) {
+    private void redirectIfSuccess(SignInResult result, String username) {
 
         if(!result.success()) {
             return;
@@ -165,7 +166,7 @@ public class SignInController implements Initializable {
             return;
         }
 
-        sessionIdManager.setSessionId(result.sessionId());
+        sessionManager.setSession(result.sessionId(), username);
 
         // So next visit to login page won't store old data
         clearTextFields(); 
