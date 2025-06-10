@@ -3,13 +3,13 @@ package com.socize.app.sceneloader.impl;
 import java.util.HashMap;
 
 import com.socize.app.sceneloader.AppScene;
+import com.socize.app.sceneloader.dto.SceneResult;
 import com.socize.app.sceneloader.spi.SceneFactory;
 import com.socize.app.sceneloader.spi.SceneLoader;
-
-import javafx.scene.Parent;
+import com.socize.pages.TransitionablePage;
 
 public class DefaultSceneLoader implements SceneLoader {
-    private final HashMap<AppScene, Parent> scenes;
+    private final HashMap<AppScene, SceneResult<TransitionablePage>> scenes;
     private final SceneFactory sceneFactory;
 
     private DefaultSceneLoader(SceneFactory sceneFactory) {
@@ -31,10 +31,10 @@ public class DefaultSceneLoader implements SceneLoader {
     }
 
     @Override
-    public Parent getScene(AppScene scene) {
+    public SceneResult<TransitionablePage> getScene(AppScene scene) {
         
         if(!scenes.containsKey(scene)) {
-            Parent parent = sceneFactory.load(scene);
+            SceneResult<TransitionablePage> parent = sceneFactory.load(scene);
             scenes.put(scene, parent);
         }
 
