@@ -27,11 +27,5 @@ public class AdminController implements Initializable, TransitionablePage {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
     }
-
-    @Override
-    public void onExit() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onExit'");
-    }
     
 }
