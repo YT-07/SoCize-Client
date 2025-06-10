@@ -21,6 +21,6 @@ public class FilePath {
     public static final String SERVER_HEALTHCHECK_PAGE = "/scenes/SERVERHEALTHCHECK.fxml";
 
     public static final String USER_PAGE = "/scenes/USERPAGE.fxml";
-    public static final String ENCRYPTION_PAGE = "/scenes/ENCRYPTIONPAGE.fxml";
-    public static final String DECRYPTION_PAGE = "/scenes/DECRYPTIONPAGE.fxml";
+    public static final String ENCRYPTION_PAGE_FXML = "/scenes/ENCRYPTIONPAGE.fxml";
+    public static final String DECRYPTION_PAGE_FXML = "/scenes/DECRYPTIONPAGE.fxml";
 }

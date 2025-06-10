@@ -19,8 +19,8 @@ public enum AppScene {
     SIGN_IN_PAGE(new DefaultSignInControllerFactory(), FilePath.SIGN_IN_PAGE_FXML),
     SIGN_UP_PAGE(new DefaultSignUpControllerFactory(), FilePath.SIGN_UP_PAGE_FXML),
     HOME_PAGE(new DefaultHomeControllerFactory(), FilePath.HOME_PAGE_FXML),
-    ENCRYPTION_PAGE(new DefaultEncryptionControllerFactory(), FilePath.ENCRYPTION_PAGE),
-    DECRYPTION_PAGE(new DefaultDecryptionControllerFactory(), FilePath.DECRYPTION_PAGE),
+    ENCRYPTION_PAGE(new DefaultEncryptionControllerFactory(), FilePath.ENCRYPTION_PAGE_FXML),
+    DECRYPTION_PAGE(new DefaultDecryptionControllerFactory(), FilePath.DECRYPTION_PAGE_FXML),
     ADMIN_PAGE(new DefaultAdminControllerFactory(), FilePath.ADMIN_PAGE_FXML);
 
     private SceneControllerFactory controllerFactory;
