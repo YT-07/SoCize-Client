@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.socize.app.sceneloader.AppScene;
 import com.socize.dto.SignUpRequest;
+import com.socize.pages.TransitionablePage;
 import com.socize.pages.signup.dto.SignUpResult;
 import com.socize.pages.signup.dto.SignUpValidationError;
 import com.socize.pages.signup.spi.SignUpModel;
@@ -17,7 +18,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class SignUpController implements Initializable {
+public class SignUpController implements Initializable, TransitionablePage {
 
     @FXML
     private Button homeButton;
@@ -142,5 +143,17 @@ public class SignUpController implements Initializable {
         if(validationError.phoneNumber() != null) {
             phoneNumberErrorText.setText(validationError.phoneNumber());
         }
+    }
+
+    @Override
+    public void onEnter() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+    }
+
+    @Override
+    public void onExit() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onExit'");
     }
 }

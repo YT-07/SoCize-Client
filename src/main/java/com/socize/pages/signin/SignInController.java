@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.socize.app.sceneloader.AppScene;
 import com.socize.dto.SignInRequest;
+import com.socize.pages.TransitionablePage;
 import com.socize.pages.signin.dto.SignInResult;
 import com.socize.pages.signin.dto.SignInResult.UserRole;
 import com.socize.pages.signin.spi.SignInModel;
@@ -21,7 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class SignInController implements Initializable {
+public class SignInController implements Initializable, TransitionablePage {
     private static final Logger logger = LoggerFactory.getLogger(SignInController.class); 
 
     @FXML
@@ -185,5 +186,17 @@ public class SignInController implements Initializable {
             logger.error("User login is successful but unable to match user role to redirect user. User role received: '{}'.", result.role().name());
             textStyler.showErrorMessage(signinFeedbackField, "Something went wrong, unable to redirect you to the next page...");
         }
+    }
+
+    @Override
+    public void onEnter() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+    }
+
+    @Override
+    public void onExit() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onExit'");
     }
 }

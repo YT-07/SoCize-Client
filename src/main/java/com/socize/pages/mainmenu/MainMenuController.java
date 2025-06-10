@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.socize.app.sceneloader.AppScene;
 import com.socize.app.sceneloader.spi.SceneLoader;
+import com.socize.pages.TransitionablePage;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
 
 import javafx.fxml.FXML;
@@ -13,7 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
-public class MainMenuController implements Initializable {
+public class MainMenuController implements Initializable, TransitionablePage {
 
     @FXML
     private Button encryptionButton;
@@ -57,6 +58,18 @@ public class MainMenuController implements Initializable {
         fileServerButton.setOnAction(e -> {
             pageState.setPage(AppScene.HOME_PAGE);
         });
+    }
+
+    @Override
+    public void onEnter() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+    }
+
+    @Override
+    public void onExit() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onExit'");
     }
 
 

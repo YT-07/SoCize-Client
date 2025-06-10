@@ -3,6 +3,8 @@ package com.socize.pages.user;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.socize.pages.TransitionablePage;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -10,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-public class UserController implements Initializable {
+public class UserController implements Initializable, TransitionablePage {
 
     @FXML
     private Button deleteFileButton;
@@ -48,6 +50,18 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
+    }
+
+    @Override
+    public void onEnter() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+    }
+
+    @Override
+    public void onExit() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onExit'");
     }
     
 }
