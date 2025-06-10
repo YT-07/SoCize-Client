@@ -23,7 +23,7 @@
             </ImageView>
             <AnchorPane id="username-box" layoutX="481.0" layoutY="22.0" prefHeight="27.0" prefWidth="105.0">
                <children>
-                  <Label id="username-text" layoutX="6.0" layoutY="6.0" prefHeight="15.0" prefWidth="101.0" textAlignment="JUSTIFY" wrapText="true">
+                  <Label id="username-text" fx:id="usernameDisplayField" layoutX="6.0" layoutY="6.0" prefHeight="15.0" prefWidth="101.0" textAlignment="JUSTIFY" wrapText="true">
                      <text>Username</text>
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
@@ -32,38 +32,38 @@
                </children>
             </AnchorPane>
             <AnchorPane id="file-box" layoutX="69.0" layoutY="260.0" />
-            <Button id="file-button" layoutX="514.0" layoutY="158.0" mnemonicParsing="false" text="Select" />
-            <Button id="file-button" layoutX="514.0" layoutY="213.0" mnemonicParsing="false" text="Upload" />
-            <ListView id="list-view-box" layoutX="53.0" layoutY="161.0" prefHeight="119.0" prefWidth="217.0" />
-            <TextField id="filename-textfield" layoutX="355.0" layoutY="214.0" text="file.txt">
+            <Button id="file-button" fx:id="selectFileToUploadButton" layoutX="514.0" layoutY="158.0" mnemonicParsing="false" text="Select" />
+            <Button id="file-button" fx:id="uploadFileButton" layoutX="514.0" layoutY="213.0" mnemonicParsing="false" text="Upload" />
+            <ListView id="list-view-box" fx:id="downloadFileListView" layoutX="53.0" layoutY="161.0" prefHeight="119.0" prefWidth="217.0" />
+            <TextField id="filename-textfield" fx:id="filenameToSave" layoutX="355.0" layoutY="214.0">
                <font>
                   <Font name="Tw Cen MT Bold" size="13.0" />
                </font>
             </TextField>
-            <Button id="file-button" layoutX="53.0" layoutY="295.0" mnemonicParsing="false" text="Download" />
-            <Button id="delete-button" layoutX="217.0" layoutY="295.0" mnemonicParsing="false" text="Delete" />
+            <Button id="file-button" fx:id="downloadFileButton" layoutX="53.0" layoutY="295.0" mnemonicParsing="false" text="Download" />
+            <Button id="delete-button" fx:id="deleteFileButton" layoutX="217.0" layoutY="295.0" mnemonicParsing="false" text="Delete" />
             <Label layoutX="300.0" layoutY="220.0" prefHeight="16.0" prefWidth="53.0" text="File name :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="successful-feedback-message" layoutX="122.0" layoutY="323.0" text="Successful!">
+            <Label id="successful-feedback-message" fx:id="downloadFileFeedbackMessage" layoutX="71.0" layoutY="333.0" maxHeight="62.0" maxWidth="196.0">
                <font>
                   <Font name="Agency FB Bold" size="20.0" />
                </font>
             </Label>
-            <Label id="error-feedback-message" layoutX="399.0" layoutY="250.0" text="Error :(">
+            <Label id="error-feedback-message" fx:id="uploadFileFeedbackArea" layoutX="354.0" layoutY="250.0" maxHeight="69.0" maxWidth="184.0">
                <font>
                   <Font name="Agency FB Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
+            <Button fx:id="logoutButton" layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
             <Label layoutX="300.0" layoutY="164.0" prefHeight="16.0" prefWidth="53.0" text="Select File :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="file-box" layoutX="356.0" layoutY="159.0" prefHeight="26.0" prefWidth="139.0" text="/path">
+            <Label id="file-box" fx:id="selectFileToUploadPath" layoutX="356.0" layoutY="159.0" prefHeight="26.0" prefWidth="139.0">
                <font>
                   <Font name="Tw Cen MT Bold" size="13.0" />
                </font>

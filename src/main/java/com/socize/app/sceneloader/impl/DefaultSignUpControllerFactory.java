@@ -1,7 +1,7 @@
 package com.socize.app.sceneloader.impl;
 
-import com.socize.api.impl.DefaultSignUpApi;
-import com.socize.api.spi.SignUpApi;
+import com.socize.api.signup.impl.DefaultSignUpApi;
+import com.socize.api.signup.spi.SignUpApi;
 import com.socize.app.sceneloader.spi.SceneControllerFactory;
 import com.socize.pages.signup.SignUpController;
 import com.socize.pages.signup.impl.DefaultSignUpModel;

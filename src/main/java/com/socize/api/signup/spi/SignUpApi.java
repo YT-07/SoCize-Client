@@ -1,4 +1,4 @@
-package com.socize.api.spi;
+package com.socize.api.signup.spi;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 
