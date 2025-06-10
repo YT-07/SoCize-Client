@@ -171,7 +171,7 @@ public class SignInController implements Initializable {
         clearTextFields(); 
 
         if(result.role() == UserRole.admin) {
-            // TODO: Redirect to admin page
+            mainMenuPageState.setPage(AppScene.ADMIN_PAGE);
 
         } else if(result.role() == UserRole.user) {
             // TODO: Redirect to user page
