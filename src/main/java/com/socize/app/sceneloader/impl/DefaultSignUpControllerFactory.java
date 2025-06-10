@@ -3,6 +3,7 @@ package com.socize.app.sceneloader.impl;
 import com.socize.api.signup.impl.DefaultSignUpApi;
 import com.socize.api.signup.spi.SignUpApi;
 import com.socize.app.sceneloader.spi.SceneControllerFactory;
+import com.socize.pages.TransitionablePage;
 import com.socize.pages.signup.SignUpController;
 import com.socize.pages.signup.impl.DefaultSignUpModel;
 import com.socize.pages.signup.spi.SignUpModel;
@@ -14,7 +15,7 @@ import com.socize.utilities.objectmapper.spi.ObjectMapperProvider;
 public class DefaultSignUpControllerFactory implements SceneControllerFactory {
 
     @Override
-    public Object createDefault() {
+    public TransitionablePage createDefault() {
         MainMenuPageState mainMenuPageState = DefaultMainMenuPageState.getInstance();
         
         SignUpApi signUpApi = new DefaultSignUpApi();
