@@ -174,7 +174,7 @@ public class SignInController implements Initializable {
             mainMenuPageState.setPage(AppScene.ADMIN_PAGE);
 
         } else if(result.role() == UserRole.user) {
-            // TODO: Redirect to user page
+            mainMenuPageState.setPage(AppScene.USER_PAGE);
 
         } else {
             logger.error("User login is successful but unable to match user role to redirect user.", result);
