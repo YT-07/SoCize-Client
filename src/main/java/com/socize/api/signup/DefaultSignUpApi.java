@@ -1,9 +1,8 @@
-package com.socize.api.signup.impl;
+package com.socize.api.signup;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 
 import com.socize.api.signup.dto.SignUpRequest;
-import com.socize.api.signup.spi.SignUpApi;
 
 public class DefaultSignUpApi implements SignUpApi {
 
