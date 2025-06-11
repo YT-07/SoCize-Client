@@ -7,7 +7,8 @@ import com.socize.app.sceneprovider.SceneProvider;
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.PageController;
-import com.socize.shared.mainmenupagestate.MainMenuPageState;
+import com.socize.pages.fileserver.shared.fileserverpage.FileServerPageManager;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,10 +30,12 @@ public class MainMenuController extends PageController implements Initializable 
     private BorderPane borderPane;
 
     private final MainMenuPageState pageState;
+    private final FileServerPageManager fileServerPageManager;
     private final SceneProvider provider;
 
-    public MainMenuController(MainMenuPageState pageState, SceneProvider provider) {
+    public MainMenuController(MainMenuPageState pageState, SceneProvider provider, FileServerPageManager fileServerPageManager) {
         this.pageState = pageState;
+        this.fileServerPageManager = fileServerPageManager;
         this.provider = provider;
     }
 
@@ -57,7 +60,7 @@ public class MainMenuController extends PageController implements Initializable 
         });
 
         fileServerButton.setOnAction(e -> {
-            pageState.setPage(DefaultAppScenes.HOME_PAGE);
+            pageState.setPage(fileServerPageManager.getStatus().getFileServerPage());
         });
     }
 

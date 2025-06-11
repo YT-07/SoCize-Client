@@ -5,13 +5,13 @@ import com.socize.api.signin.DefaultSignInApi;
 import com.socize.api.signin.SignInApi;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
-import com.socize.pages.signin.SignInController;
-import com.socize.pages.signin.model.DefaultSignInModel;
-import com.socize.pages.signin.model.SignInModel;
-import com.socize.shared.mainmenupagestate.DefaultMainMenuPageState;
-import com.socize.shared.mainmenupagestate.MainMenuPageState;
-import com.socize.shared.session.DefaultSessionManager;
-import com.socize.shared.session.SessionManager;
+import com.socize.pages.fileserver.shared.fileserverpage.DefaultFileServerPageManager;
+import com.socize.pages.fileserver.shared.fileserverpage.FileServerPageManager;
+import com.socize.pages.fileserver.shared.session.DefaultSessionManager;
+import com.socize.pages.fileserver.shared.session.SessionManager;
+import com.socize.pages.fileserver.signin.SignInController;
+import com.socize.pages.fileserver.signin.model.DefaultSignInModel;
+import com.socize.pages.fileserver.signin.model.SignInModel;
 import com.socize.utilities.objectmapper.DefaultObjectMapperProvider;
 import com.socize.utilities.textstyler.DefaultTextStyler;
 import com.socize.utilities.textstyler.TextStyler;
@@ -20,7 +20,7 @@ public class DefaultSignInControllerFactory implements SceneControllerFactory {
 
     @Override
     public PageController createDefault() {
-        MainMenuPageState mainMenuPageState = DefaultMainMenuPageState.getInstance();
+        FileServerPageManager fileServerPageManager = DefaultFileServerPageManager.getInstance();
         TextStyler textStyler = DefaultTextStyler.getInstance();
 
         SignInApi signInApi = new DefaultSignInApi();
@@ -30,7 +30,7 @@ public class DefaultSignInControllerFactory implements SceneControllerFactory {
 
         SessionManager sessionManager = DefaultSessionManager.getInstance();
 
-        return new SignInController(mainMenuPageState, textStyler, signInModel, sessionManager);
+        return new SignInController(fileServerPageManager, textStyler, signInModel, sessionManager);
     }
     
 }
