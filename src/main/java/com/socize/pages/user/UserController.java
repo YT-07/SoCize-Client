@@ -68,7 +68,8 @@ public class UserController extends PageController implements Initializable {
         uploadFileFeedbackArea.setText(null);
         filenameToSave.setText(null);
 
-        // TODO: Get username to display
+        usernameDisplayField.setText(sessionManager.getUsername());
+
         // TODO: Get file to download from API and display in listview
     }
     
