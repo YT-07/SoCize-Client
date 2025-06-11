@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.app.sceneprovider.AppScene;
-import com.socize.app.sceneprovider.SceneLoader;
+import com.socize.app.sceneprovider.SceneProvider;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
@@ -29,18 +29,18 @@ public class MainMenuController implements Initializable, TransitionablePage {
     private BorderPane borderPane;
 
     private final MainMenuPageState pageState;
-    private final SceneLoader loader;
+    private final SceneProvider provider;
 
-    public MainMenuController(MainMenuPageState pageState, SceneLoader loader) {
+    public MainMenuController(MainMenuPageState pageState, SceneProvider provider) {
         this.pageState = pageState;
-        this.loader = loader;
+        this.provider = provider;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
         pageState.subscribe(scene -> {
-            SceneResult<TransitionablePage> sceneResult = loader.getScene(scene);
+            SceneResult<TransitionablePage> sceneResult = provider.getScene(scene);
             sceneResult.controller().onEnter();
             borderPane.setRight(sceneResult.parent());
         });

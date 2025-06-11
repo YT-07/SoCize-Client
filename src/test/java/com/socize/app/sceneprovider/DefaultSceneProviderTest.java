@@ -1,4 +1,4 @@
-package com.socize.app.sceneloader.impl;
+package com.socize.app.sceneprovider;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.doReturn;
@@ -6,13 +6,11 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
 
-import com.socize.app.sceneprovider.AppScene;
-import com.socize.app.sceneprovider.DefaultSceneLoader;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.app.sceneprovider.scenefactory.SceneFactory;
 import com.socize.pages.TransitionablePage;
 
-class DefaultSceneLoaderTest {
+class DefaultSceneProviderTest {
     
     @Test
     void shouldCacheAndReturnSameSceneresult_IfParentIsRequestedMultipleTimes() {
@@ -28,10 +26,10 @@ class DefaultSceneLoaderTest {
         .when(mockFactory)
         .load(mockScene);
 
-        DefaultSceneLoader loader = DefaultSceneLoader.createTestingLoader(mockFactory);
+        DefaultSceneProvider provider = DefaultSceneProvider.createTestingProvider(mockFactory);
 
-        SceneResult<TransitionablePage> first = loader.getScene(mockScene);
-        SceneResult<TransitionablePage> second = loader.getScene(mockScene);
+        SceneResult<TransitionablePage> first = provider.getScene(mockScene);
+        SceneResult<TransitionablePage> second = provider.getScene(mockScene);
 
         assertSame(first, second);
     }

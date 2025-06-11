@@ -25,7 +25,7 @@ public class DefaultSceneProvider implements SceneProvider {
     }
 
     // For testing, for injecting a mock scene factory
-    static DefaultSceneProvider createTestingLoader(SceneFactory sceneFactory) {
+    static DefaultSceneProvider createTestingProvider (SceneFactory sceneFactory) {
         return new DefaultSceneProvider(sceneFactory);
     }
 

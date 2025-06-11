@@ -1,8 +1,8 @@
 package com.socize.app;
 
 import com.socize.app.sceneprovider.AppScene;
-import com.socize.app.sceneprovider.SceneLoader;
-import com.socize.app.sceneprovider.SceneLoaders;
+import com.socize.app.sceneprovider.DefaultSceneProvider;
+import com.socize.app.sceneprovider.SceneProvider;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 
@@ -18,9 +18,9 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        SceneLoader loader = SceneLoaders.getDefault();
+        SceneProvider provider = DefaultSceneProvider.getInstance();
 
-        SceneResult<TransitionablePage> sceneResult = loader.getScene(AppScene.MAIN_PAGE);
+        SceneResult<TransitionablePage> sceneResult = provider.getScene(AppScene.MAIN_PAGE);
         Scene mainScene = new Scene(sceneResult.parent());
         sceneResult.controller().onEnter();
 
