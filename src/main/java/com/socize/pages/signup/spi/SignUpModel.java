@@ -1,6 +1,6 @@
 package com.socize.pages.signup.spi;
 
-import com.socize.dto.SignUpRequest;
+import com.socize.api.signup.dto.SignUpRequest;
 import com.socize.pages.signup.dto.SignUpResult;
 
 public interface SignUpModel {

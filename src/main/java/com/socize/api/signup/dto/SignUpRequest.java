@@ -1,4 +1,4 @@
-package com.socize.dto;
+package com.socize.api.signup.dto;
 
 public record SignUpRequest
 (

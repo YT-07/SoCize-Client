@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.socize.api.signup.dto.SignUpRequest;
 import com.socize.api.signup.spi.SignUpApi;
-import com.socize.dto.SignUpRequest;
 import com.socize.pages.signup.dto.SignUpResult;
 import com.socize.pages.signup.spi.SignUpModel;
 
