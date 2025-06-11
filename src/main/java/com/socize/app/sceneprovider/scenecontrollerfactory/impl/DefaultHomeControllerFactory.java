@@ -3,16 +3,16 @@ package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.homepage.HomeController;
-import com.socize.pages.mainmenu.shared.mainmenupagestate.DefaultMainMenuPageState;
-import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
+import com.socize.pages.fileserver.shared.fileserverpage.DefaultFileServerPageManager;
+import com.socize.pages.fileserver.shared.fileserverpage.FileServerPageManager;
 
 public class DefaultHomeControllerFactory implements SceneControllerFactory {
 
     @Override
     public PageController createDefault() {
-        MainMenuPageState mainMenuPageState = DefaultMainMenuPageState.getInstance();
+        FileServerPageManager fileServerPageManager = DefaultFileServerPageManager.getInstance();
 
-        return new HomeController(mainMenuPageState);
+        return new HomeController(fileServerPageManager);
     }
     
 }

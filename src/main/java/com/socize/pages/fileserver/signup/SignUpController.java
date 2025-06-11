@@ -4,13 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.api.signup.dto.SignUpRequest;
-import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.pages.PageController;
+import com.socize.pages.fileserver.shared.fileserverpage.FileServerPageManager;
+import com.socize.pages.fileserver.shared.fileserverpage.fileserverpagestatus.DefaultFileServerPageStatus;
 import com.socize.pages.fileserver.signup.dto.SignUpResult;
 import com.socize.pages.fileserver.signup.dto.SignUpValidationError;
 import com.socize.pages.fileserver.signup.model.SignUpModel;
-import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -56,22 +55,22 @@ public class SignUpController extends PageController implements Initializable {
     @FXML
     private Text signUpFeedbackText;
 
-    private final MainMenuPageState mainMenuPageState;
+    private final FileServerPageManager fileServerPageManager;
     private final SignUpModel signUpModel;
 
-    public SignUpController(MainMenuPageState mainMenuPageState, SignUpModel signUpModel) {
-        this.mainMenuPageState = mainMenuPageState;
+    public SignUpController(FileServerPageManager fileServerPageManager, SignUpModel signUpModel) {
+        this.fileServerPageManager = fileServerPageManager;
         this.signUpModel = signUpModel;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         homeButton.setOnAction(e -> {
-            mainMenuPageState.setPage(DefaultAppScenes.HOME_PAGE);
+            fileServerPageManager.setStatus(DefaultFileServerPageStatus.AT_HOME);
         });
 
         signInButton.setOnAction(e -> {
-            mainMenuPageState.setPage(DefaultAppScenes.SIGN_IN_PAGE);
+            fileServerPageManager.setStatus(DefaultFileServerPageStatus.SIGNING_IN);
         });
 
         signUpButton.setOnAction(e -> signup());

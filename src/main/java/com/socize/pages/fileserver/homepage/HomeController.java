@@ -3,10 +3,9 @@ package com.socize.pages.fileserver.homepage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.pages.PageController;
-import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
-
+import com.socize.pages.fileserver.shared.fileserverpage.FileServerPageManager;
+import com.socize.pages.fileserver.shared.fileserverpage.fileserverpagestatus.DefaultFileServerPageStatus;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,20 +18,20 @@ public class HomeController extends PageController implements Initializable {
     @FXML
     private Button signInButton;
 
-    private final MainMenuPageState mainMenuPageState;
+    private final FileServerPageManager fileServerPageManager;
 
-    public HomeController(MainMenuPageState mainMenuPageState) {
-        this.mainMenuPageState = mainMenuPageState;
+    public HomeController(FileServerPageManager fileServerPageManager) {
+        this.fileServerPageManager = fileServerPageManager;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         signInButton.setOnAction(e -> {
-            mainMenuPageState.setPage(DefaultAppScenes.SIGN_IN_PAGE);
+            fileServerPageManager.setStatus(DefaultFileServerPageStatus.SIGNING_IN);
         });
 
         signUpButton.setOnAction(e -> {
-            mainMenuPageState.setPage(DefaultAppScenes.SIGN_UP_PAGE);
+            fileServerPageManager.setStatus(DefaultFileServerPageStatus.SIGNING_UP);
         });
     }
 

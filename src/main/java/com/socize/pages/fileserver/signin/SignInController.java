@@ -7,13 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.socize.api.signin.dto.SignInRequest;
-import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.pages.PageController;
+import com.socize.pages.fileserver.shared.fileserverpage.FileServerPageManager;
+import com.socize.pages.fileserver.shared.fileserverpage.fileserverpagestatus.DefaultFileServerPageStatus;
 import com.socize.pages.fileserver.shared.session.SessionManager;
 import com.socize.pages.fileserver.signin.dto.SignInResult;
 import com.socize.pages.fileserver.signin.dto.SignInResult.UserRole;
 import com.socize.pages.fileserver.signin.model.SignInModel;
-import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
 import com.socize.utilities.textstyler.TextStyler;
 
 import javafx.fxml.FXML;
@@ -49,20 +49,20 @@ public class SignInController extends PageController implements Initializable {
     @FXML
     private Label signinFeedbackField;
 
-    private final MainMenuPageState mainMenuPageState;
+    private final FileServerPageManager fileServerPageManager;
     private final TextStyler textStyler;
     private final SignInModel signInModel;
     private final SessionManager sessionManager;
 
     public SignInController
     (
-        MainMenuPageState mainMenuPageState, 
+        FileServerPageManager fileServerPageManager,
         TextStyler textStyler, 
         SignInModel signInModel,
         SessionManager sessionIdManager
     ) 
     {
-        this.mainMenuPageState = mainMenuPageState;
+        this.fileServerPageManager = fileServerPageManager;
         this.textStyler = textStyler;
         this.signInModel = signInModel;
         this.sessionManager = sessionIdManager;
@@ -71,11 +71,11 @@ public class SignInController extends PageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         homeButton.setOnAction(e -> {
-            mainMenuPageState.setPage(DefaultAppScenes.HOME_PAGE);
+            fileServerPageManager.setStatus(DefaultFileServerPageStatus.AT_HOME);
         });
 
         signUpButton.setOnAction(e -> {
-            mainMenuPageState.setPage(DefaultAppScenes.SIGN_UP_PAGE);
+            fileServerPageManager.setStatus(DefaultFileServerPageStatus.SIGNING_UP);
         });
 
         signInButton.setOnAction(e -> signin());
@@ -177,10 +177,10 @@ public class SignInController extends PageController implements Initializable {
             textStyler.showErrorMessage(signinFeedbackField, "Something went wrong, unable to redirect you to the next page...");
 
         } else if(result.role() == UserRole.admin) {
-            mainMenuPageState.setPage(DefaultAppScenes.ADMIN_PAGE);
+            fileServerPageManager.setStatus(DefaultFileServerPageStatus.AT_ADMIN_PAGE);
 
         } else if(result.role() == UserRole.user) {
-            mainMenuPageState.setPage(DefaultAppScenes.USER_PAGE);
+            fileServerPageManager.setStatus(DefaultFileServerPageStatus.AT_USER_PAGE);
 
         } else {
             logger.error("User login is successful but unable to match user role to redirect user. User role received: '{}'.", result.role().name());
