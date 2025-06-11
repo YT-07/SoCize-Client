@@ -1,6 +1,6 @@
 package com.socize.app.sceneprovider.scenecontrollerfactory.spi;
 
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 
 /**
  * Interface to provide the default controller for a scene.
@@ -12,5 +12,5 @@ public interface SceneControllerFactory {
      * 
      * @return the controller
      */
-    TransitionablePage createDefault();
+    PageController createDefault();
 }

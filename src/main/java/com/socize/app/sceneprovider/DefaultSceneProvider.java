@@ -6,10 +6,10 @@ import com.socize.app.sceneprovider.appscenes.AppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.app.sceneprovider.scenefactory.DefaultSceneFactory;
 import com.socize.app.sceneprovider.scenefactory.SceneFactory;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 
 public class DefaultSceneProvider implements SceneProvider {
-    private final HashMap<AppScenes, SceneResult<TransitionablePage>> scenes;
+    private final HashMap<AppScenes, SceneResult<PageController>> scenes;
     private final SceneFactory sceneFactory;
 
     private DefaultSceneProvider(SceneFactory sceneFactory) {
@@ -31,10 +31,10 @@ public class DefaultSceneProvider implements SceneProvider {
     }
 
     @Override
-    public SceneResult<TransitionablePage> getScene(AppScenes scene) {
+    public SceneResult<PageController> getScene(AppScenes scene) {
         
         if(!scenes.containsKey(scene)) {
-            SceneResult<TransitionablePage> parent = sceneFactory.load(scene);
+            SceneResult<PageController> parent = sceneFactory.load(scene);
             scenes.put(scene, parent);
         }
 

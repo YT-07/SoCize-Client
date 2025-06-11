@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.socize.api.signin.DefaultSignInApi;
 import com.socize.api.signin.SignInApi;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 import com.socize.pages.signin.SignInController;
 import com.socize.pages.signin.model.DefaultSignInModel;
 import com.socize.pages.signin.model.SignInModel;
@@ -19,7 +19,7 @@ import com.socize.utilities.textstyler.TextStyler;
 public class DefaultSignInControllerFactory implements SceneControllerFactory {
 
     @Override
-    public TransitionablePage createDefault() {
+    public PageController createDefault() {
         MainMenuPageState mainMenuPageState = DefaultMainMenuPageState.getInstance();
         TextStyler textStyler = DefaultTextStyler.getInstance();
 

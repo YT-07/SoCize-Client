@@ -4,14 +4,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class HomeController implements Initializable, TransitionablePage {
+public class HomeController extends PageController implements Initializable {
 
     @FXML
     private Button signUpButton;

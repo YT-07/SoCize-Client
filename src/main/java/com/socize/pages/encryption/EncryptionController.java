@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.encryption.spi.EncryptionService;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 import com.socize.utilities.textstyler.TextStyler;
 
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
-public class EncryptionController implements Initializable, TransitionablePage {
+public class EncryptionController extends PageController implements Initializable {
 
     @FXML
     private Button selectFileToEncryptButton;

@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import com.socize.app.sceneprovider.SceneProvider;
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
-public class MainMenuController implements Initializable, TransitionablePage {
+public class MainMenuController extends PageController implements Initializable {
 
     @FXML
     private Button encryptionButton;
@@ -40,7 +40,7 @@ public class MainMenuController implements Initializable, TransitionablePage {
     public void initialize(URL location, ResourceBundle resources) {
         
         pageState.subscribe(scene -> {
-            SceneResult<TransitionablePage> sceneResult = provider.getScene(scene);
+            SceneResult<PageController> sceneResult = provider.getScene(scene);
             sceneResult.controller().onEnter();
             borderPane.setRight(sceneResult.parent());
         });

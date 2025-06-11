@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.socize.api.signin.dto.SignInRequest;
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 import com.socize.pages.signin.dto.SignInResult;
 import com.socize.pages.signin.dto.SignInResult.UserRole;
 import com.socize.pages.signin.model.SignInModel;
@@ -22,7 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class SignInController implements Initializable, TransitionablePage {
+public class SignInController extends PageController implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(SignInController.class); 
 
     @FXML

@@ -3,7 +3,7 @@ package com.socize.pages.user;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-public class UserController implements Initializable, TransitionablePage {
+public class UserController extends PageController implements Initializable {
 
     @FXML
     private Button deleteFileButton;

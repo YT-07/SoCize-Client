@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import com.socize.api.signup.dto.SignUpRequest;
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 import com.socize.pages.signup.dto.SignUpResult;
 import com.socize.pages.signup.dto.SignUpValidationError;
 import com.socize.pages.signup.model.SignUpModel;
@@ -18,7 +18,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class SignUpController implements Initializable, TransitionablePage {
+public class SignUpController extends PageController implements Initializable {
 
     @FXML
     private Button homeButton;

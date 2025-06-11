@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.encryption.spi.DecryptionService;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 import com.socize.utilities.textstyler.TextStyler;
 
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
-public class DecryptionController implements Initializable, TransitionablePage {
+public class DecryptionController extends PageController implements Initializable {
 
     @FXML
     private Button selectFileToDecryptButton;

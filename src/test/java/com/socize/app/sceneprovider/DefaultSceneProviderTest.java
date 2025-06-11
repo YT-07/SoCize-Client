@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.socize.app.sceneprovider.appscenes.AppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.app.sceneprovider.scenefactory.SceneFactory;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 
 class DefaultSceneProviderTest {
     
@@ -20,16 +20,16 @@ class DefaultSceneProviderTest {
 
         doReturn
         (
-            new SceneResult<TransitionablePage>(null, null), 
-            new SceneResult<TransitionablePage>(null, null)
+            new SceneResult<PageController>(null, null), 
+            new SceneResult<PageController>(null, null)
         )
         .when(mockFactory)
         .load(mockScene);
 
         DefaultSceneProvider provider = DefaultSceneProvider.createTestingProvider(mockFactory);
 
-        SceneResult<TransitionablePage> first = provider.getScene(mockScene);
-        SceneResult<TransitionablePage> second = provider.getScene(mockScene);
+        SceneResult<PageController> first = provider.getScene(mockScene);
+        SceneResult<PageController> second = provider.getScene(mockScene);
 
         assertSame(first, second);
     }

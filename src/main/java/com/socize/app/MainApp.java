@@ -4,7 +4,7 @@ import com.socize.app.sceneprovider.DefaultSceneProvider;
 import com.socize.app.sceneprovider.SceneProvider;
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,7 +20,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         SceneProvider provider = DefaultSceneProvider.getInstance();
 
-        SceneResult<TransitionablePage> sceneResult = provider.getScene(DefaultAppScenes.MAIN_PAGE);
+        SceneResult<PageController> sceneResult = provider.getScene(DefaultAppScenes.MAIN_PAGE);
         Scene mainScene = new Scene(sceneResult.parent());
         sceneResult.controller().onEnter();
 

@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.encryption.impl.DefaultEncryptionService;
 import com.socize.encryption.spi.EncryptionService;
-import com.socize.pages.TransitionablePage;
+import com.socize.pages.PageController;
 import com.socize.pages.encryption.EncryptionController;
 import com.socize.utilities.textstyler.DefaultTextStyler;
 import com.socize.utilities.textstyler.TextStyler;
@@ -15,7 +15,7 @@ public class DefaultEncryptionControllerFactory implements SceneControllerFactor
     private static final Logger logger = LoggerFactory.getLogger(DefaultEncryptionControllerFactory.class);
 
     @Override
-    public TransitionablePage createDefault() {
+    public PageController createDefault() {
         EncryptionService encryptionService = null;
 
         try {
