@@ -6,7 +6,7 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
 
-import com.socize.app.sceneprovider.appscenes.AppScene;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.app.sceneprovider.scenefactory.SceneFactory;
 import com.socize.pages.TransitionablePage;
@@ -15,7 +15,7 @@ class DefaultSceneProviderTest {
     
     @Test
     void shouldCacheAndReturnSameSceneresult_IfParentIsRequestedMultipleTimes() {
-        AppScene mockScene = AppScene.MAIN_PAGE;
+        DefaultAppScenes mockScene = DefaultAppScenes.MAIN_PAGE;
         
         SceneFactory mockFactory = mock(SceneFactory.class);
 

@@ -1,6 +1,6 @@
 package com.socize.shared.fileserverloginstatus;
 
-import com.socize.app.sceneprovider.appscenes.AppScene;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 
 public interface FileServerLoginStatusManager {
 
@@ -8,17 +8,17 @@ public interface FileServerLoginStatusManager {
     LoginStatus getLoginStatus();
 
     public static enum LoginStatus {
-        NOT_LOGGED_IN(AppScene.HOME_PAGE),
-        USER(AppScene.USER_PAGE),
-        ADMIN(AppScene.ADMIN_PAGE);
+        NOT_LOGGED_IN(DefaultAppScenes.HOME_PAGE),
+        USER(DefaultAppScenes.USER_PAGE),
+        ADMIN(DefaultAppScenes.ADMIN_PAGE);
 
-        private AppScene fileServerPage;
+        private DefaultAppScenes fileServerPage;
 
-        private LoginStatus(AppScene fileServerPage) {
+        private LoginStatus(DefaultAppScenes fileServerPage) {
             this.fileServerPage = fileServerPage;
         }
         
-        public AppScene getFileServerPage() {
+        public DefaultAppScenes getFileServerPage() {
             return fileServerPage;
         }
     }

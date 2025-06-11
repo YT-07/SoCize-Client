@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.api.signup.dto.SignUpRequest;
-import com.socize.app.sceneprovider.appscenes.AppScene;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.signup.dto.SignUpResult;
 import com.socize.pages.signup.dto.SignUpValidationError;
@@ -67,11 +67,11 @@ public class SignUpController implements Initializable, TransitionablePage {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         homeButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.HOME_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.HOME_PAGE);
         });
 
         signInButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.SIGN_IN_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.SIGN_IN_PAGE);
         });
 
         signUpButton.setOnAction(e -> signup());

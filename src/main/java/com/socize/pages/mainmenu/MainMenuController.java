@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.app.sceneprovider.SceneProvider;
-import com.socize.app.sceneprovider.appscenes.AppScene;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
@@ -46,18 +46,18 @@ public class MainMenuController implements Initializable, TransitionablePage {
         });
 
         // Default page to display
-        pageState.setPage(AppScene.ENCRYPTION_PAGE);
+        pageState.setPage(DefaultAppScenes.ENCRYPTION_PAGE);
 
         encryptionButton.setOnAction(e -> {
-            pageState.setPage(AppScene.ENCRYPTION_PAGE);
+            pageState.setPage(DefaultAppScenes.ENCRYPTION_PAGE);
         });
 
         decryptionButton.setOnAction(e -> {
-            pageState.setPage(AppScene.DECRYPTION_PAGE);
+            pageState.setPage(DefaultAppScenes.DECRYPTION_PAGE);
         });
 
         fileServerButton.setOnAction(e -> {
-            pageState.setPage(AppScene.HOME_PAGE);
+            pageState.setPage(DefaultAppScenes.HOME_PAGE);
         });
     }
 

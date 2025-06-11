@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.socize.api.signin.dto.SignInRequest;
-import com.socize.app.sceneprovider.appscenes.AppScene;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.signin.dto.SignInResult;
 import com.socize.pages.signin.dto.SignInResult.UserRole;
@@ -71,11 +71,11 @@ public class SignInController implements Initializable, TransitionablePage {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         homeButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.HOME_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.HOME_PAGE);
         });
 
         signUpButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.SIGN_UP_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.SIGN_UP_PAGE);
         });
 
         signInButton.setOnAction(e -> signin());
@@ -177,10 +177,10 @@ public class SignInController implements Initializable, TransitionablePage {
             textStyler.showErrorMessage(signinFeedbackField, "Something went wrong, unable to redirect you to the next page...");
 
         } else if(result.role() == UserRole.admin) {
-            mainMenuPageState.setPage(AppScene.ADMIN_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.ADMIN_PAGE);
 
         } else if(result.role() == UserRole.user) {
-            mainMenuPageState.setPage(AppScene.USER_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.USER_PAGE);
 
         } else {
             logger.error("User login is successful but unable to match user role to redirect user. User role received: '{}'.", result.role().name());

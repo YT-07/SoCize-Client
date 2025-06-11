@@ -1,6 +1,6 @@
 package com.socize.app.sceneprovider.scenefactory;
 
-import com.socize.app.sceneprovider.appscenes.AppScene;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 
@@ -15,5 +15,5 @@ public interface SceneFactory {
      * @param scene the scene to create
      * @return the scene
      */
-    SceneResult<TransitionablePage> load(AppScene scene);
+    SceneResult<TransitionablePage> load(DefaultAppScenes scene);
 }

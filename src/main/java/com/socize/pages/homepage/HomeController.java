@@ -3,7 +3,7 @@ package com.socize.pages.homepage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.socize.app.sceneprovider.appscenes.AppScene;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.pages.TransitionablePage;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
 
@@ -28,11 +28,11 @@ public class HomeController implements Initializable, TransitionablePage {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         signInButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.SIGN_IN_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.SIGN_IN_PAGE);
         });
 
         signUpButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.SIGN_UP_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.SIGN_UP_PAGE);
         });
     }
 

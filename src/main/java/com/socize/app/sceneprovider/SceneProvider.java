@@ -1,6 +1,6 @@
 package com.socize.app.sceneprovider;
 
-import com.socize.app.sceneprovider.appscenes.AppScene;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 
@@ -15,5 +15,5 @@ public interface SceneProvider {
      * @param scene the scene to retrieve
      * @return the requested scene
      */
-    SceneResult<TransitionablePage> getScene(AppScene scene);
+    SceneResult<TransitionablePage> getScene(DefaultAppScenes scene);
 }

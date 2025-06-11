@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.socize.app.sceneprovider.appscenes.AppScene;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 
 public class DefaultMainMenuPageState implements MainMenuPageState {
-    private AppScene scene;
-    private final List<Consumer<AppScene>> observers;
+    private DefaultAppScenes scene;
+    private final List<Consumer<DefaultAppScenes>> observers;
 
     private DefaultMainMenuPageState() {
         observers = new ArrayList<>();
@@ -23,7 +23,7 @@ public class DefaultMainMenuPageState implements MainMenuPageState {
     }
 
     @Override
-    public void subscribe(Consumer<AppScene> observer) {
+    public void subscribe(Consumer<DefaultAppScenes> observer) {
         
         synchronized(observers) {
             observers.add(observer);
@@ -32,7 +32,7 @@ public class DefaultMainMenuPageState implements MainMenuPageState {
     }
 
     @Override
-    public void unsubscribe(Consumer<AppScene> observer) {
+    public void unsubscribe(Consumer<DefaultAppScenes> observer) {
         
         synchronized(observers) {
             observers.remove(observer);
@@ -41,7 +41,7 @@ public class DefaultMainMenuPageState implements MainMenuPageState {
     }
 
     @Override
-    public synchronized void setPage(AppScene scene) {
+    public synchronized void setPage(DefaultAppScenes scene) {
         this.scene = scene;
         notifyObservers();
     }
@@ -49,7 +49,7 @@ public class DefaultMainMenuPageState implements MainMenuPageState {
     private void notifyObservers() {
 
         synchronized(observers) {
-            for(Consumer<AppScene> observer : observers) {
+            for(Consumer<DefaultAppScenes> observer : observers) {
                 observer.accept(scene);
             }
         }
