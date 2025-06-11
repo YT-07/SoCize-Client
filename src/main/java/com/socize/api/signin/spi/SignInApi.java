@@ -2,7 +2,7 @@ package com.socize.api.signin.spi;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 
-import com.socize.dto.SignInRequest;
+import com.socize.api.signin.dto.SignInRequest;
 
 public interface SignInApi {
 

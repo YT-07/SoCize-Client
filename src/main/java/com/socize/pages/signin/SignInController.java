@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.socize.api.signin.dto.SignInRequest;
 import com.socize.app.sceneloader.AppScene;
-import com.socize.dto.SignInRequest;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.signin.dto.SignInResult;
 import com.socize.pages.signin.dto.SignInResult.UserRole;

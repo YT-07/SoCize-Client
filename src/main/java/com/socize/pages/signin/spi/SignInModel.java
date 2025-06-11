@@ -1,6 +1,6 @@
 package com.socize.pages.signin.spi;
 
-import com.socize.dto.SignInRequest;
+import com.socize.api.signin.dto.SignInRequest;
 import com.socize.pages.signin.dto.SignInResult;
 
 public interface SignInModel {
