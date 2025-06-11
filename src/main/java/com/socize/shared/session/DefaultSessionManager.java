@@ -1,6 +1,4 @@
-package com.socize.shared.session.impl;
-
-import com.socize.shared.session.spi.SessionManager;
+package com.socize.shared.session;
 
 public class DefaultSessionManager implements SessionManager {
     private String sessionId;
