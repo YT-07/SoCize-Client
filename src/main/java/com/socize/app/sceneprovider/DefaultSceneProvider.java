@@ -2,14 +2,14 @@ package com.socize.app.sceneprovider;
 
 import java.util.HashMap;
 
-import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
+import com.socize.app.sceneprovider.appscenes.AppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.app.sceneprovider.scenefactory.DefaultSceneFactory;
 import com.socize.app.sceneprovider.scenefactory.SceneFactory;
 import com.socize.pages.TransitionablePage;
 
 public class DefaultSceneProvider implements SceneProvider {
-    private final HashMap<DefaultAppScenes, SceneResult<TransitionablePage>> scenes;
+    private final HashMap<AppScenes, SceneResult<TransitionablePage>> scenes;
     private final SceneFactory sceneFactory;
 
     private DefaultSceneProvider(SceneFactory sceneFactory) {
@@ -31,7 +31,7 @@ public class DefaultSceneProvider implements SceneProvider {
     }
 
     @Override
-    public SceneResult<TransitionablePage> getScene(DefaultAppScenes scene) {
+    public SceneResult<TransitionablePage> getScene(AppScenes scene) {
         
         if(!scenes.containsKey(scene)) {
             SceneResult<TransitionablePage> parent = sceneFactory.load(scene);

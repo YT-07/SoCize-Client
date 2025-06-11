@@ -5,7 +5,7 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
+import com.socize.app.sceneprovider.appscenes.AppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.TransitionablePage;
@@ -17,7 +17,7 @@ public class DefaultSceneFactory implements SceneFactory {
     private static final Logger logger = LoggerFactory.getLogger(DefaultSceneFactory.class);
 
     @Override
-    public SceneResult<TransitionablePage> load(DefaultAppScenes scene) {
+    public SceneResult<TransitionablePage> load(AppScenes scene) {
         URL scenePath = getClass().getResource(scene.getPath());
         FXMLLoader loader = new FXMLLoader(scenePath);
 

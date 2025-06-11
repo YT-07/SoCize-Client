@@ -6,4 +6,5 @@ public interface AppScenes {
 
     SceneControllerFactory getControllerFactory();
     String getPath();
+    String name();
 }
