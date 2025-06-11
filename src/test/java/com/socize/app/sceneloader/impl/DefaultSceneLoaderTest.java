@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.socize.app.sceneloader.AppScene;
 import com.socize.app.sceneloader.dto.SceneResult;
-import com.socize.app.sceneloader.spi.SceneFactory;
+import com.socize.app.sceneloader.scenefactory.SceneFactory;
 import com.socize.pages.TransitionablePage;
 
 class DefaultSceneLoaderTest {

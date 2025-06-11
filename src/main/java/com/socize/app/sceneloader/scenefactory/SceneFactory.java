@@ -1,4 +1,4 @@
-package com.socize.app.sceneloader.spi;
+package com.socize.app.sceneloader.scenefactory;
 
 import com.socize.app.sceneloader.AppScene;
 import com.socize.app.sceneloader.dto.SceneResult;
