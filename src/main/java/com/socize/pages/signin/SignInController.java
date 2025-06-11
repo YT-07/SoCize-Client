@@ -11,7 +11,7 @@ import com.socize.app.sceneloader.AppScene;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.signin.dto.SignInResult;
 import com.socize.pages.signin.dto.SignInResult.UserRole;
-import com.socize.pages.signin.spi.SignInModel;
+import com.socize.pages.signin.model.SignInModel;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
 import com.socize.shared.session.SessionManager;
 import com.socize.utilities.textstyler.TextStyler;
