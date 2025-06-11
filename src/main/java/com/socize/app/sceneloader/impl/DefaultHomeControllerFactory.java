@@ -3,8 +3,8 @@ package com.socize.app.sceneloader.impl;
 import com.socize.app.sceneloader.spi.SceneControllerFactory;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.homepage.HomeController;
-import com.socize.shared.mainmenupagestate.impl.DefaultMainMenuPageState;
-import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
+import com.socize.shared.mainmenupagestate.DefaultMainMenuPageState;
+import com.socize.shared.mainmenupagestate.MainMenuPageState;
 
 public class DefaultHomeControllerFactory implements SceneControllerFactory {
 

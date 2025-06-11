@@ -1,11 +1,10 @@
-package com.socize.shared.mainmenupagestate.impl;
+package com.socize.shared.mainmenupagestate;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 import com.socize.app.sceneloader.AppScene;
-import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
 
 public class DefaultMainMenuPageState implements MainMenuPageState {
     private AppScene scene;

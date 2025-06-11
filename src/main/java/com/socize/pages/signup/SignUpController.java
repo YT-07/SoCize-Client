@@ -9,7 +9,7 @@ import com.socize.pages.TransitionablePage;
 import com.socize.pages.signup.dto.SignUpResult;
 import com.socize.pages.signup.dto.SignUpValidationError;
 import com.socize.pages.signup.spi.SignUpModel;
-import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
+import com.socize.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
