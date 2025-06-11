@@ -1,9 +1,9 @@
 package com.socize.app;
 
 import com.socize.app.sceneloader.AppScene;
+import com.socize.app.sceneloader.SceneLoader;
 import com.socize.app.sceneloader.SceneLoaders;
 import com.socize.app.sceneloader.dto.SceneResult;
-import com.socize.app.sceneloader.spi.SceneLoader;
 import com.socize.pages.TransitionablePage;
 
 import javafx.application.Application;

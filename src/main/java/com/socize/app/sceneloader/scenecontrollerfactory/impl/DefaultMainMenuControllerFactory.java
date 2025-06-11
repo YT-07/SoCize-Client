@@ -1,8 +1,8 @@
 package com.socize.app.sceneloader.scenecontrollerfactory.impl;
 
+import com.socize.app.sceneloader.SceneLoader;
 import com.socize.app.sceneloader.SceneLoaders;
 import com.socize.app.sceneloader.scenecontrollerfactory.spi.SceneControllerFactory;
-import com.socize.app.sceneloader.spi.SceneLoader;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.mainmenu.MainMenuController;
 import com.socize.shared.mainmenupagestate.DefaultMainMenuPageState;

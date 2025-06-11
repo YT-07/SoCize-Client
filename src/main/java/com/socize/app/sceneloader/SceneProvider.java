@@ -1,13 +1,12 @@
-package com.socize.app.sceneloader.spi;
+package com.socize.app.sceneloader;
 
-import com.socize.app.sceneloader.AppScene;
 import com.socize.app.sceneloader.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 
 /**
  * Interface to provide scene loading services.
  */
-public interface SceneLoader {
+public interface SceneProvider {
 
     /**
      * Gets the specified scene object.

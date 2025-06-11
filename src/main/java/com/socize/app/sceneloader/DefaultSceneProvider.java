@@ -1,34 +1,32 @@
-package com.socize.app.sceneloader.impl;
+package com.socize.app.sceneloader;
 
 import java.util.HashMap;
 
-import com.socize.app.sceneloader.AppScene;
 import com.socize.app.sceneloader.dto.SceneResult;
 import com.socize.app.sceneloader.scenefactory.DefaultSceneFactory;
 import com.socize.app.sceneloader.scenefactory.SceneFactory;
-import com.socize.app.sceneloader.spi.SceneLoader;
 import com.socize.pages.TransitionablePage;
 
-public class DefaultSceneLoader implements SceneLoader {
+public class DefaultSceneProvider implements SceneProvider {
     private final HashMap<AppScene, SceneResult<TransitionablePage>> scenes;
     private final SceneFactory sceneFactory;
 
-    private DefaultSceneLoader(SceneFactory sceneFactory) {
+    private DefaultSceneProvider(SceneFactory sceneFactory) {
         scenes = new HashMap<>();
         this.sceneFactory = sceneFactory;
     }
 
     private static class SingletonInstanceHolder {
-        private static final DefaultSceneLoader INSTANCE = new DefaultSceneLoader(new DefaultSceneFactory());
+        private static final DefaultSceneProvider INSTANCE = new DefaultSceneProvider(new DefaultSceneFactory());
     } 
 
-    public static DefaultSceneLoader getInstance() {
+    public static DefaultSceneProvider getInstance() {
         return SingletonInstanceHolder.INSTANCE;
     }
 
     // For testing, for injecting a mock scene factory
-    static DefaultSceneLoader createTestingLoader(SceneFactory sceneFactory) {
-        return new DefaultSceneLoader(sceneFactory);
+    static DefaultSceneProvider createTestingLoader(SceneFactory sceneFactory) {
+        return new DefaultSceneProvider(sceneFactory);
     }
 
     @Override
