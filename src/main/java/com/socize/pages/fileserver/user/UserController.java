@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.pages.PageController;
-import com.socize.shared.session.SessionManager;
+import com.socize.pages.fileserver.shared.session.SessionManager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

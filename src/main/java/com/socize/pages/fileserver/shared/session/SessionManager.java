@@ -1,4 +1,4 @@
-package com.socize.shared.session;
+package com.socize.pages.fileserver.shared.session;
 
 public interface SessionManager {
 

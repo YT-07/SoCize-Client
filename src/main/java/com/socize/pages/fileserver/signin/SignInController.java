@@ -9,11 +9,11 @@ import org.slf4j.LoggerFactory;
 import com.socize.api.signin.dto.SignInRequest;
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.pages.PageController;
+import com.socize.pages.fileserver.shared.session.SessionManager;
 import com.socize.pages.fileserver.signin.dto.SignInResult;
 import com.socize.pages.fileserver.signin.dto.SignInResult.UserRole;
 import com.socize.pages.fileserver.signin.model.SignInModel;
-import com.socize.shared.mainmenupagestate.MainMenuPageState;
-import com.socize.shared.session.SessionManager;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
 import com.socize.utilities.textstyler.TextStyler;
 
 import javafx.fxml.FXML;

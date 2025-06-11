@@ -7,8 +7,8 @@ import com.socize.pages.PageController;
 import com.socize.pages.fileserver.signup.SignUpController;
 import com.socize.pages.fileserver.signup.model.DefaultSignUpModel;
 import com.socize.pages.fileserver.signup.model.SignUpModel;
-import com.socize.shared.mainmenupagestate.DefaultMainMenuPageState;
-import com.socize.shared.mainmenupagestate.MainMenuPageState;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.DefaultMainMenuPageState;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
 import com.socize.utilities.objectmapper.DefaultObjectMapperProvider;
 import com.socize.utilities.objectmapper.ObjectMapperProvider;
 

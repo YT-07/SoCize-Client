@@ -1,9 +1,9 @@
-package com.socize.shared.fileserverpage;
+package com.socize.pages.fileserver.shared.fileserverpage;
 
-import com.socize.shared.fileserverpage.fileserverpagestatus.DefaultFileServerPageStatus;
-import com.socize.shared.fileserverpage.fileserverpagestatus.FileServerPageStatus;
-import com.socize.shared.mainmenupagestate.DefaultMainMenuPageState;
-import com.socize.shared.mainmenupagestate.MainMenuPageState;
+import com.socize.pages.fileserver.shared.fileserverpage.fileserverpagestatus.DefaultFileServerPageStatus;
+import com.socize.pages.fileserver.shared.fileserverpage.fileserverpagestatus.FileServerPageStatus;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.DefaultMainMenuPageState;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
 
 public class DefaultFileServerPageManager implements FileServerPageManager {
     private FileServerPageStatus status;

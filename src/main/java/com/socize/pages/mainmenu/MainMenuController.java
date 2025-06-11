@@ -7,7 +7,7 @@ import com.socize.app.sceneprovider.SceneProvider;
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.PageController;
-import com.socize.shared.mainmenupagestate.MainMenuPageState;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

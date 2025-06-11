@@ -1,4 +1,4 @@
-package com.socize.shared.mainmenupagestate;
+package com.socize.pages.mainmenu.shared.mainmenupagestate;
 
 import java.util.ArrayList;
 import java.util.List;

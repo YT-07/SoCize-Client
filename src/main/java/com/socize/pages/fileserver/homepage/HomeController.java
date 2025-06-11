@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.pages.PageController;
-import com.socize.shared.mainmenupagestate.MainMenuPageState;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

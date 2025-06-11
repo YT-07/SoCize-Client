@@ -5,8 +5,8 @@ import com.socize.app.sceneprovider.SceneProvider;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
 import com.socize.pages.mainmenu.MainMenuController;
-import com.socize.shared.mainmenupagestate.DefaultMainMenuPageState;
-import com.socize.shared.mainmenupagestate.MainMenuPageState;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.DefaultMainMenuPageState;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
 
 public class DefaultMainMenuControllerFactory implements SceneControllerFactory {
 

@@ -9,7 +9,7 @@ import com.socize.pages.PageController;
 import com.socize.pages.fileserver.signup.dto.SignUpResult;
 import com.socize.pages.fileserver.signup.dto.SignUpValidationError;
 import com.socize.pages.fileserver.signup.model.SignUpModel;
-import com.socize.shared.mainmenupagestate.MainMenuPageState;
+import com.socize.pages.mainmenu.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
