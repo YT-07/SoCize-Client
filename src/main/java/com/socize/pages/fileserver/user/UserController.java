@@ -3,8 +3,10 @@ package com.socize.pages.fileserver.user;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.socize.api.logout.dto.LogoutRequest;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.shared.session.SessionManager;
+import com.socize.pages.fileserver.user.model.UserModel;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -49,14 +51,23 @@ public class UserController extends PageController implements Initializable {
     private TextField filenameToSave;
 
     private final SessionManager sessionManager;
+    private final UserModel userModel;
 
-    public UserController(SessionManager sessionManager) {
+    public UserController(SessionManager sessionManager, UserModel userModel) {
         this.sessionManager = sessionManager;
+        this.userModel = userModel;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        logoutButton.setOnAction(e -> logout());
+    }
+
+    private void logout() {
+        LogoutRequest logoutRequest = new LogoutRequest(sessionManager.getSessionId());
+        userModel.logout(logoutRequest);
+        System.out.println(sessionManager.getSessionId());
+        System.out.println(sessionManager.getUsername());
     }
 
     @Override

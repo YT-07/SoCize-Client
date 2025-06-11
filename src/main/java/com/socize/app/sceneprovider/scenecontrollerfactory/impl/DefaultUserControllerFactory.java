@@ -5,6 +5,10 @@ import com.socize.pages.PageController;
 import com.socize.pages.fileserver.shared.session.DefaultSessionManager;
 import com.socize.pages.fileserver.shared.session.SessionManager;
 import com.socize.pages.fileserver.user.UserController;
+import com.socize.pages.fileserver.user.model.DefaultUserModel;
+import com.socize.pages.fileserver.user.model.UserModel;
+import com.socize.pages.fileserver.utilities.logoutservice.DefaultLogoutService;
+import com.socize.pages.fileserver.utilities.logoutservice.LogoutService;
 
 public class DefaultUserControllerFactory implements SceneControllerFactory {
 
@@ -12,7 +16,10 @@ public class DefaultUserControllerFactory implements SceneControllerFactory {
     public PageController createDefault() {
         SessionManager sessionManager = DefaultSessionManager.getInstance();
 
-        return new UserController(sessionManager);
+        LogoutService logoutService = DefaultLogoutService.getInstance();
+        UserModel userModel = new DefaultUserModel(logoutService);
+
+        return new UserController(sessionManager, userModel);
     }
     
 }
