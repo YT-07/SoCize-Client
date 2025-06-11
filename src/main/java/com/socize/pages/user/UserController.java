@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.pages.PageController;
+import com.socize.shared.session.SessionManager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +47,12 @@ public class UserController extends PageController implements Initializable {
 
     @FXML
     private TextField filenameToSave;
+
+    private final SessionManager sessionManager;
+
+    public UserController(SessionManager sessionManager) {
+        this.sessionManager = sessionManager;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
