@@ -1,4 +1,4 @@
-package com.socize.pages.signup.impl;
+package com.socize.pages.signup.model;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.socize.api.signup.SignUpApi;
 import com.socize.api.signup.dto.SignUpRequest;
 import com.socize.pages.signup.dto.SignUpResult;
-import com.socize.pages.signup.spi.SignUpModel;
 
 public class DefaultSignUpModel implements SignUpModel {
     private static final Logger logger = LoggerFactory.getLogger(DefaultSignUpModel.class);

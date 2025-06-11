@@ -1,4 +1,4 @@
-package com.socize.pages.signup.spi;
+package com.socize.pages.signup.model;
 
 import com.socize.api.signup.dto.SignUpRequest;
 import com.socize.pages.signup.dto.SignUpResult;

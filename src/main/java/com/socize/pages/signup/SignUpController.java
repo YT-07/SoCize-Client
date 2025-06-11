@@ -8,7 +8,7 @@ import com.socize.app.sceneloader.AppScene;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.signup.dto.SignUpResult;
 import com.socize.pages.signup.dto.SignUpValidationError;
-import com.socize.pages.signup.spi.SignUpModel;
+import com.socize.pages.signup.model.SignUpModel;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
