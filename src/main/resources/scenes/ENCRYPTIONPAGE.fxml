@@ -25,7 +25,7 @@
             </Label>
             <Button id="select-button" fx:id="selectFileToEncryptButton" layoutX="340.0" layoutY="144.0" mnemonicParsing="false" text="Select" />
             <Button id="select-button" fx:id="selectFolderToSaveButton" layoutX="341.0" layoutY="214.0" mnemonicParsing="false" styleClass="common-button" text="Select" />
-            <Button fx:id="encryptButton" layoutX="334.0" layoutY="293.0" mnemonicParsing="false" styleClass="common-button" text="Encrypt" />
+            <Button fx:id="encryptButton" layoutX="337.0" layoutY="283.0" mnemonicParsing="false" styleClass="common-button" text="Encrypt" />
             <Label layoutX="122.0" layoutY="144.0" text="Select file to encrypt" textFill="#6209bc">
                <font>
                   <Font name="Agency FB Bold" size="21.0" />
@@ -46,9 +46,9 @@
                   <Font name="Agency FB" size="13.0" />
                </font>
             </Label>
-            <Label id="successful-feedback-message" fx:id="encryptFeedbackField" layoutX="315.0" layoutY="331.0" maxHeight="60.0" maxWidth="280.0" wrapText="true">
+            <Label fx:id="encryptFeedbackField" layoutX="410.0" layoutY="290.0" maxHeight="106.0" maxWidth="175.0" styleClass="successful-feedback-message" wrapText="true">
                <font>
-                  <Font size="14.0" />
+                  <Font size="17.0" />
                </font>
             </Label>
          </children>
