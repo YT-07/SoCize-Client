@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.socize.app.sceneloader.AppScene;
 import com.socize.app.sceneloader.dto.SceneResult;
-import com.socize.app.sceneloader.spi.SceneControllerFactory;
+import com.socize.app.sceneloader.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.TransitionablePage;
 
 import javafx.fxml.FXMLLoader;
