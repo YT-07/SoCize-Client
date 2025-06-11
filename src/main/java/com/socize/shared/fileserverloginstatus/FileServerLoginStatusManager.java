@@ -1,4 +1,4 @@
-package com.socize.shared.fileserverloginstatus.spi;
+package com.socize.shared.fileserverloginstatus;
 
 import com.socize.app.sceneloader.AppScene;
 

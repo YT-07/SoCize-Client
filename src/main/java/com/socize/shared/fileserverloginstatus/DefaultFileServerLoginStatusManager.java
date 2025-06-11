@@ -1,6 +1,4 @@
-package com.socize.shared.fileserverloginstatus.impl;
-
-import com.socize.shared.fileserverloginstatus.spi.FileServerLoginStatusManager;
+package com.socize.shared.fileserverloginstatus;
 
 public class DefaultFileServerLoginStatusManager implements FileServerLoginStatusManager {
     private LoginStatus loginStatus;
