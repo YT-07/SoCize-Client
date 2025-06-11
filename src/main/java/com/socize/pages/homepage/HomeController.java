@@ -3,15 +3,15 @@ package com.socize.pages.homepage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.socize.app.sceneloader.AppScene;
-import com.socize.pages.TransitionablePage;
-import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
+import com.socize.pages.PageController;
+import com.socize.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class HomeController implements Initializable, TransitionablePage {
+public class HomeController extends PageController implements Initializable {
 
     @FXML
     private Button signUpButton;
@@ -28,18 +28,17 @@ public class HomeController implements Initializable, TransitionablePage {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         signInButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.SIGN_IN_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.SIGN_IN_PAGE);
         });
 
         signUpButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.SIGN_UP_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.SIGN_UP_PAGE);
         });
     }
 
     @Override
     public void onEnter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+        
     }
     
 }

@@ -3,13 +3,13 @@ package com.socize.pages.signup;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.socize.app.sceneloader.AppScene;
-import com.socize.dto.SignUpRequest;
-import com.socize.pages.TransitionablePage;
+import com.socize.api.signup.dto.SignUpRequest;
+import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
+import com.socize.pages.PageController;
 import com.socize.pages.signup.dto.SignUpResult;
 import com.socize.pages.signup.dto.SignUpValidationError;
-import com.socize.pages.signup.spi.SignUpModel;
-import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
+import com.socize.pages.signup.model.SignUpModel;
+import com.socize.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +18,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class SignUpController implements Initializable, TransitionablePage {
+public class SignUpController extends PageController implements Initializable {
 
     @FXML
     private Button homeButton;
@@ -67,11 +67,11 @@ public class SignUpController implements Initializable, TransitionablePage {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         homeButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.HOME_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.HOME_PAGE);
         });
 
         signInButton.setOnAction(e -> {
-            mainMenuPageState.setPage(AppScene.SIGN_IN_PAGE);
+            mainMenuPageState.setPage(DefaultAppScenes.SIGN_IN_PAGE);
         });
 
         signUpButton.setOnAction(e -> signup());
@@ -147,8 +147,16 @@ public class SignUpController implements Initializable, TransitionablePage {
 
     @Override
     public void onEnter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onEnter'");
+        usernameField.clear();
+        passwordField.clear();
+        emailField.clear();
+        phoneNumberField.clear();
+
+        usernameErrorText.setText(null);
+        passwordErrorText.setText(null);
+        emailErrorText.setText(null);
+        phoneNumberErrorText.setText(null);
+        signUpFeedbackText.setText(null);
     }
 
 }
