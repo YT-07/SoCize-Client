@@ -1,9 +1,25 @@
 .successful-feedback-message {
-    -fx-text-fill: linear-gradient(to bottom, #00ff44, #ade8b4);
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0.3, 2, 2);
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-text-fill: #00ff55;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 3, 0.0, 0, 0),
+                 dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0.2, 2, 2);
 }
 
-.error-feedback-message{
-    -fx-text-fill: linear-gradient(to bottom, #ff8fd2, #ff0000, #ff8fd2);
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 6, 0.2, 1, 1);
+
+.error-feedback-message {
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
+    -fx-text-fill: #fc8787;
+    -fx-effect: 
+            dropshadow(gaussian, black, 2, 0, 1, 0),
+            dropshadow(gaussian, black, 2, 0, -1, 0),
+            dropshadow(gaussian, black, 2, 0, 0, 1),
+            dropshadow(gaussian, black, 2, 0, 0, -1),
+            dropshadow(gaussian, black, 2, 0, 1, 1),
+            dropshadow(gaussian, black, 2, 0, -1, 1),
+            dropshadow(gaussian, black, 2, 0, 1, -1), 
+            dropshadow(gaussian, black, 2, 0, -1, -1),
+            dropshadow(gaussian, rgba(255, 0, 0, 0.6), 12, 0.3, 0, 0); 
 }
+

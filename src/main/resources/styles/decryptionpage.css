@@ -24,6 +24,7 @@
 }
 
 #select-button:pressed {
+    -fx-text-fill: linear-gradient(to right, #6c9bf9, #d418c5);
     -fx-scale-x: 0.95;
     -fx-scale-y: 0.95;
     -fx-background-color:  linear-gradient(to right, #c3d7ff, #ff9af5);
