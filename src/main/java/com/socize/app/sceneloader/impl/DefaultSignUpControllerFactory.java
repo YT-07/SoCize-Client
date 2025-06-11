@@ -9,8 +9,8 @@ import com.socize.pages.signup.impl.DefaultSignUpModel;
 import com.socize.pages.signup.spi.SignUpModel;
 import com.socize.shared.mainmenupagestate.impl.DefaultMainMenuPageState;
 import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
-import com.socize.utilities.objectmapper.impl.DefaultObjectMapperProvider;
-import com.socize.utilities.objectmapper.spi.ObjectMapperProvider;
+import com.socize.utilities.objectmapper.DefaultObjectMapperProvider;
+import com.socize.utilities.objectmapper.ObjectMapperProvider;
 
 public class DefaultSignUpControllerFactory implements SceneControllerFactory {
 

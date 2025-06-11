@@ -1,7 +1,6 @@
-package com.socize.utilities.objectmapper.impl;
+package com.socize.utilities.objectmapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.socize.utilities.objectmapper.spi.ObjectMapperProvider;
 
 public class DefaultObjectMapperProvider implements ObjectMapperProvider {
     private final ObjectMapper objectMapper;

@@ -1,4 +1,4 @@
-package com.socize.utilities.objectmapper.spi;
+package com.socize.utilities.objectmapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
