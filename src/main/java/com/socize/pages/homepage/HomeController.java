@@ -3,7 +3,7 @@ package com.socize.pages.homepage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.socize.app.sceneloader.AppScene;
+import com.socize.app.sceneprovider.AppScene;
 import com.socize.pages.TransitionablePage;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
 

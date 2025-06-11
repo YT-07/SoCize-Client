@@ -1,14 +1,14 @@
-package com.socize.app.sceneloader;
+package com.socize.app.sceneprovider;
 
-import com.socize.app.sceneloader.scenecontrollerfactory.impl.DefaultAdminControllerFactory;
-import com.socize.app.sceneloader.scenecontrollerfactory.impl.DefaultDecryptionControllerFactory;
-import com.socize.app.sceneloader.scenecontrollerfactory.impl.DefaultEncryptionControllerFactory;
-import com.socize.app.sceneloader.scenecontrollerfactory.impl.DefaultHomeControllerFactory;
-import com.socize.app.sceneloader.scenecontrollerfactory.impl.DefaultMainMenuControllerFactory;
-import com.socize.app.sceneloader.scenecontrollerfactory.impl.DefaultSignInControllerFactory;
-import com.socize.app.sceneloader.scenecontrollerfactory.impl.DefaultSignUpControllerFactory;
-import com.socize.app.sceneloader.scenecontrollerfactory.impl.DefaultUserControllerFactory;
-import com.socize.app.sceneloader.scenecontrollerfactory.spi.SceneControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultAdminControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultDecryptionControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultEncryptionControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultHomeControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultMainMenuControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultSignInControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultSignUpControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultUserControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.config.FilePath;
 
 /**

@@ -1,7 +1,7 @@
-package com.socize.app.sceneloader.scenefactory;
+package com.socize.app.sceneprovider.scenefactory;
 
-import com.socize.app.sceneloader.AppScene;
-import com.socize.app.sceneloader.dto.SceneResult;
+import com.socize.app.sceneprovider.AppScene;
+import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 
 /**

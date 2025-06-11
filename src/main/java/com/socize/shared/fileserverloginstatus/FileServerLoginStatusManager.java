@@ -1,6 +1,6 @@
 package com.socize.shared.fileserverloginstatus;
 
-import com.socize.app.sceneloader.AppScene;
+import com.socize.app.sceneprovider.AppScene;
 
 public interface FileServerLoginStatusManager {
 

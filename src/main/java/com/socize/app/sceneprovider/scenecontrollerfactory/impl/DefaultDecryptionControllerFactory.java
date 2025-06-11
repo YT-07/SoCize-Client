@@ -1,9 +1,9 @@
-package com.socize.app.sceneloader.scenecontrollerfactory.impl;
+package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.socize.app.sceneloader.scenecontrollerfactory.spi.SceneControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.encryption.impl.DefaultDecryptionService;
 import com.socize.encryption.spi.DecryptionService;
 import com.socize.pages.TransitionablePage;

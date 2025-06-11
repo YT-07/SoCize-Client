@@ -3,9 +3,9 @@ package com.socize.pages.mainmenu;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.socize.app.sceneloader.AppScene;
-import com.socize.app.sceneloader.SceneLoader;
-import com.socize.app.sceneloader.dto.SceneResult;
+import com.socize.app.sceneprovider.AppScene;
+import com.socize.app.sceneprovider.SceneLoader;
+import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
 

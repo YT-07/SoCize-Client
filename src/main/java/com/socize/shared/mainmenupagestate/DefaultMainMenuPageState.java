@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.socize.app.sceneloader.AppScene;
+import com.socize.app.sceneprovider.AppScene;
 
 public class DefaultMainMenuPageState implements MainMenuPageState {
     private AppScene scene;

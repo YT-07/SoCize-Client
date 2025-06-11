@@ -1,6 +1,6 @@
-package com.socize.app.sceneloader.scenecontrollerfactory.impl;
+package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 
-import com.socize.app.sceneloader.scenecontrollerfactory.spi.SceneControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.user.UserController;
 

@@ -1,9 +1,9 @@
-package com.socize.app.sceneloader.scenecontrollerfactory.impl;
+package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.socize.api.signin.DefaultSignInApi;
 import com.socize.api.signin.SignInApi;
-import com.socize.app.sceneloader.scenecontrollerfactory.spi.SceneControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.signin.SignInController;
 import com.socize.pages.signin.model.DefaultSignInModel;

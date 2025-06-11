@@ -1,4 +1,4 @@
-package com.socize.app.sceneloader.scenecontrollerfactory.spi;
+package com.socize.app.sceneprovider.scenecontrollerfactory.spi;
 
 import com.socize.pages.TransitionablePage;
 

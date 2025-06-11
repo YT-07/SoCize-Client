@@ -1,4 +1,4 @@
-package com.socize.app.sceneloader.dto;
+package com.socize.app.sceneprovider.dto;
 
 import com.socize.pages.TransitionablePage;
 

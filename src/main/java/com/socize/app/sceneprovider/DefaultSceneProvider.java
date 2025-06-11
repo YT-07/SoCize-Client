@@ -1,10 +1,10 @@
-package com.socize.app.sceneloader;
+package com.socize.app.sceneprovider;
 
 import java.util.HashMap;
 
-import com.socize.app.sceneloader.dto.SceneResult;
-import com.socize.app.sceneloader.scenefactory.DefaultSceneFactory;
-import com.socize.app.sceneloader.scenefactory.SceneFactory;
+import com.socize.app.sceneprovider.dto.SceneResult;
+import com.socize.app.sceneprovider.scenefactory.DefaultSceneFactory;
+import com.socize.app.sceneprovider.scenefactory.SceneFactory;
 import com.socize.pages.TransitionablePage;
 
 public class DefaultSceneProvider implements SceneProvider {
