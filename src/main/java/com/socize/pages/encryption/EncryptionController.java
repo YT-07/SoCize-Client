@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import com.socize.encryption.spi.EncryptionService;
 import com.socize.pages.TransitionablePage;
-import com.socize.utilities.textstyler.spi.TextStyler;
+import com.socize.utilities.textstyler.TextStyler;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

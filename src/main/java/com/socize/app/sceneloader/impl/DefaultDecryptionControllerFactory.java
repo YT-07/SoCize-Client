@@ -8,8 +8,8 @@ import com.socize.encryption.impl.DefaultDecryptionService;
 import com.socize.encryption.spi.DecryptionService;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.decryption.DecryptionController;
-import com.socize.utilities.textstyler.impl.DefaultTextStyler;
-import com.socize.utilities.textstyler.spi.TextStyler;
+import com.socize.utilities.textstyler.DefaultTextStyler;
+import com.socize.utilities.textstyler.TextStyler;
 
 public class DefaultDecryptionControllerFactory implements SceneControllerFactory {
     private static final Logger logger = LoggerFactory.getLogger(DefaultDecryptionControllerFactory.class);

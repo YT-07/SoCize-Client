@@ -1,4 +1,4 @@
-package com.socize.utilities.textstyler.spi;
+package com.socize.utilities.textstyler;
 
 import javafx.scene.control.Labeled;
 

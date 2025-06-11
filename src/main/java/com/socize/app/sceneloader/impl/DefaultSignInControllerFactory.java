@@ -13,8 +13,8 @@ import com.socize.shared.mainmenupagestate.spi.MainMenuPageState;
 import com.socize.shared.session.impl.DefaultSessionManager;
 import com.socize.shared.session.spi.SessionManager;
 import com.socize.utilities.objectmapper.impl.DefaultObjectMapperProvider;
-import com.socize.utilities.textstyler.impl.DefaultTextStyler;
-import com.socize.utilities.textstyler.spi.TextStyler;
+import com.socize.utilities.textstyler.DefaultTextStyler;
+import com.socize.utilities.textstyler.TextStyler;
 
 public class DefaultSignInControllerFactory implements SceneControllerFactory {
 

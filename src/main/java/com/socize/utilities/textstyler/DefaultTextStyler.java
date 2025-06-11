@@ -1,7 +1,6 @@
-package com.socize.utilities.textstyler.impl;
+package com.socize.utilities.textstyler;
 
 import com.socize.config.CssStyles;
-import com.socize.utilities.textstyler.spi.TextStyler;
 
 import javafx.scene.control.Labeled;
 
