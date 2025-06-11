@@ -1,4 +1,4 @@
-package com.socize.pages.signup;
+package com.socize.pages.fileserver.signup;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,9 +6,9 @@ import java.util.ResourceBundle;
 import com.socize.api.signup.dto.SignUpRequest;
 import com.socize.app.sceneprovider.appscenes.DefaultAppScenes;
 import com.socize.pages.PageController;
-import com.socize.pages.signup.dto.SignUpResult;
-import com.socize.pages.signup.dto.SignUpValidationError;
-import com.socize.pages.signup.model.SignUpModel;
+import com.socize.pages.fileserver.signup.dto.SignUpResult;
+import com.socize.pages.fileserver.signup.dto.SignUpValidationError;
+import com.socize.pages.fileserver.signup.model.SignUpModel;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
 
 import javafx.fxml.FXML;

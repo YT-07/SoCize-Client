@@ -1,4 +1,4 @@
-package com.socize.pages.user;
+package com.socize.pages.fileserver.user;
 
 import java.net.URL;
 import java.util.ResourceBundle;

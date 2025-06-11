@@ -1,7 +1,7 @@
-package com.socize.pages.signin.model;
+package com.socize.pages.fileserver.signin.model;
 
 import com.socize.api.signin.dto.SignInRequest;
-import com.socize.pages.signin.dto.SignInResult;
+import com.socize.pages.fileserver.signin.dto.SignInResult;
 
 public interface SignInModel {
 

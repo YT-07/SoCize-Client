@@ -1,4 +1,4 @@
-package com.socize.pages.signin.dto;
+package com.socize.pages.fileserver.signin.dto;
 
 public record SignInValidationError
 (

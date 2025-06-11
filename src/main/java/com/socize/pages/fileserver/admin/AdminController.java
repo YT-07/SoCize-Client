@@ -1,4 +1,4 @@
-package com.socize.pages.admin;
+package com.socize.pages.fileserver.admin;
 
 import java.net.URL;
 import java.util.ResourceBundle;

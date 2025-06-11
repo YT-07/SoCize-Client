@@ -2,7 +2,7 @@ package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
-import com.socize.pages.admin.AdminController;
+import com.socize.pages.fileserver.admin.AdminController;
 
 public class DefaultAdminControllerFactory implements SceneControllerFactory {
 

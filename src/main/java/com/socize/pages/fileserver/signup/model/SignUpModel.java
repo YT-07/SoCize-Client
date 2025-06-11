@@ -1,7 +1,7 @@
-package com.socize.pages.signup.model;
+package com.socize.pages.fileserver.signup.model;
 
 import com.socize.api.signup.dto.SignUpRequest;
-import com.socize.pages.signup.dto.SignUpResult;
+import com.socize.pages.fileserver.signup.dto.SignUpResult;
 
 public interface SignUpModel {
 

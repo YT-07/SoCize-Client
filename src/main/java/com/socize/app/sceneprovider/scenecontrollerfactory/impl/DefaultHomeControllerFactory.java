@@ -2,7 +2,7 @@ package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
-import com.socize.pages.homepage.HomeController;
+import com.socize.pages.fileserver.homepage.HomeController;
 import com.socize.shared.mainmenupagestate.DefaultMainMenuPageState;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;
 

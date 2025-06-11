@@ -1,4 +1,4 @@
-package com.socize.pages.signup.dto;
+package com.socize.pages.fileserver.signup.dto;
 
 public record SignUpValidationError
 (
