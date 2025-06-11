@@ -1,6 +1,6 @@
 package com.socize.app.sceneprovider.scenefactory;
 
-import com.socize.app.sceneprovider.AppScene;
+import com.socize.app.sceneprovider.appscenes.AppScene;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 

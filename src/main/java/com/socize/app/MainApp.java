@@ -1,8 +1,8 @@
 package com.socize.app;
 
-import com.socize.app.sceneprovider.AppScene;
 import com.socize.app.sceneprovider.DefaultSceneProvider;
 import com.socize.app.sceneprovider.SceneProvider;
+import com.socize.app.sceneprovider.appscenes.AppScene;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 

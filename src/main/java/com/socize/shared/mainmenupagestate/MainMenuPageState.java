@@ -2,7 +2,7 @@ package com.socize.shared.mainmenupagestate;
 
 import java.util.function.Consumer;
 
-import com.socize.app.sceneprovider.AppScene;
+import com.socize.app.sceneprovider.appscenes.AppScene;
 
 public interface MainMenuPageState {
 

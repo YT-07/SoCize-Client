@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.socize.api.signin.dto.SignInRequest;
-import com.socize.app.sceneprovider.AppScene;
+import com.socize.app.sceneprovider.appscenes.AppScene;
 import com.socize.pages.TransitionablePage;
 import com.socize.pages.signin.dto.SignInResult;
 import com.socize.pages.signin.dto.SignInResult.UserRole;

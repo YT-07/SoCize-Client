@@ -3,8 +3,8 @@ package com.socize.pages.mainmenu;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.socize.app.sceneprovider.AppScene;
 import com.socize.app.sceneprovider.SceneProvider;
+import com.socize.app.sceneprovider.appscenes.AppScene;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.pages.TransitionablePage;
 import com.socize.shared.mainmenupagestate.MainMenuPageState;

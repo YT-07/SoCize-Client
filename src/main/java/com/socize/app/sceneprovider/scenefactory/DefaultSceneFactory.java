@@ -5,7 +5,7 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.socize.app.sceneprovider.AppScene;
+import com.socize.app.sceneprovider.appscenes.AppScene;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.TransitionablePage;

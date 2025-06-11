@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
 
+import com.socize.app.sceneprovider.appscenes.AppScene;
 import com.socize.app.sceneprovider.dto.SceneResult;
 import com.socize.app.sceneprovider.scenefactory.SceneFactory;
 import com.socize.pages.TransitionablePage;

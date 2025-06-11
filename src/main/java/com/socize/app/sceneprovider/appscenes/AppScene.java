@@ -1,4 +1,4 @@
-package com.socize.app.sceneprovider;
+package com.socize.app.sceneprovider.appscenes;
 
 import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultAdminControllerFactory;
 import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultDecryptionControllerFactory;
