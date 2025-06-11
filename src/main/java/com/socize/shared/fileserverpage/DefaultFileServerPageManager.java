@@ -1,19 +1,19 @@
-package com.socize.shared.fileserverloginstatus;
+package com.socize.shared.fileserverpage;
 
-public class DefaultFileServerLoginStatusManager implements FileServerLoginStatusManager {
+public class DefaultFileServerPageManager implements FileServerPageManager {
     private LoginStatus loginStatus;
     private final Object loginStatusLock;
 
-    private DefaultFileServerLoginStatusManager() {
+    private DefaultFileServerPageManager() {
         loginStatus = LoginStatus.NOT_LOGGED_IN;
         loginStatusLock = new Object();
     }
 
     private static class SingletonInstanceHolder {
-        private static final DefaultFileServerLoginStatusManager INSTANCE = new DefaultFileServerLoginStatusManager();
+        private static final DefaultFileServerPageManager INSTANCE = new DefaultFileServerPageManager();
     }
 
-    public static DefaultFileServerLoginStatusManager getInstance() {
+    public static DefaultFileServerPageManager getInstance() {
         return SingletonInstanceHolder.INSTANCE;
     }
 
