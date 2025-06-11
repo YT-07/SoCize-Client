@@ -1,11 +1,14 @@
 package com.socize.shared.fileserverpage;
 
+import com.socize.shared.fileserverpage.fileserverpagestatus.DefaultFileServerPageStatus;
+import com.socize.shared.fileserverpage.fileserverpagestatus.FileServerPageStatus;
+
 public class DefaultFileServerPageManager implements FileServerPageManager {
-    private LoginStatus loginStatus;
+    private FileServerPageStatus status;
     private final Object loginStatusLock;
 
     private DefaultFileServerPageManager() {
-        loginStatus = LoginStatus.NOT_LOGGED_IN;
+        status = DefaultFileServerPageStatus.AT_HOME; // default page
         loginStatusLock = new Object();
     }
 
@@ -18,17 +21,17 @@ public class DefaultFileServerPageManager implements FileServerPageManager {
     }
 
     @Override
-    public void setLoginStatus(LoginStatus loginStatus) {
+    public void setStatus(FileServerPageStatus status) {
         
         synchronized(loginStatusLock) {
-            this.loginStatus = loginStatus;
+            this.status = status;
         }
 
     }
 
     @Override
-    public LoginStatus getLoginStatus() {
-        return loginStatus;
+    public FileServerPageStatus getStatus() {
+        return status;
     }
     
 }
