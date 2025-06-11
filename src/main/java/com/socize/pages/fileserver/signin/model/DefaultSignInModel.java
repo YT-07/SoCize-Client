@@ -37,6 +37,11 @@ public class DefaultSignInModel implements SignInModel {
         }
     }
     
+    /**
+     * Gets the default sign in result if anything went wrong while retrieving the sign in result.
+     * 
+     * @return the default sign in result
+     */
     private static SignInResult getDefaultSignInResult() {
         SignInResult signInResult = new SignInResult(false, null, null, "Something went wrong.", null);
 

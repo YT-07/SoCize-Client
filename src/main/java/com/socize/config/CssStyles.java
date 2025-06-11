@@ -1,5 +1,8 @@
 package com.socize.config;
 
+/**
+ * Holds css class constants to be applied in this app.
+ */
 public class CssStyles {
     
     private CssStyles() {

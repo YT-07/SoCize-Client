@@ -63,11 +63,12 @@ public class UserController extends PageController implements Initializable {
         logoutButton.setOnAction(e -> logout());
     }
 
+    /**
+     * Helper function to orchestrate the process of logging out.
+     */
     private void logout() {
         LogoutRequest logoutRequest = new LogoutRequest(sessionManager.getSessionId());
         userModel.logout(logoutRequest);
-        System.out.println(sessionManager.getSessionId());
-        System.out.println(sessionManager.getUsername());
     }
 
     @Override
