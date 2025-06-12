@@ -1,5 +1,7 @@
 package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 
+import com.socize.api.getdownloadablefiles.DefaultGetDownloadableFilesApi;
+import com.socize.api.getdownloadablefiles.GetDownloadableFilesApi;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.shared.session.DefaultSessionManager;
@@ -17,7 +19,9 @@ public class DefaultUserControllerFactory implements SceneControllerFactory {
         SessionManager sessionManager = DefaultSessionManager.getInstance();
 
         LogoutService logoutService = DefaultLogoutService.getInstance();
-        UserModel userModel = new DefaultUserModel(logoutService);
+        GetDownloadableFilesApi getDownloadableFilesApi = new DefaultGetDownloadableFilesApi();
+
+        UserModel userModel = new DefaultUserModel(logoutService, getDownloadableFilesApi);
 
         return new UserController(sessionManager, userModel);
     }
