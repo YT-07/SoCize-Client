@@ -61,7 +61,7 @@ public class UserController extends PageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logoutButton.setOnAction(e -> logout());
-        downloadFileListView.setItems(userModel.getDownloadableFileList());
+        userModel.setFileListToListView(downloadFileListView);
     }
 
     /**
