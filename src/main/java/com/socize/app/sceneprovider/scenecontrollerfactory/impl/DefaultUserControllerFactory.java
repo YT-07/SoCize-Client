@@ -1,6 +1,8 @@
 package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.socize.api.deletefile.DefaultDeleteFileApi;
+import com.socize.api.deletefile.DeleteFileApi;
 import com.socize.api.getdownloadablefiles.DefaultGetDownloadableFilesApi;
 import com.socize.api.getdownloadablefiles.GetDownloadableFilesApi;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
@@ -24,10 +26,17 @@ public class DefaultUserControllerFactory implements SceneControllerFactory {
         TextStyler textStyler = DefaultTextStyler.getInstance();
 
         LogoutService logoutService = DefaultLogoutService.getInstance();
-        GetDownloadableFilesApi getDownloadableFilesApi = new DefaultGetDownloadableFilesApi();
         ObjectMapper objectMapper = DefaultObjectMapperProvider.getInstance().getObjectMapper();
 
-        UserModel userModel = new DefaultUserModel(logoutService, getDownloadableFilesApi, objectMapper);
+        GetDownloadableFilesApi getDownloadableFilesApi = new DefaultGetDownloadableFilesApi();
+        DeleteFileApi deleteFileApi = new DefaultDeleteFileApi();
+
+        UserModel userModel = new DefaultUserModel(
+            logoutService, 
+            getDownloadableFilesApi, 
+            objectMapper, 
+            deleteFileApi
+        );
 
         return new UserController(sessionManager, userModel, textStyler);
     }
