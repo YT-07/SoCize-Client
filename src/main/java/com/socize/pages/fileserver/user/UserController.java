@@ -3,10 +3,14 @@ package com.socize.pages.fileserver.user;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.socize.api.getdownloadablefiles.dto.GetDownloadableFilesRequest;
 import com.socize.api.logout.dto.LogoutRequest;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.shared.session.SessionManager;
+import com.socize.pages.fileserver.user.dto.DownloadableFile;
+import com.socize.pages.fileserver.user.dto.GetDownloadableFilesApiResult;
 import com.socize.pages.fileserver.user.model.UserModel;
+import com.socize.utilities.textstyler.TextStyler;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -52,10 +56,12 @@ public class UserController extends PageController implements Initializable {
 
     private final SessionManager sessionManager;
     private final UserModel userModel;
+    private final TextStyler textStyler;
 
-    public UserController(SessionManager sessionManager, UserModel userModel) {
+    public UserController(SessionManager sessionManager, UserModel userModel, TextStyler textStyler) {
         this.sessionManager = sessionManager;
         this.userModel = userModel;
+        this.textStyler = textStyler;
     }
 
     @Override
@@ -72,6 +78,26 @@ public class UserController extends PageController implements Initializable {
         userModel.logout(logoutRequest);
     }
 
+    /**
+     * Helper function to orchestrate the process of reloading the downloadable file list.
+     */
+    private void reloadDownloadableFiles() {
+        GetDownloadableFilesRequest apiRequest = new GetDownloadableFilesRequest(sessionManager.getSessionId());
+        GetDownloadableFilesApiResult apiResult = userModel.getDownloadableFiles(apiRequest);
+
+        if(!apiResult.success()) {
+            textStyler.showErrorMessage(downloadFileFeedbackMessage, apiResult.errorMessage());
+            return;
+        }
+
+        // Only clear items if api request is successful, as it would be the latest update
+        downloadFileListView.getItems().clear();
+
+        for(DownloadableFile downloadableFile : apiResult.files()) {
+            downloadFileListView.getItems().add(downloadableFile.filename());
+        }
+    }
+
     @Override
     public void onEnter() {
         downloadFileListView.getItems().clear();
@@ -82,8 +108,7 @@ public class UserController extends PageController implements Initializable {
         filenameToSave.setText(null);
 
         usernameDisplayField.setText(sessionManager.getUsername());
-
-        // TODO: Get file to download from API and display in listview
+        reloadDownloadableFiles();
     }
     
 }
