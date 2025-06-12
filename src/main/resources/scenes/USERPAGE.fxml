@@ -47,9 +47,9 @@
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="successful-feedback-message" fx:id="downloadFileFeedbackMessage" layoutX="71.0" layoutY="333.0" maxHeight="62.0" maxWidth="196.0">
+            <Label id="successful-feedback-message" fx:id="downloadFileFeedbackMessage" layoutX="45.0" layoutY="333.0" maxHeight="64.0" maxWidth="253.0" wrapText="true">
                <font>
-                  <Font name="Agency FB Bold" size="20.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Label id="error-feedback-message" fx:id="uploadFileFeedbackArea" layoutX="354.0" layoutY="250.0" maxHeight="69.0" maxWidth="184.0">
@@ -90,5 +90,6 @@
    <stylesheets>
       <URL value="@../styles/userpage.css" />
       <URL value="@../styles/common/buttons.css" />
+      <URL value="@../styles/common/feedbackmessage.css" />
    </stylesheets>
 </BorderPane>
