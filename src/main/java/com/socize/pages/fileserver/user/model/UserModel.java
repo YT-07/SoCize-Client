@@ -1,8 +1,10 @@
 package com.socize.pages.fileserver.user.model;
 
+import com.socize.api.getdownloadablefiles.dto.GetDownloadableFilesRequest;
 import com.socize.api.logout.dto.LogoutRequest;
+import com.socize.pages.fileserver.user.dto.GetDownloadableFilesApiResult;
 
-import javafx.scene.control.ListView;
+import javafx.collections.ObservableList;
 
 public interface UserModel {
 
@@ -14,16 +16,17 @@ public interface UserModel {
     void logout(LogoutRequest logoutRequest);
 
     /**
-     * Sets an observable list that contains all downloadable files for this user 
-     * to the provided {@code listView}
+     * Gets the observable list that will store the downloadable files for the user.
      * 
-     * @param listView the listview to set the observable list on
-     * @see javafx.scene.control.ListView#setItems(javafx.collections.ObservableList) ListView.setItems()
+     * @return the observable list
      */
-    void setFileListToListView(ListView<String> listView);
+    ObservableList<String> getDownloadableFileList();
 
     /**
-     * Reload the downloadable files and updates the file list accordingly.
+     * Attempts to retrieve all downloadable files for the user.
+     * 
+     * @param request the api request
+     * @return the api response
      */
-    void reloadDownloadableFiles();
+    GetDownloadableFilesApiResult getDownloadableFiles(GetDownloadableFilesRequest request);
 }
