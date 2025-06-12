@@ -1,7 +1,5 @@
 package com.socize.pages.fileserver.user.model;
 
-import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,18 +47,5 @@ public class DefaultUserModel implements UserModel {
     public void reloadDownloadableFiles() {
         
     }
-    
-    private static record GetDownloadableFilesApiResult
-    (
-        boolean success,
-        String errorMessage,
-        Set<DownloadableFile> files
-    ) 
-    {}
 
-    private static record DownloadableFile
-    (
-        String filename
-    )
-    {}
 }
