@@ -10,6 +10,7 @@ import com.socize.pages.fileserver.utilities.logoutservice.LogoutService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 
 public class DefaultUserModel implements UserModel {
     private static final Logger logger = LoggerFactory.getLogger(DefaultUserModel.class);
@@ -39,8 +40,8 @@ public class DefaultUserModel implements UserModel {
     }
 
     @Override
-    public ObservableList<String> getDownloadableFileList() {
-        return observableList;
+    public void setFileListToListView(ListView<String> listView) {
+        listView.setItems(observableList);
     }
 
     @Override
