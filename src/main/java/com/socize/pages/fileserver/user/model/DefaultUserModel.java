@@ -69,6 +69,11 @@ public class DefaultUserModel implements UserModel {
         }
     }    
 
+    /**
+     * Gets the default downloadable files result if anything went wrong.
+     * 
+     * @return the default result
+     */
     private static GetDownloadableFilesApiResult getDefaultDownloadableFilesApiResult() {
         return new GetDownloadableFilesApiResult(false, "Something went wrong, unable to retrieve files.", null);
     }
