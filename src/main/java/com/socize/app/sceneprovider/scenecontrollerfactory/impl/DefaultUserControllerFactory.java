@@ -13,12 +13,15 @@ import com.socize.pages.fileserver.user.model.UserModel;
 import com.socize.pages.fileserver.utilities.logoutservice.DefaultLogoutService;
 import com.socize.pages.fileserver.utilities.logoutservice.LogoutService;
 import com.socize.utilities.objectmapper.DefaultObjectMapperProvider;
+import com.socize.utilities.textstyler.DefaultTextStyler;
+import com.socize.utilities.textstyler.TextStyler;
 
 public class DefaultUserControllerFactory implements SceneControllerFactory {
 
     @Override
     public PageController createDefault() {
         SessionManager sessionManager = DefaultSessionManager.getInstance();
+        TextStyler textStyler = DefaultTextStyler.getInstance();
 
         LogoutService logoutService = DefaultLogoutService.getInstance();
         GetDownloadableFilesApi getDownloadableFilesApi = new DefaultGetDownloadableFilesApi();
@@ -26,7 +29,7 @@ public class DefaultUserControllerFactory implements SceneControllerFactory {
 
         UserModel userModel = new DefaultUserModel(logoutService, getDownloadableFilesApi, objectMapper);
 
-        return new UserController(sessionManager, userModel);
+        return new UserController(sessionManager, userModel, textStyler);
     }
     
 }
