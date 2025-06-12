@@ -1,7 +1,9 @@
 package com.socize.pages.fileserver.user.model;
 
+import com.socize.api.deletefile.dto.DeleteFileRequest;
 import com.socize.api.getdownloadablefiles.dto.GetDownloadableFilesRequest;
 import com.socize.api.logout.dto.LogoutRequest;
+import com.socize.pages.fileserver.user.dto.DeleteFileResult;
 import com.socize.pages.fileserver.user.dto.GetDownloadableFilesApiResult;
 
 import javafx.collections.ObservableList;
@@ -29,4 +31,12 @@ public interface UserModel {
      * @return the api response
      */
     GetDownloadableFilesApiResult getDownloadableFiles(GetDownloadableFilesRequest request);
+
+    /**
+     * Attempts to request for file deletion on the server
+     * 
+     * @param request the file deletion request
+     * @return the file deletion result
+     */
+    DeleteFileResult deleteFile(DeleteFileRequest request);
 }
