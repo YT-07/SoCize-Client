@@ -3,10 +3,12 @@ package com.socize.pages.fileserver.user;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.socize.api.deletefile.dto.DeleteFileRequest;
 import com.socize.api.getdownloadablefiles.dto.GetDownloadableFilesRequest;
 import com.socize.api.logout.dto.LogoutRequest;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.shared.session.SessionManager;
+import com.socize.pages.fileserver.user.dto.DeleteFileResult;
 import com.socize.pages.fileserver.user.dto.DownloadableFile;
 import com.socize.pages.fileserver.user.dto.GetDownloadableFilesApiResult;
 import com.socize.pages.fileserver.user.model.UserModel;
@@ -68,6 +70,8 @@ public class UserController extends PageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         logoutButton.setOnAction(e -> logout());
         downloadFileListView.setItems(userModel.getDownloadableFileList());
+
+        deleteFileButton.setOnAction(e -> deleteFile());
     }
 
     /**
@@ -96,6 +100,30 @@ public class UserController extends PageController implements Initializable {
         for(DownloadableFile downloadableFile : apiResult.files()) {
             downloadFileListView.getItems().add(downloadableFile.filename());
         }
+    }
+
+    /**
+     * Helper function to orchestrate the file deletion process.
+     */
+    private void deleteFile() {
+        String selectedFile = downloadFileListView.getSelectionModel().getSelectedItem();
+
+        if(selectedFile == null) {
+            textStyler.showErrorMessage(downloadFileFeedbackMessage, "Please select a file to delete.");
+            return;
+        }
+
+        DeleteFileRequest request = new DeleteFileRequest(sessionManager.getSessionId(), selectedFile);
+        DeleteFileResult result = userModel.deleteFile(request);
+
+        if(result.success()) {
+            textStyler.showSuccessMessage(downloadFileFeedbackMessage, "File successfully deleted.");
+
+        } else {
+            textStyler.showErrorMessage(downloadFileFeedbackMessage, result.errorMessage());
+
+        }
+        
     }
 
     @Override
