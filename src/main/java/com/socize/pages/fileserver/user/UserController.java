@@ -1,14 +1,17 @@
 package com.socize.pages.fileserver.user;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.socize.api.deletefile.dto.DeleteFileRequest;
+import com.socize.api.downloadfile.dto.DownloadFileRequest;
 import com.socize.api.getdownloadablefiles.dto.GetDownloadableFilesRequest;
 import com.socize.api.logout.dto.LogoutRequest;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.shared.session.SessionManager;
 import com.socize.pages.fileserver.user.dto.DeleteFileResult;
+import com.socize.pages.fileserver.user.dto.DownloadFileResult;
 import com.socize.pages.fileserver.user.dto.DownloadableFile;
 import com.socize.pages.fileserver.user.dto.GetDownloadableFilesApiResult;
 import com.socize.pages.fileserver.user.model.UserModel;
@@ -20,6 +23,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
 public class UserController extends PageController implements Initializable {
 
@@ -59,11 +64,15 @@ public class UserController extends PageController implements Initializable {
     private final SessionManager sessionManager;
     private final UserModel userModel;
     private final TextStyler textStyler;
+    private final FileChooser fileChooser;
 
     public UserController(SessionManager sessionManager, UserModel userModel, TextStyler textStyler) {
         this.sessionManager = sessionManager;
         this.userModel = userModel;
         this.textStyler = textStyler;
+
+        this.fileChooser = new FileChooser();
+        fileChooser.setTitle("Select file to save");
     }
 
     @Override
@@ -72,6 +81,8 @@ public class UserController extends PageController implements Initializable {
         downloadFileListView.setItems(userModel.getDownloadableFileList());
 
         deleteFileButton.setOnAction(e -> deleteFile());
+
+        downloadFileButton.setOnAction(e -> downloadFile());
     }
 
     /**
@@ -117,6 +128,7 @@ public class UserController extends PageController implements Initializable {
         DeleteFileResult result = userModel.deleteFile(request);
 
         if(result.success()) {
+            downloadFileListView.getItems().remove(selectedFile);
             textStyler.showSuccessMessage(downloadFileFeedbackMessage, "File successfully deleted.");
 
         } else {
@@ -124,6 +136,37 @@ public class UserController extends PageController implements Initializable {
 
         }
         
+    }
+
+    /**
+     * Helper function to orchestrate the file download process.
+     */
+    private void downloadFile() {
+        String selectedFile = downloadFileListView.getSelectionModel().getSelectedItem();
+
+        if(selectedFile == null) {
+            textStyler.showErrorMessage(downloadFileFeedbackMessage, "Please select a file to download.");
+            return;
+        }
+
+        Window window = downloadFileButton.getScene().getWindow();
+        File pathToSaveFile = fileChooser.showSaveDialog(window);
+
+        if(pathToSaveFile == null) {
+            textStyler.showErrorMessage(downloadFileFeedbackMessage, "Please select a path to download the file.");
+            return;
+        }
+
+        DownloadFileRequest request = new DownloadFileRequest(sessionManager.getSessionId(), selectedFile);
+        DownloadFileResult result = userModel.downloadFile(request, pathToSaveFile);
+
+        if(result.success()) {
+            textStyler.showSuccessMessage(downloadFileFeedbackMessage, "File successfully downloaded.");
+
+        } else {
+            textStyler.showErrorMessage(downloadFileFeedbackMessage, result.errorMessage());
+
+        }
     }
 
     @Override
