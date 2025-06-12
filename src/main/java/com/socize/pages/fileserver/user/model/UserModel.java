@@ -19,4 +19,9 @@ public interface UserModel {
      * @return the observable list
      */
     ObservableList<String> getDownloadableFileList();
+
+    /**
+     * Reload the downloadable files and updates the file list accordingly.
+     */
+    void reloadDownloadableFiles();
 }

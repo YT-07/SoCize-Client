@@ -1,8 +1,11 @@
 package com.socize.pages.fileserver.user.model;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.socize.api.getdownloadablefiles.GetDownloadableFilesApi;
 import com.socize.api.logout.dto.LogoutRequest;
 import com.socize.pages.fileserver.utilities.logoutservice.LogoutService;
@@ -16,11 +19,13 @@ public class DefaultUserModel implements UserModel {
     private final LogoutService logoutService;
     private final GetDownloadableFilesApi getDownloadableFilesApi;
     private final ObservableList<String> observableList;
+    private final ObjectMapper objectMapper;
 
-    public DefaultUserModel(LogoutService logoutService, GetDownloadableFilesApi getDownloadableFilesApi) {
+    public DefaultUserModel(LogoutService logoutService, GetDownloadableFilesApi getDownloadableFilesApi, ObjectMapper objectMapper) {
         this.logoutService = logoutService;
         this.getDownloadableFilesApi = getDownloadableFilesApi;
         this.observableList = FXCollections.observableArrayList();
+        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -39,5 +44,23 @@ public class DefaultUserModel implements UserModel {
     public ObservableList<String> getDownloadableFileList() {
         return observableList;
     }
+
+    @Override
+    public void reloadDownloadableFiles() {
+        
+    }
     
+    private static record GetDownloadableFilesApiResult
+    (
+        boolean success,
+        String errorMessage,
+        Set<DownloadableFile> files
+    ) 
+    {}
+
+    private static record DownloadableFile
+    (
+        String filename
+    )
+    {}
 }
