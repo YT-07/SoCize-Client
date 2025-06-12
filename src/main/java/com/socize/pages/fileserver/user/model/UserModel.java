@@ -2,6 +2,8 @@ package com.socize.pages.fileserver.user.model;
 
 import com.socize.api.logout.dto.LogoutRequest;
 
+import javafx.collections.ObservableList;
+
 public interface UserModel {
 
     /**
@@ -10,4 +12,11 @@ public interface UserModel {
      * @param logoutRequest the logout request that contains all necessary data to logout.
      */
     void logout(LogoutRequest logoutRequest);
+
+    /**
+     * Gets the observable list that contains all downloadable files for the user.
+     * 
+     * @return the observable list
+     */
+    ObservableList<String> getDownloadableFileList();
 }
