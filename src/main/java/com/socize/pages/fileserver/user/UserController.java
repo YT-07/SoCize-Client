@@ -239,11 +239,8 @@ public class UserController extends PageController implements Initializable {
         downloadFileListView.getItems().clear();
 
         downloadFileFeedbackMessage.setText(null);
-        selectFileToUploadPath.setText(null);
         uploadFileFeedbackArea.setText(null);
-        filenameToSave.setText(null);
-
-        fileToUpload = null;
+        resetFileToUpload();
 
         usernameDisplayField.setText(sessionManager.getUsername());
         reloadDownloadableFiles();
