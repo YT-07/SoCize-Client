@@ -5,6 +5,7 @@ import java.io.File;
 public record UploadFileRequest
 (
     String sessionId,
-    File fileToUpload
+    File fileToUpload,
+    String filename
 ) 
 {}
