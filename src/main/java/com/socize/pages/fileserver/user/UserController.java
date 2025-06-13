@@ -66,6 +66,8 @@ public class UserController extends PageController implements Initializable {
     private final TextStyler textStyler;
     private final FileChooser fileChooser;
 
+    private File fileToUpload;
+
     public UserController(SessionManager sessionManager, UserModel userModel, TextStyler textStyler) {
         this.sessionManager = sessionManager;
         this.userModel = userModel;
@@ -83,6 +85,8 @@ public class UserController extends PageController implements Initializable {
         deleteFileButton.setOnAction(e -> deleteFile());
 
         downloadFileButton.setOnAction(e -> downloadFile());
+
+        selectFileToUploadButton.setOnAction(e -> selectFileToUpload());
     }
 
     /**
@@ -169,6 +173,18 @@ public class UserController extends PageController implements Initializable {
         }
     }
 
+    /**
+     * Helper function to orchestrate the process of selecting the file to upload.
+     */
+    private void selectFileToUpload() {
+        Window window = selectFileToUploadButton.getScene().getWindow();
+        fileToUpload = fileChooser.showOpenDialog(window);
+
+        if(fileToUpload != null) {
+            selectFileToUploadPath.setText(fileToUpload.getName());
+        }
+    }
+
     @Override
     public void onEnter() {
         downloadFileListView.getItems().clear();
@@ -177,6 +193,8 @@ public class UserController extends PageController implements Initializable {
         selectFileToUploadPath.setText(null);
         uploadFileFeedbackArea.setText(null);
         filenameToSave.setText(null);
+
+        fileToUpload = null;
 
         usernameDisplayField.setText(sessionManager.getUsername());
         reloadDownloadableFiles();
