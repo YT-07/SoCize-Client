@@ -6,9 +6,11 @@ import com.socize.api.deletefile.dto.DeleteFileRequest;
 import com.socize.api.downloadfile.dto.DownloadFileRequest;
 import com.socize.api.getdownloadablefiles.dto.GetDownloadableFilesRequest;
 import com.socize.api.logout.dto.LogoutRequest;
+import com.socize.api.uploadfile.dto.UploadFileRequest;
 import com.socize.pages.fileserver.user.dto.DeleteFileResult;
 import com.socize.pages.fileserver.user.dto.DownloadFileResult;
 import com.socize.pages.fileserver.user.dto.GetDownloadableFilesApiResult;
+import com.socize.pages.fileserver.user.dto.UploadFileResult;
 
 import javafx.collections.ObservableList;
 
@@ -52,4 +54,12 @@ public interface UserModel {
      * @return the file download result
      */
     DownloadFileResult downloadFile(DownloadFileRequest request, File pathToSaveFile);
+
+    /**
+     * Attempts to upload the specified file.
+     * 
+     * @param request the file upload request
+     * @return the file uplaod result
+     */
+    UploadFileResult uploadFile(UploadFileRequest request);
 }
