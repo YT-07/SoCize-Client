@@ -19,9 +19,12 @@ import com.socize.api.downloadfile.dto.DownloadFileRequest;
 import com.socize.api.getdownloadablefiles.GetDownloadableFilesApi;
 import com.socize.api.getdownloadablefiles.dto.GetDownloadableFilesRequest;
 import com.socize.api.logout.dto.LogoutRequest;
+import com.socize.api.uploadfile.UploadFileApi;
+import com.socize.api.uploadfile.dto.UploadFileRequest;
 import com.socize.pages.fileserver.user.dto.DeleteFileResult;
 import com.socize.pages.fileserver.user.dto.DownloadFileResult;
 import com.socize.pages.fileserver.user.dto.GetDownloadableFilesApiResult;
+import com.socize.pages.fileserver.user.dto.UploadFileResult;
 import com.socize.pages.fileserver.utilities.logoutservice.LogoutService;
 
 import javafx.collections.FXCollections;
@@ -37,6 +40,7 @@ public class DefaultUserModel implements UserModel {
     private final GetDownloadableFilesApi getDownloadableFilesApi;
     private final DeleteFileApi deleteFileApi;
     private final DownloadFileApi downloadFileApi;
+    private final UploadFileApi uploadFileApi;
 
     public DefaultUserModel
     (
@@ -44,7 +48,8 @@ public class DefaultUserModel implements UserModel {
         GetDownloadableFilesApi getDownloadableFilesApi, 
         ObjectMapper objectMapper, 
         DeleteFileApi deleteFileApi, 
-        DownloadFileApi downloadFileApi
+        DownloadFileApi downloadFileApi, 
+        UploadFileApi uploadFileApi
     ) 
     {
         this.logoutService = logoutService;
@@ -53,6 +58,7 @@ public class DefaultUserModel implements UserModel {
         this.objectMapper = objectMapper;
         this.deleteFileApi = deleteFileApi;
         this.downloadFileApi = downloadFileApi;
+        this.uploadFileApi = uploadFileApi;
     }
 
     @Override
@@ -139,6 +145,22 @@ public class DefaultUserModel implements UserModel {
         }
     }
 
+    @Override
+    public UploadFileResult uploadFile(UploadFileRequest request) {
+        
+        try(CloseableHttpResponse response = uploadFileApi.uploadFile(request)) {
+
+            String jsonResponse = EntityUtils.toString(response.getEntity());
+            UploadFileResult result = objectMapper.readValue(jsonResponse, UploadFileResult.class);
+
+            return result;
+
+        } catch (Exception e) {
+            logger.error("Exception occured when uploading file.", e);
+            return getDefaultUploadFileResult();
+        }
+    }
+
     /**
      * Gets the default downloadable files result if anything went wrong.
      * 
@@ -164,5 +186,14 @@ public class DefaultUserModel implements UserModel {
      */
     private static DownloadFileResult getDefaultDownloadFileResult() {
         return new DownloadFileResult(false, "Something went wrong, unable to download file.");
+    }
+
+    /**
+     * Gets the default upload file result if anything went wrong.
+     * 
+     * @return the default result
+     */
+    private static UploadFileResult getDefaultUploadFileResult() {
+        return new UploadFileResult(false, "Something went wrong, unable to upload provided file.");
     }
 }

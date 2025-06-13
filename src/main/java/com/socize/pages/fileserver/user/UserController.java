@@ -8,12 +8,14 @@ import com.socize.api.deletefile.dto.DeleteFileRequest;
 import com.socize.api.downloadfile.dto.DownloadFileRequest;
 import com.socize.api.getdownloadablefiles.dto.GetDownloadableFilesRequest;
 import com.socize.api.logout.dto.LogoutRequest;
+import com.socize.api.uploadfile.dto.UploadFileRequest;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.shared.session.SessionManager;
 import com.socize.pages.fileserver.user.dto.DeleteFileResult;
 import com.socize.pages.fileserver.user.dto.DownloadFileResult;
 import com.socize.pages.fileserver.user.dto.DownloadableFile;
 import com.socize.pages.fileserver.user.dto.GetDownloadableFilesApiResult;
+import com.socize.pages.fileserver.user.dto.UploadFileResult;
 import com.socize.pages.fileserver.user.model.UserModel;
 import com.socize.utilities.textstyler.TextStyler;
 
@@ -66,6 +68,8 @@ public class UserController extends PageController implements Initializable {
     private final TextStyler textStyler;
     private final FileChooser fileChooser;
 
+    private File fileToUpload;
+
     public UserController(SessionManager sessionManager, UserModel userModel, TextStyler textStyler) {
         this.sessionManager = sessionManager;
         this.userModel = userModel;
@@ -83,6 +87,10 @@ public class UserController extends PageController implements Initializable {
         deleteFileButton.setOnAction(e -> deleteFile());
 
         downloadFileButton.setOnAction(e -> downloadFile());
+
+        selectFileToUploadButton.setOnAction(e -> selectFileToUpload());
+
+        uploadFileButton.setOnAction(e -> uploadFile());
     }
 
     /**
@@ -169,14 +177,70 @@ public class UserController extends PageController implements Initializable {
         }
     }
 
+    /**
+     * Helper function to orchestrate the process of selecting the file to upload.
+     */
+    private void selectFileToUpload() {
+        Window window = selectFileToUploadButton.getScene().getWindow();
+        fileToUpload = fileChooser.showOpenDialog(window);
+
+        if(fileToUpload != null) {
+            selectFileToUploadPath.setText(fileToUpload.getName());
+            filenameToSave.setText(fileToUpload.getName());
+
+        } else {
+            resetFileToUpload();
+        }
+    }
+
+    /**
+     * Helper function to orchestrate the process of uploading file.
+     */
+    private void uploadFile() {
+
+        if(fileToUpload == null) {
+            textStyler.showErrorMessage(uploadFileFeedbackArea, "Please select a file to upload.");
+            return;
+        }
+
+        String filenameToSaveAs = filenameToSave.getText();
+
+        if(filenameToSaveAs.isBlank()) {
+            textStyler.showErrorMessage(uploadFileFeedbackArea, "Please enter a valid file name, file name should not be blank.");
+            return;
+        }
+
+        UploadFileRequest request = new UploadFileRequest(sessionManager.getSessionId(), fileToUpload, filenameToSaveAs);
+        UploadFileResult result = userModel.uploadFile(request);
+
+        if(result.success()) {
+            textStyler.showSuccessMessage(uploadFileFeedbackArea, "File successfully uploaded.");
+            downloadFileListView.getItems().add(filenameToSaveAs); // Successful file upload means file can be downloaded as well
+
+        } else {
+            textStyler.showErrorMessage(uploadFileFeedbackArea, result.errorMessage());
+
+        }
+
+        resetFileToUpload();
+    }
+
+    /**
+     * Helper function to reset file to upload states.
+     */
+    private void resetFileToUpload() {
+        fileToUpload = null;
+        selectFileToUploadPath.setText(null);
+        filenameToSave.setText(null);
+    }
+
     @Override
     public void onEnter() {
         downloadFileListView.getItems().clear();
 
         downloadFileFeedbackMessage.setText(null);
-        selectFileToUploadPath.setText(null);
         uploadFileFeedbackArea.setText(null);
-        filenameToSave.setText(null);
+        resetFileToUpload();
 
         usernameDisplayField.setText(sessionManager.getUsername());
         reloadDownloadableFiles();
