@@ -93,5 +93,6 @@
    <stylesheets>
       <URL value="@../styles/removeaccount.css" />
       <URL value="@../styles/common/buttons.css" />
+      <URL value="@../styles/common/feedbackmessage.css" />
    </stylesheets>
 </BorderPane>
