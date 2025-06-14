@@ -41,9 +41,6 @@ public class AdminController extends PageController implements Initializable {
             borderPane.setCenter(scene.parent());
         });
 
-        // Default page to display
-        adminPageStatusManager.setPage(DefaultAdminPageStatus.USER_MANAGEMENT);
-
         userManagementButton.setOnAction(e -> {
             adminPageStatusManager.setPage(DefaultAdminPageStatus.USER_MANAGEMENT);
         });
@@ -55,7 +52,8 @@ public class AdminController extends PageController implements Initializable {
 
     @Override
     public void onEnter() {
-        
+        // Default page to display
+        adminPageStatusManager.setPage(DefaultAdminPageStatus.USER_MANAGEMENT);
     }
     
 }

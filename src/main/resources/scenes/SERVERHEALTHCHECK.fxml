@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -20,8 +21,7 @@
             </ImageView>
             <AnchorPane id="username-box" layoutX="481.0" layoutY="22.0" prefHeight="27.0" prefWidth="105.0">
                <children>
-                  <Label id="username-text" layoutX="6.0" layoutY="6.0" prefHeight="15.0" prefWidth="101.0" textAlignment="JUSTIFY" wrapText="true">
-                     <text>Username</text>
+                  <Label id="username-text" fx:id="usernameDisplayField" layoutX="6.0" layoutY="6.0" prefHeight="15.0" prefWidth="101.0" textAlignment="JUSTIFY" wrapText="true">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
@@ -29,47 +29,50 @@
                </children>
             </AnchorPane>
             <AnchorPane id="file-box" layoutX="69.0" layoutY="260.0" />
-            <Button id="check-server-button" layoutX="451.0" layoutY="237.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="Check Server" />
-            <Label layoutX="132.0" layoutY="171.0" prefHeight="16.0" prefWidth="57.0" text="CPU Usage :">
+            <Button id="check-server-button" fx:id="checkServerButton" layoutX="439.0" layoutY="123.0" mnemonicParsing="false" prefWidth="118.0" text="Check Server">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding></Button>
+            <Label layoutX="93.0" layoutY="174.0" text="CPU Usage :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
-            <Label layoutX="111.0" layoutY="130.0" prefHeight="16.0" prefWidth="81.0" text="Database Status :">
+            <Button fx:id="logoutButton" layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
+            <Label layoutX="64.0" layoutY="134.0" text="Database Status :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="title-text" layoutX="220.0" layoutY="81.0" text="Account Details">
+            <Label id="title-text" layoutX="216.0" layoutY="83.0" text="Server Status">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <AnchorPane id="server-details-area" layoutX="197.0" layoutY="116.0" prefHeight="168.0" prefWidth="230.0">
+            <AnchorPane id="server-details-area" layoutX="175.0" layoutY="118.0" prefHeight="168.0" prefWidth="230.0">
                <children>
-                  <Label id="server-details" layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="200.0" text="ONLINE">
+                  <Label id="server-details" fx:id="databaseStatusField" layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="200.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label id="server-details" layoutX="14.0" layoutY="57.0" prefHeight="16.0" prefWidth="200.0" text="42%">
+                  <Label id="server-details" fx:id="cpuUsageField" layoutX="14.0" layoutY="57.0" prefHeight="16.0" prefWidth="200.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label id="server-details" layoutX="14.0" layoutY="132.0" prefHeight="16.0" prefWidth="200.0" text="182 GB / 500 GB (36%)">
+                  <Label id="server-details" fx:id="diskSpaceAvailableField" layoutX="14.0" layoutY="132.0" prefHeight="16.0" prefWidth="200.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label id="server-details" layoutX="14.0" layoutY="94.0" prefHeight="16.0" prefWidth="200.0" text="3.2 GB / 8 GB (40%)">
+                  <Label id="server-details" fx:id="memoryUsageField" layoutX="14.0" layoutY="94.0" prefHeight="16.0" prefWidth="200.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
                </children></AnchorPane>
-            <Label layoutX="115.0" layoutY="207.0" prefHeight="16.0" prefWidth="74.0" text="Memory Usage :">
+            <Label layoutX="67.0" layoutY="210.0" text="Memory Usage :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
@@ -79,9 +82,14 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label layoutX="89.0" layoutY="247.0" prefHeight="16.0" prefWidth="100.0" text="Disk Space Available :">
+            <Label layoutX="39.0" layoutY="250.0" text="Disk Space Available :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="checkServerStatusFeedbackField" layoutX="426.0" layoutY="174.0" maxHeight="118.0" maxWidth="144.0" wrapText="true">
+               <font>
+                  <Font size="14.0" />
                </font>
             </Label>
          </children>
@@ -90,5 +98,6 @@
    <stylesheets>
       <URL value="@../styles/serverhealthcheck.css" />
       <URL value="@../styles/common/buttons.css" />
+      <URL value="@../styles/common/feedbackmessage.css" />
    </stylesheets>
 </BorderPane>
