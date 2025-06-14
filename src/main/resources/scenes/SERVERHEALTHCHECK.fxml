@@ -29,27 +29,27 @@
                </children>
             </AnchorPane>
             <AnchorPane id="file-box" layoutX="69.0" layoutY="260.0" />
-            <Button id="check-server-button" fx:id="checkServerButton" layoutX="451.0" layoutY="237.0" mnemonicParsing="false" prefWidth="118.0" text="Check Server">
+            <Button id="check-server-button" fx:id="checkServerButton" layoutX="439.0" layoutY="123.0" mnemonicParsing="false" prefWidth="118.0" text="Check Server">
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding></Button>
-            <Label layoutX="115.0" layoutY="172.0" text="CPU Usage :">
+            <Label layoutX="93.0" layoutY="174.0" text="CPU Usage :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
             <Button fx:id="logoutButton" layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
-            <Label layoutX="86.0" layoutY="132.0" text="Database Status :">
+            <Label layoutX="64.0" layoutY="134.0" text="Database Status :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="title-text" layoutX="238.0" layoutY="81.0" text="Server Status">
+            <Label id="title-text" layoutX="216.0" layoutY="83.0" text="Server Status">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <AnchorPane id="server-details-area" layoutX="197.0" layoutY="116.0" prefHeight="168.0" prefWidth="230.0">
+            <AnchorPane id="server-details-area" layoutX="175.0" layoutY="118.0" prefHeight="168.0" prefWidth="230.0">
                <children>
                   <Label id="server-details" fx:id="databaseStatusField" layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="200.0">
                      <font>
@@ -72,7 +72,7 @@
                      </font>
                   </Label>
                </children></AnchorPane>
-            <Label layoutX="89.0" layoutY="208.0" text="Memory Usage :">
+            <Label layoutX="67.0" layoutY="210.0" text="Memory Usage :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
@@ -82,9 +82,14 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label layoutX="61.0" layoutY="248.0" text="Disk Space Available :">
+            <Label layoutX="39.0" layoutY="250.0" text="Disk Space Available :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="checkServerStatusFeedbackField" layoutX="426.0" layoutY="174.0" maxHeight="118.0" maxWidth="144.0" wrapText="true">
+               <font>
+                  <Font size="14.0" />
                </font>
             </Label>
          </children>
