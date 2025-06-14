@@ -6,10 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.socize.api.deleteaccount.DeleteAccountApi;
+import com.socize.api.deleteaccount.dto.DeleteAccountRequest;
 import com.socize.api.getaccountdetails.GetAccountDetailsApi;
 import com.socize.api.getaccountdetails.dto.GetAccountDetailsRequest;
 import com.socize.api.getuseraccounts.GetUserAccountsApi;
 import com.socize.api.getuseraccounts.dto.GetUserAccountsRequest;
+import com.socize.pages.fileserver.admin.usermanagement.dto.DeleteAccountResult;
 import com.socize.pages.fileserver.admin.usermanagement.dto.GetAccountDetailsResult;
 import com.socize.pages.fileserver.admin.usermanagement.dto.GetUserAccountsResult;
 
@@ -20,17 +23,20 @@ public class DefaultUserManagementModel implements UserManagementModel {
 
     private final GetUserAccountsApi getUserAccountsApi;
     private final GetAccountDetailsApi getAccountDetailsApi;
+    private final DeleteAccountApi deleteAccountApi;
 
     public DefaultUserManagementModel
     (
         GetUserAccountsApi getUserAccountsApi, 
         ObjectMapper objectMapper, 
-        GetAccountDetailsApi getAccountDetailsApi
+        GetAccountDetailsApi getAccountDetailsApi, 
+        DeleteAccountApi deleteAccountApi
     ) 
     {
         this.objectMapper = objectMapper;
         this.getUserAccountsApi = getUserAccountsApi;
         this.getAccountDetailsApi = getAccountDetailsApi;
+        this.deleteAccountApi = deleteAccountApi;
     }
 
     @Override
@@ -65,11 +71,33 @@ public class DefaultUserManagementModel implements UserManagementModel {
         }
     }
 
+    @Override
+    public DeleteAccountResult deleteAccount(DeleteAccountRequest request) {
+        
+        try(CloseableHttpResponse response = deleteAccountApi.deleteAccount(request)) {
+
+            String jsonResponse = EntityUtils.toString(response.getEntity());
+            DeleteAccountResult result = objectMapper.readValue(jsonResponse, DeleteAccountResult.class);
+
+            return result;
+
+        } catch (Exception e) {
+            logger.error("Exception occured when attempting to delete user {}'s account.", request.accountUsername(), e);
+            return getDefaultDeleteAccountResult();
+        }
+
+    }
+
     private static GetUserAccountsResult getDefaultUserAccountsResult() {
-        return new GetUserAccountsResult(false, "Failed to retrieve user accounts.", null);
+        return new GetUserAccountsResult(false, "Something went wrong, failed to retrieve user accounts.", null);
     }
 
     private static GetAccountDetailsResult getDefaultAccountDetailsResult() {
-        return new GetAccountDetailsResult(false, "Failed to retrieve account details.", null);
+        return new GetAccountDetailsResult(false, "Something went wrong, failed to retrieve account details.", null);
     }
+
+    private static DeleteAccountResult getDefaultDeleteAccountResult() {
+        return new DeleteAccountResult(false, "Something went wrong, failed to delete user account.");
+    }
+
 }
