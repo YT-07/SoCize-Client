@@ -7,6 +7,8 @@ import com.socize.pages.fileserver.admin.usermanagement.dto.DeleteAccountResult;
 import com.socize.pages.fileserver.admin.usermanagement.dto.GetAccountDetailsResult;
 import com.socize.pages.fileserver.admin.usermanagement.dto.GetUserAccountsResult;
 
+import javafx.collections.ObservableList;
+
 public interface UserManagementModel {
 
     /**
@@ -32,4 +34,11 @@ public interface UserManagementModel {
      * @return the account deletetion result
      */
     DeleteAccountResult deleteAccount(DeleteAccountRequest request);
+
+    /**
+     * Gets the observable list that will store all the user accounts available.
+     * 
+     * @return the observable list
+     */
+    ObservableList<String> getUserAccountList();
 }

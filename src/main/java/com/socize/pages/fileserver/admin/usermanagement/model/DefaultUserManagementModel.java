@@ -16,6 +16,9 @@ import com.socize.pages.fileserver.admin.usermanagement.dto.DeleteAccountResult;
 import com.socize.pages.fileserver.admin.usermanagement.dto.GetAccountDetailsResult;
 import com.socize.pages.fileserver.admin.usermanagement.dto.GetUserAccountsResult;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class DefaultUserManagementModel implements UserManagementModel {
     private static final Logger logger = LoggerFactory.getLogger(DefaultUserManagementModel.class);
 
@@ -24,6 +27,7 @@ public class DefaultUserManagementModel implements UserManagementModel {
     private final GetUserAccountsApi getUserAccountsApi;
     private final GetAccountDetailsApi getAccountDetailsApi;
     private final DeleteAccountApi deleteAccountApi;
+    private final ObservableList<String> observableList;
 
     public DefaultUserManagementModel
     (
@@ -37,6 +41,7 @@ public class DefaultUserManagementModel implements UserManagementModel {
         this.getUserAccountsApi = getUserAccountsApi;
         this.getAccountDetailsApi = getAccountDetailsApi;
         this.deleteAccountApi = deleteAccountApi;
+        this.observableList = FXCollections.observableArrayList();
     }
 
     @Override
@@ -86,6 +91,11 @@ public class DefaultUserManagementModel implements UserManagementModel {
             return getDefaultDeleteAccountResult();
         }
 
+    }
+
+    @Override
+    public ObservableList<String> getUserAccountList() {
+        return observableList;
     }
 
     private static GetUserAccountsResult getDefaultUserAccountsResult() {
