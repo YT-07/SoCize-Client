@@ -20,8 +20,7 @@
             </ImageView>
             <AnchorPane id="username-box" layoutX="481.0" layoutY="22.0" prefHeight="27.0" prefWidth="105.0">
                <children>
-                  <Label id="username-text" layoutX="6.0" layoutY="6.0" prefHeight="15.0" prefWidth="101.0" textAlignment="JUSTIFY" wrapText="true">
-                     <text>Username</text>
+                  <Label id="username-text" fx:id="usernameDisplayField" layoutX="6.0" layoutY="6.0" prefHeight="15.0" prefWidth="101.0" textAlignment="JUSTIFY" wrapText="true">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
@@ -29,13 +28,13 @@
                </children>
             </AnchorPane>
             <AnchorPane id="file-box" layoutX="69.0" layoutY="260.0" />
-            <Button id="check-server-button" layoutX="451.0" layoutY="237.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="Check Server" />
+            <Button id="check-server-button" fx:id="checkServerButton" layoutX="451.0" layoutY="237.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="Check Server" />
             <Label layoutX="132.0" layoutY="171.0" prefHeight="16.0" prefWidth="57.0" text="CPU Usage :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
+            <Button fx:id="logoutButton" layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
             <Label layoutX="111.0" layoutY="130.0" prefHeight="16.0" prefWidth="81.0" text="Database Status :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
@@ -48,22 +47,22 @@
             </Label>
             <AnchorPane id="server-details-area" layoutX="197.0" layoutY="116.0" prefHeight="168.0" prefWidth="230.0">
                <children>
-                  <Label id="server-details" layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="200.0" text="ONLINE">
+                  <Label id="server-details" fx:id="databaseStatusField" layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="200.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label id="server-details" layoutX="14.0" layoutY="57.0" prefHeight="16.0" prefWidth="200.0" text="42%">
+                  <Label id="server-details" fx:id="cpuUsageField" layoutX="14.0" layoutY="57.0" prefHeight="16.0" prefWidth="200.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label id="server-details" layoutX="14.0" layoutY="132.0" prefHeight="16.0" prefWidth="200.0" text="182 GB / 500 GB (36%)">
+                  <Label id="server-details" fx:id="diskSpaceAvailableField" layoutX="14.0" layoutY="132.0" prefHeight="16.0" prefWidth="200.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label id="server-details" layoutX="14.0" layoutY="94.0" prefHeight="16.0" prefWidth="200.0" text="3.2 GB / 8 GB (40%)">
+                  <Label id="server-details" fx:id="memoryUsageField" layoutX="14.0" layoutY="94.0" prefHeight="16.0" prefWidth="200.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
