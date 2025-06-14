@@ -1,0 +1,16 @@
+package com.socize.api.getuseraccounts;
+
+import org.apache.http.client.methods.CloseableHttpResponse;
+
+import com.socize.api.getuseraccounts.dto.GetUserAccountsRequest;
+
+public interface GetUserAccountsApi {
+
+    /**
+     * Attempts to make an api call to retrieve all user accounts.
+     * 
+     * @param request the api request
+     * @return the api response
+     */
+    CloseableHttpResponse getUserAccounts(GetUserAccountsRequest request);
+}
