@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane prefHeight="433.0" prefWidth="398.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="426.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="300.0" fitWidth="600.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/page-background.jpg" />
                </image>
@@ -30,41 +30,36 @@
                </children>
             </AnchorPane>
             <AnchorPane id="file-box" layoutX="69.0" layoutY="260.0" />
-            <ListView id="list-view-box" layoutX="53.0" layoutY="161.0" prefHeight="119.0" prefWidth="227.0" />
-            <Button id="view-details-button" layoutX="53.0" layoutY="295.0" mnemonicParsing="false" text="View Details" />
-            <Button id="delete-button" layoutX="217.0" layoutY="295.0" mnemonicParsing="false" text="Delete" />
-            <Label layoutX="337.0" layoutY="213.0" prefHeight="16.0" prefWidth="34.0" text="E-mail :">
+            <ListView id="list-view-box" layoutX="20.0" layoutY="119.0" prefHeight="119.0" prefWidth="227.0" />
+            <Button id="view-details-button" layoutX="20.0" layoutY="253.0" mnemonicParsing="false" text="View Details" />
+            <Button id="delete-button" layoutX="184.0" layoutY="253.0" mnemonicParsing="false" text="Delete" />
+            <Label layoutX="337.0" layoutY="177.0" prefHeight="16.0" prefWidth="34.0" text="E-mail :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="successful-feedback-message" layoutX="135.0" layoutY="323.0" text="Successful!">
+            <Label id="successful-feedback-message" layoutX="299.0" layoutY="259.0" maxHeight="40.0" maxWidth="236.0" wrapText="true">
                <font>
-                  <Font name="Agency FB Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label id="error-feedback-message" layoutX="217.0" layoutY="323.0" text="Error :(">
-               <font>
-                  <Font name="Agency FB Bold" size="20.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
             <Button layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
-            <Label layoutX="321.0" layoutY="177.0" prefHeight="16.0" prefWidth="53.0" text="Username :">
+            <Label layoutX="321.0" layoutY="141.0" prefHeight="16.0" prefWidth="53.0" text="Username :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="title-text" layoutX="120.0" layoutY="112.0" text="User List">
+            <Label id="title-text" layoutX="87.0" layoutY="70.0" text="User List">
                <font>
-                  <Font name="Agency FB Bold" size="30.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <Label id="title-text" layoutX="408.0" layoutY="112.0" text="Account Details">
+            <Label id="title-text" layoutX="394.0" layoutY="70.0" text="Account Details">
                <font>
-                  <Font name="Agency FB Bold" size="30.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <AnchorPane id="user-detail-area" layoutX="376.0" layoutY="161.0" prefHeight="120.0" prefWidth="210.0">
+            <AnchorPane id="user-detail-area" layoutX="376.0" layoutY="125.0" prefHeight="120.0" prefWidth="210.0">
                <children>
                   <Label id="user-details" layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="187.0" text="ballerinacapuccina">
                      <font>
@@ -82,14 +77,14 @@
                      </font>
                   </Label>
                </children></AnchorPane>
-            <Label layoutX="300.0" layoutY="244.0" prefHeight="16.0" prefWidth="74.0" text="Phone Number :">
+            <Label layoutX="300.0" layoutY="208.0" prefHeight="16.0" prefWidth="74.0" text="Phone Number :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="page-title-text" layoutX="48.0" layoutY="32.0" prefHeight="49.0" prefWidth="309.0" text="User Management">
+            <Label id="page-title-text" layoutX="20.0" layoutY="13.0" prefHeight="49.0" prefWidth="309.0" text="User Management">
                <font>
-                  <Font name="Agency FB Bold" size="40.0" />
+                  <Font size="30.0" />
                </font>
             </Label>
          </children>

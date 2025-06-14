@@ -25,6 +25,7 @@ public class MainApp extends Application {
         sceneResult.controller().onEnter();
 
         primaryStage.setScene(mainScene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
     

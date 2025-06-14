@@ -5,9 +5,11 @@ import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultDecryptio
 import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultEncryptionControllerFactory;
 import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultHomeControllerFactory;
 import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultMainMenuControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultServerHealthcheckControllerFactory;
 import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultSignInControllerFactory;
 import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultSignUpControllerFactory;
 import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultUserControllerFactory;
+import com.socize.app.sceneprovider.scenecontrollerfactory.impl.DefaultUserManagementControllerFactory;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.config.FilePath;
 
@@ -23,7 +25,9 @@ public enum DefaultAppScenes implements AppScenes {
     ENCRYPTION_PAGE(new DefaultEncryptionControllerFactory(), FilePath.ENCRYPTION_PAGE_FXML),
     DECRYPTION_PAGE(new DefaultDecryptionControllerFactory(), FilePath.DECRYPTION_PAGE_FXML),
     ADMIN_PAGE(new DefaultAdminControllerFactory(), FilePath.ADMIN_PAGE_FXML),
-    USER_PAGE(new DefaultUserControllerFactory(), FilePath.USER_PAGE_FXML);
+    USER_PAGE(new DefaultUserControllerFactory(), FilePath.USER_PAGE_FXML),
+    USER_MANAGEMENT(new DefaultUserManagementControllerFactory(), FilePath.REMOVE_ACCOUNT_PAGE_FXML),
+    SERVER_HEALTHCHECK(new DefaultServerHealthcheckControllerFactory(), FilePath.SERVER_HEALTHCHECK_PAGE_FXML);
 
     private SceneControllerFactory controllerFactory;
     private String sceneResourcePath;
