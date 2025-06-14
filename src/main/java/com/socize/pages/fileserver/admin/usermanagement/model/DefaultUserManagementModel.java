@@ -6,8 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.socize.api.getaccountdetails.GetAccountDetailsApi;
+import com.socize.api.getaccountdetails.dto.GetAccountDetailsRequest;
 import com.socize.api.getuseraccounts.GetUserAccountsApi;
 import com.socize.api.getuseraccounts.dto.GetUserAccountsRequest;
+import com.socize.pages.fileserver.admin.usermanagement.dto.GetAccountDetailsResult;
 import com.socize.pages.fileserver.admin.usermanagement.dto.GetUserAccountsResult;
 
 public class DefaultUserManagementModel implements UserManagementModel {
@@ -16,10 +19,18 @@ public class DefaultUserManagementModel implements UserManagementModel {
     private final ObjectMapper objectMapper;
 
     private final GetUserAccountsApi getUserAccountsApi;
+    private final GetAccountDetailsApi getAccountDetailsApi;
 
-    public DefaultUserManagementModel(GetUserAccountsApi getUserAccountsApi, ObjectMapper objectMapper) {
+    public DefaultUserManagementModel
+    (
+        GetUserAccountsApi getUserAccountsApi, 
+        ObjectMapper objectMapper, 
+        GetAccountDetailsApi getAccountDetailsApi
+    ) 
+    {
         this.objectMapper = objectMapper;
         this.getUserAccountsApi = getUserAccountsApi;
+        this.getAccountDetailsApi = getAccountDetailsApi;
     }
 
     @Override
@@ -38,7 +49,27 @@ public class DefaultUserManagementModel implements UserManagementModel {
         }
     }
     
+    @Override
+    public GetAccountDetailsResult getAccountDetails(GetAccountDetailsRequest request) {
+        
+        try(CloseableHttpResponse response = getAccountDetailsApi.getAccountDetails(request)) {
+
+            String jsonResponse = EntityUtils.toString(response.getEntity());
+            GetAccountDetailsResult result = objectMapper.readValue(jsonResponse, GetAccountDetailsResult.class);
+
+            return result;
+
+        } catch (Exception e) {
+            logger.error("Exception occured when retrieving account details for user '{}'", request.accountUsername(), e);
+            return getDefaultAccountDetailsResult();
+        }
+    }
+
     private static GetUserAccountsResult getDefaultUserAccountsResult() {
         return new GetUserAccountsResult(false, "Failed to retrieve user accounts.", null);
+    }
+
+    private static GetAccountDetailsResult getDefaultAccountDetailsResult() {
+        return new GetAccountDetailsResult(false, "Failed to retrieve account details.", null);
     }
 }
