@@ -21,8 +21,7 @@
             </ImageView>
             <AnchorPane id="username-box" layoutX="481.0" layoutY="22.0" prefHeight="27.0" prefWidth="105.0">
                <children>
-                  <Label id="username-text" layoutX="6.0" layoutY="6.0" prefHeight="15.0" prefWidth="101.0" textAlignment="JUSTIFY" wrapText="true">
-                     <text>Username</text>
+                  <Label id="username-text" fx:id="usernameDisplayField" layoutX="6.0" layoutY="6.0" prefHeight="15.0" prefWidth="101.0" textAlignment="JUSTIFY" wrapText="true">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
@@ -30,54 +29,54 @@
                </children>
             </AnchorPane>
             <AnchorPane id="file-box" layoutX="69.0" layoutY="260.0" />
-            <ListView id="list-view-box" layoutX="20.0" layoutY="119.0" prefHeight="119.0" prefWidth="227.0" />
-            <Button id="view-details-button" layoutX="20.0" layoutY="253.0" mnemonicParsing="false" text="View Details" />
-            <Button id="delete-button" layoutX="184.0" layoutY="253.0" mnemonicParsing="false" text="Delete" />
-            <Label layoutX="337.0" layoutY="177.0" prefHeight="16.0" prefWidth="34.0" text="E-mail :">
+            <ListView id="list-view-box" fx:id="userListView" layoutX="20.0" layoutY="119.0" prefHeight="119.0" prefWidth="227.0" />
+            <Button id="view-details-button" fx:id="viewUserDetailButton" layoutX="20.0" layoutY="253.0" mnemonicParsing="false" text="View Details" />
+            <Button id="delete-button" fx:id="deleteUserButton" layoutX="184.0" layoutY="253.0" mnemonicParsing="false" text="Delete" />
+            <Label layoutX="322.0" layoutY="176.0" text="E-mail :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="successful-feedback-message" layoutX="299.0" layoutY="259.0" maxHeight="40.0" maxWidth="236.0" wrapText="true">
+            <Label id="successful-feedback-message" fx:id="feedbackMessageField" layoutX="299.0" layoutY="259.0" maxHeight="40.0" maxWidth="236.0" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
-            <Label layoutX="321.0" layoutY="141.0" prefHeight="16.0" prefWidth="53.0" text="Username :">
+            <Button fx:id="logoutButton" layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
+            <Label layoutX="294.0" layoutY="141.0" text="Username :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="title-text" layoutX="87.0" layoutY="70.0" text="User List">
+            <Label id="title-text" layoutX="84.0" layoutY="77.0" text="User List">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label id="title-text" layoutX="394.0" layoutY="70.0" text="Account Details">
+            <Label id="title-text" layoutX="394.0" layoutY="84.0" text="Account Details">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <AnchorPane id="user-detail-area" layoutX="376.0" layoutY="125.0" prefHeight="120.0" prefWidth="210.0">
                <children>
-                  <Label id="user-details" layoutX="14.0" layoutY="14.0" prefHeight="16.0" prefWidth="187.0" text="ballerinacapuccina">
+                  <Label id="user-details" fx:id="accountUsernameField" layoutX="14.0" layoutY="14.0" maxHeight="16.0" maxWidth="187.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label id="user-details" layoutX="13.0" layoutY="52.0" prefHeight="16.0" prefWidth="189.0" text="lingangguli@gmail.com">
+                  <Label id="user-details" fx:id="accountEmailField" layoutX="13.0" layoutY="52.0" maxHeight="16.0" maxWidth="189.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label id="user-details" layoutX="14.0" layoutY="84.0" prefHeight="16.0" prefWidth="188.0" text="012-245-6789">
+                  <Label id="user-details" fx:id="accountPhoneNumberField" layoutX="14.0" layoutY="84.0" maxHeight="16.0" maxWidth="188.0">
                      <font>
                         <Font name="Tw Cen MT Bold" size="13.0" />
                      </font>
                   </Label>
                </children></AnchorPane>
-            <Label layoutX="300.0" layoutY="208.0" prefHeight="16.0" prefWidth="74.0" text="Phone Number :">
+            <Label layoutX="264.0" layoutY="208.0" text="Phone Number :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
