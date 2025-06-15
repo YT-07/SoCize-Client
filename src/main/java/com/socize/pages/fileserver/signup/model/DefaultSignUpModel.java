@@ -1,5 +1,6 @@
 package com.socize.pages.fileserver.signup.model;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
@@ -26,16 +27,27 @@ public class DefaultSignUpModel implements SignUpModel {
         
         try (CloseableHttpResponse response = signUpApi.signup(signUpRequest)) {
             
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            SignUpResult result = objectMapper.readValue(jsonResponse, SignUpResult.class);
+            HttpEntity entity = response.getEntity();
 
-            return result;
+            try {
+
+                String jsonResponse = EntityUtils.toString(entity);
+                SignUpResult result = objectMapper.readValue(jsonResponse, SignUpResult.class);
+
+                return result;
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
+                }
+
+            }
 
         } catch (Exception e) {
             logger.error("Exception occured while signing up.", e);
             return getDefaultSignUpResult();
         }
-
     }
     
     /**
