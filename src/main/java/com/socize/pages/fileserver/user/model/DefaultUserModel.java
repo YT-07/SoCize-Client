@@ -1,12 +1,13 @@
 package com.socize.pages.fileserver.user.model;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.Header;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -140,28 +141,47 @@ public class DefaultUserModel implements UserModel {
         try(CloseableHttpResponse response = downloadFileApi.downloadFile(request)) {
 
             HttpEntity entity = response.getEntity();
-            InputStream inputStream = entity.getContent();
 
-            // If time allows, could decouple the file saving logic here
-            try(OutputStream outputStream = new FileOutputStream(pathToSaveFile)) {
-                byte[] buffer = new byte[4096];
-                int bytesRead;
+            try {
 
-                while(true) {
+                Header contentTypeHeader = response.getFirstHeader("Content-Type");
 
-                    bytesRead = inputStream.read(buffer);
+                if(contentTypeHeader == null) {
+                    throw new IllegalArgumentException("Content-Type header not present when downloading file.");
+                }
 
-                    if(bytesRead < 1) {
-                        break;
-                    }
+                String contentType = contentTypeHeader.getValue();
 
-                    outputStream.write(buffer, 0, bytesRead);
+                // TODO: Can abstract these to use stategy pattern instead if time allows
+                if(contentType == null) {
+                    throw new IllegalArgumentException("Content-Type header is present but value is null when downloading file.");
+
+                } else if(contentType.equalsIgnoreCase("application/json")) {
+
+                    String json = EntityUtils.toString(entity);
+                    DownloadFileResult result = objectMapper.readValue(json, DownloadFileResult.class);
+
+                    return result;
+
+                } else if(contentType.equalsIgnoreCase("application/octet-stream")) {
+
+                    InputStream inputStream = entity.getContent();
+                    Files.copy(inputStream, pathToSaveFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                    return new DownloadFileResult(true, null);
+
+                } else {
+                    throw new IllegalArgumentException("Unexpected content type '" + contentType + "' received when downloading file, the response cannot be processed.");
+
+                }
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
                 }
 
             }
-
-            EntityUtils.consume(entity);
-            return new DownloadFileResult(true, null);
 
         } catch(Exception e) {
             logger.error("Exception occured while downloading file.", e);
