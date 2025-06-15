@@ -83,10 +83,22 @@ public class DefaultUserModel implements UserModel {
         
         try(CloseableHttpResponse response = getDownloadableFilesApi.getDownloadableFiles(request)) {
 
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            GetDownloadableFilesApiResult result = objectMapper.readValue(jsonResponse, GetDownloadableFilesApiResult.class);
+            HttpEntity entity = response.getEntity();
 
-            return result;
+            try {
+
+                String jsonResponse = EntityUtils.toString(entity);
+                GetDownloadableFilesApiResult result = objectMapper.readValue(jsonResponse, GetDownloadableFilesApiResult.class);
+
+                return result;
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
+                }
+
+            }
 
         } catch (Exception e) {
             logger.error("Exception occured while retrieving downloadable files for the user.", e);
@@ -99,10 +111,22 @@ public class DefaultUserModel implements UserModel {
         
         try(CloseableHttpResponse response = deleteFileApi.deleteFile(request)) {
 
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            DeleteFileResult result = objectMapper.readValue(jsonResponse, DeleteFileResult.class);
+            HttpEntity entity = response.getEntity();
 
-            return result;
+            try {
+
+                String jsonResponse = EntityUtils.toString(entity);
+                DeleteFileResult result = objectMapper.readValue(jsonResponse, DeleteFileResult.class);
+
+                return result;
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
+                }
+
+            }
 
         } catch (Exception e) {
             logger.error("Exception occured while requesting for file deletion.", e);
@@ -150,10 +174,22 @@ public class DefaultUserModel implements UserModel {
         
         try(CloseableHttpResponse response = uploadFileApi.uploadFile(request)) {
 
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            UploadFileResult result = objectMapper.readValue(jsonResponse, UploadFileResult.class);
+            HttpEntity entity = response.getEntity();
 
-            return result;
+            try {
+
+                String jsonResponse = EntityUtils.toString(entity);
+                UploadFileResult result = objectMapper.readValue(jsonResponse, UploadFileResult.class);
+
+                return result;
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
+                }
+                
+            }
 
         } catch (Exception e) {
             logger.error("Exception occured when uploading file.", e);

@@ -1,5 +1,6 @@
 package com.socize.pages.fileserver.admin.serverhealthcheck.model;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
@@ -26,10 +27,22 @@ public class DefaultServerHealthcheckModel implements ServerHealthcheckModel {
         
         try(CloseableHttpResponse response = serverHealthcheckApi.getServerStatus(request)) {
 
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            ServerHealthcheckResult result = objectMapper.readValue(jsonResponse, ServerHealthcheckResult.class);
+            HttpEntity entity = response.getEntity();
 
-            return result;
+            try {
+
+                String jsonResponse = EntityUtils.toString(entity);
+                ServerHealthcheckResult result = objectMapper.readValue(jsonResponse, ServerHealthcheckResult.class);
+
+                return result;
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
+                }
+                
+            }
 
         } catch(Exception e) {
             logger.error("Exception occured when getting server status.", e);

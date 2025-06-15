@@ -1,5 +1,6 @@
 package com.socize.pages.fileserver.signin.model;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
@@ -26,10 +27,22 @@ public class DefaultSignInModel implements SignInModel {
         
         try (CloseableHttpResponse response = signInApi.signin(signInRequest)) {
 
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            SignInResult result = objectMapper.readValue(jsonResponse, SignInResult.class);
+            HttpEntity entity = response.getEntity();
 
-            return result;
+            try {
+                
+                String jsonResponse = EntityUtils.toString(entity);
+                SignInResult result = objectMapper.readValue(jsonResponse, SignInResult.class);
+
+                return result;
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
+                }
+
+            }
 
         } catch (Exception e) {
             logger.error("Exception occured while signing in.", e);

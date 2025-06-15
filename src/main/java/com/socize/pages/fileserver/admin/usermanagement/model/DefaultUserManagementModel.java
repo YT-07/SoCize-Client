@@ -1,5 +1,6 @@
 package com.socize.pages.fileserver.admin.usermanagement.model;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
@@ -49,10 +50,22 @@ public class DefaultUserManagementModel implements UserManagementModel {
         
         try(CloseableHttpResponse response = getUserAccountsApi.getUserAccounts(request)) {
 
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            GetUserAccountsResult result = objectMapper.readValue(jsonResponse, GetUserAccountsResult.class);
+            HttpEntity entity = response.getEntity();
 
-            return result;
+            try {
+
+                String jsonResponse = EntityUtils.toString(entity);
+                GetUserAccountsResult result = objectMapper.readValue(jsonResponse, GetUserAccountsResult.class);
+
+                return result;
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
+                }
+
+            }
 
         } catch (Exception e) {
             logger.error("Exception occured when retrieving user accounts.", e);
@@ -65,10 +78,22 @@ public class DefaultUserManagementModel implements UserManagementModel {
         
         try(CloseableHttpResponse response = getAccountDetailsApi.getAccountDetails(request)) {
 
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            GetAccountDetailsResult result = objectMapper.readValue(jsonResponse, GetAccountDetailsResult.class);
+            HttpEntity entity = response.getEntity();
 
-            return result;
+            try {
+
+                String jsonResponse = EntityUtils.toString(entity);
+                GetAccountDetailsResult result = objectMapper.readValue(jsonResponse, GetAccountDetailsResult.class);
+
+                return result;
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
+                }
+
+            }
 
         } catch (Exception e) {
             logger.error("Exception occured when retrieving account details for user '{}'", request.accountUsername(), e);
@@ -81,10 +106,22 @@ public class DefaultUserManagementModel implements UserManagementModel {
         
         try(CloseableHttpResponse response = deleteAccountApi.deleteAccount(request)) {
 
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            DeleteAccountResult result = objectMapper.readValue(jsonResponse, DeleteAccountResult.class);
+            HttpEntity entity = response.getEntity();
 
-            return result;
+            try {
+
+                String jsonResponse = EntityUtils.toString(entity);
+                DeleteAccountResult result = objectMapper.readValue(jsonResponse, DeleteAccountResult.class);
+
+                return result;
+
+            } finally {
+
+                if(entity != null) {
+                    EntityUtils.consume(entity);
+                }
+                
+            }
 
         } catch (Exception e) {
             logger.error("Exception occured when attempting to delete user {}'s account.", request.accountUsername(), e);
