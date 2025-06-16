@@ -16,6 +16,8 @@ import com.socize.pages.fileserver.shared.session.SessionManager;
 import com.socize.pages.fileserver.user.UserController;
 import com.socize.pages.fileserver.user.model.DefaultUserModel;
 import com.socize.pages.fileserver.user.model.UserModel;
+import com.socize.pages.fileserver.user.model.contentstategy.DefaultDownloadFileStrategyFactory;
+import com.socize.pages.fileserver.user.model.contentstategy.DownloadFileStrategyFactory;
 import com.socize.pages.fileserver.utilities.logoutservice.DefaultLogoutService;
 import com.socize.pages.fileserver.utilities.logoutservice.LogoutService;
 import com.socize.utilities.objectmapper.DefaultObjectMapperProvider;
@@ -31,6 +33,7 @@ public class DefaultUserControllerFactory implements SceneControllerFactory {
 
         LogoutService logoutService = DefaultLogoutService.getInstance();
         ObjectMapper objectMapper = DefaultObjectMapperProvider.getInstance().getObjectMapper();
+        DownloadFileStrategyFactory downloadFileStrategyFactory = new DefaultDownloadFileStrategyFactory();
 
         GetDownloadableFilesApi getDownloadableFilesApi = new DefaultGetDownloadableFilesApi();
         DeleteFileApi deleteFileApi = new DefaultDeleteFileApi();
@@ -43,7 +46,8 @@ public class DefaultUserControllerFactory implements SceneControllerFactory {
             objectMapper, 
             deleteFileApi,
             downloadFileApi,
-            uploadFileApi
+            uploadFileApi,
+            downloadFileStrategyFactory
         );
 
         return new UserController(sessionManager, userModel, textStyler);
