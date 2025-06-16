@@ -1,10 +1,6 @@
 package com.socize.pages.fileserver.user.model;
 
 import java.io.File;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.Header;
@@ -26,6 +22,8 @@ import com.socize.pages.fileserver.user.dto.DeleteFileResult;
 import com.socize.pages.fileserver.user.dto.DownloadFileResult;
 import com.socize.pages.fileserver.user.dto.GetDownloadableFilesApiResult;
 import com.socize.pages.fileserver.user.dto.UploadFileResult;
+import com.socize.pages.fileserver.user.model.contentstategy.DownloadFileStrategyFactory;
+import com.socize.pages.fileserver.user.model.contentstategy.spi.DownloadFileStrategy;
 import com.socize.pages.fileserver.utilities.logoutservice.LogoutService;
 
 import javafx.collections.FXCollections;
@@ -37,6 +35,7 @@ public class DefaultUserModel implements UserModel {
     private final LogoutService logoutService;
     private final ObservableList<String> observableList;
     private final ObjectMapper objectMapper;
+    private final DownloadFileStrategyFactory downloadFileStrategyFactory;
 
     private final GetDownloadableFilesApi getDownloadableFilesApi;
     private final DeleteFileApi deleteFileApi;
@@ -50,10 +49,12 @@ public class DefaultUserModel implements UserModel {
         ObjectMapper objectMapper, 
         DeleteFileApi deleteFileApi, 
         DownloadFileApi downloadFileApi, 
-        UploadFileApi uploadFileApi
+        UploadFileApi uploadFileApi, 
+        DownloadFileStrategyFactory downloadFileStrategyFactory
     ) 
     {
         this.logoutService = logoutService;
+        this.downloadFileStrategyFactory = downloadFileStrategyFactory;
         this.getDownloadableFilesApi = getDownloadableFilesApi;
         this.observableList = FXCollections.observableArrayList();
         this.objectMapper = objectMapper;
@@ -152,28 +153,17 @@ public class DefaultUserModel implements UserModel {
 
                 String contentType = contentTypeHeader.getValue();
 
-                // TODO: Can abstract these to use stategy pattern instead if time allows
                 if(contentType == null) {
-                    throw new IllegalArgumentException("Content-Type header is present but value is null when downloading file.");
-
-                } else if(contentType.equalsIgnoreCase("application/json")) {
-
-                    String json = EntityUtils.toString(entity);
-                    DownloadFileResult result = objectMapper.readValue(json, DownloadFileResult.class);
-
-                    return result;
-
-                } else if(contentType.equalsIgnoreCase("application/octet-stream")) {
-
-                    InputStream inputStream = entity.getContent();
-                    Files.copy(inputStream, pathToSaveFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                    return new DownloadFileResult(true, null);
-
-                } else {
-                    throw new IllegalArgumentException("Unexpected content type '" + contentType + "' received when downloading file, the response cannot be processed.");
-
+                    throw new IllegalArgumentException("Content-Type header is present but value is null when downloading file, unable to process response.");
                 }
+
+                DownloadFileStrategy downloadFileStrategy = downloadFileStrategyFactory.getStrategyFor(contentType);
+
+                if(downloadFileStrategy == null) {
+                    throw new IllegalArgumentException("Unexpected content type '" + contentType + "' received when downloading file, the response cannot be processed.");
+                }
+
+                return downloadFileStrategy.handle(entity, pathToSaveFile);
 
             } finally {
 
