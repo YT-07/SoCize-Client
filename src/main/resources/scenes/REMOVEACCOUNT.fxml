@@ -32,7 +32,7 @@
             <ListView id="list-view-box" fx:id="userListView" layoutX="20.0" layoutY="119.0" prefHeight="119.0" prefWidth="227.0" />
             <Button id="view-details-button" fx:id="viewUserDetailButton" layoutX="20.0" layoutY="253.0" mnemonicParsing="false" text="View Details" />
             <Button id="delete-button" fx:id="deleteUserButton" layoutX="184.0" layoutY="253.0" mnemonicParsing="false" text="Delete" />
-            <Label layoutX="322.0" layoutY="176.0" text="E-mail :">
+            <Label layoutX="313.0" layoutY="171.0" text="E-mail :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
@@ -43,22 +43,22 @@
                </font>
             </Label>
             <Button fx:id="logoutButton" layoutX="414.0" layoutY="22.0" mnemonicParsing="false" styleClass="common-button" text="Logout" />
-            <Label layoutX="294.0" layoutY="141.0" text="Username :">
+            <Label layoutX="294.0" layoutY="135.0" text="Username :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
-            <Label id="title-text" layoutX="84.0" layoutY="77.0" text="User List">
+            <Label id="title-text" layoutX="97.0" layoutY="90.0" text="User List">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Agency FB Bold" size="24.0" />
                </font>
             </Label>
-            <Label id="title-text" layoutX="394.0" layoutY="84.0" text="Account Details">
+            <Label id="title-text" layoutX="414.0" layoutY="90.0" text="Account Details">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Agency FB Bold" size="24.0" />
                </font>
             </Label>
-            <AnchorPane id="user-detail-area" layoutX="376.0" layoutY="125.0" prefHeight="120.0" prefWidth="210.0">
+            <AnchorPane id="user-detail-area" layoutX="376.0" layoutY="119.0" prefHeight="120.0" prefWidth="210.0">
                <children>
                   <Label id="user-details" fx:id="accountUsernameField" layoutX="14.0" layoutY="14.0" maxHeight="16.0" maxWidth="187.0">
                      <font>
@@ -76,14 +76,14 @@
                      </font>
                   </Label>
                </children></AnchorPane>
-            <Label layoutX="264.0" layoutY="208.0" text="Phone Number :">
+            <Label layoutX="278.0" layoutY="202.0" text="Phone Number :">
                <font>
                   <Font name="Agency FB Bold" size="13.0" />
                </font>
             </Label>
             <Label id="page-title-text" layoutX="20.0" layoutY="13.0" prefHeight="49.0" prefWidth="309.0" text="User Management">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Agency FB Bold" size="30.0" />
                </font>
             </Label>
          </children>
