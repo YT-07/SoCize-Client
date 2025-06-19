@@ -23,10 +23,14 @@
 }
 
 #page-title-text{
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
     -fx-text-fill:linear-gradient(to top, #88878c, #9342fc);
 }
 
 #title-text{
+    -fx-font-family: "Agency FB";
+    -fx-font-weight: bold;
     -fx-text-fill: linear-gradient(to right, #937eff, #c56d9d);
 }
 
