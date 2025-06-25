@@ -23,7 +23,7 @@ public class DefaultSignInApi implements SignInApi {
     public CloseableHttpResponse signin(SignInRequest signInRequest) throws Exception {
         HttpPost request = new HttpPost("localhost/SoCize-Server/API/login.php");
 
-        String json = objectMapper.writeValueAsString(request);
+        String json = objectMapper.writeValueAsString(signInRequest);
 
         StringEntity entity = new StringEntity(json, StandardCharsets.UTF_8);
         entity.setContentType("application/json");

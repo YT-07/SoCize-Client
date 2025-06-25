@@ -23,7 +23,7 @@ public class DefaultSignUpApi implements SignUpApi {
     public CloseableHttpResponse signup(SignUpRequest signUpRequest) throws Exception {
         HttpPost request = new HttpPost("localhost/SoCize-Server/API/SignUp.php");
 
-        String json = objectMapper.writeValueAsString(request);
+        String json = objectMapper.writeValueAsString(signUpRequest);
         
         StringEntity entity = new StringEntity(json, StandardCharsets.UTF_8);
         entity.setContentType("application/json");

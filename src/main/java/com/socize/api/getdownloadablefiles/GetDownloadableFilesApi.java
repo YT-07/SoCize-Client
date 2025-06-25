@@ -12,6 +12,7 @@ public interface GetDownloadableFilesApi {
      * 
      * @param getDownloadableFilesRequest the request containing all necessary data to retrieve all downloadable files
      * @return the api response
+     * @throws Exception if any exception occurs
      */
-    CloseableHttpResponse getDownloadableFiles(GetDownloadableFilesRequest getDownloadableFilesRequest);
+    CloseableHttpResponse getDownloadableFiles(GetDownloadableFilesRequest getDownloadableFilesRequest) throws Exception;
 }

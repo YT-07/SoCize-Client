@@ -23,7 +23,7 @@ public class DefaultLogoutApi implements LogoutApi {
     public CloseableHttpResponse logout(LogoutRequest logoutRequest) throws Exception {
         HttpPost request = new HttpPost("localhost/SoCize-Server/API/logout.php");
 
-        String json = objectMapper.writeValueAsString(request);
+        String json = objectMapper.writeValueAsString(logoutRequest);
 
         StringEntity entity = new StringEntity(json, StandardCharsets.UTF_8);
         entity.setContentType("application/json");
