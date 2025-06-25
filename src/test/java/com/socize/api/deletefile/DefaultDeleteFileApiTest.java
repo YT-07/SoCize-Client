@@ -25,30 +25,29 @@ public class DefaultDeleteFileApiTest {
     private CloseableHttpClient client;
     private DeleteFileRequest deleteFileRequest;
 
+    private DefaultDeleteFileApi deleteFileApi;
+
+    private static final String jsonData = "{\"key\": \"value\"}";
+
     @BeforeEach
-    void init() {
-        objectMapper = mock(ObjectMapper.class);
+    void init() throws Exception {
         client = mock(CloseableHttpClient.class);
         deleteFileRequest = mock(DeleteFileRequest.class);
+
+        objectMapper = mock(ObjectMapper.class);
+        when(objectMapper.writeValueAsString(deleteFileRequest)).thenReturn(jsonData);
+
+        deleteFileApi = new DefaultDeleteFileApi(objectMapper, client);
     }
 
     @Test
     void shouldConstructJsonRequest() throws Exception {
-        String expectedJson = "\"key\": \"value\"";
-        when(objectMapper.writeValueAsString(deleteFileRequest)).thenReturn(expectedJson);
-
-        DefaultDeleteFileApi deleteFileApi = new DefaultDeleteFileApi(objectMapper, client);
         deleteFileApi.deleteFile(deleteFileRequest);
-
         verify(objectMapper, times(1)).writeValueAsString(deleteFileRequest);
     }
 
     @Test
     void shouldSetProvidedDataAsRequestEntity() throws Exception {
-        String expectedJson = "\"key\": \"value\"";
-        when(objectMapper.writeValueAsString(deleteFileRequest)).thenReturn(expectedJson);
-
-        DefaultDeleteFileApi deleteFileApi = new DefaultDeleteFileApi(objectMapper, client);
         deleteFileApi.deleteFile(deleteFileRequest);
 
         ArgumentCaptor<HttpPost> postRequestCaptor = ArgumentCaptor.forClass(HttpPost.class);
@@ -57,17 +56,12 @@ public class DefaultDeleteFileApiTest {
         HttpPost capturedHttpPost = postRequestCaptor.getValue();
         String body = EntityUtils.toString(capturedHttpPost.getEntity(), StandardCharsets.UTF_8);
 
-        assertEquals(expectedJson, body);
+        assertEquals(jsonData, body);
     }
 
     @Test
     void shouldMakeHttpRequest() throws Exception {
-        String expectedJson = "\"key\": \"value\"";
-        when(objectMapper.writeValueAsString(deleteFileRequest)).thenReturn(expectedJson);
-
-        DefaultDeleteFileApi deleteFileApi = new DefaultDeleteFileApi(objectMapper, client);
         deleteFileApi.deleteFile(deleteFileRequest);
-
         verify(client, times(1)).execute(any(HttpPost.class));
     }
 }

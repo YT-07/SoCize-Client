@@ -25,29 +25,29 @@ public class DefaultDeleteAccountApiTest {
     private ObjectMapper objectMapper;
     private CloseableHttpClient client;
 
+    private DefaultDeleteAccountApi deleteAccountApi;
+
+    private static final String jsonData = "{\"key\": \"value\"}";
+
     @BeforeEach
-    void init() {
+    void init() throws Exception {
         deleteAccountRequest = mock(DeleteAccountRequest.class);
-        objectMapper = mock(ObjectMapper.class);
         client = mock(CloseableHttpClient.class);
+
+        objectMapper = mock(ObjectMapper.class);
+        when(objectMapper.writeValueAsString(deleteAccountRequest)).thenReturn(jsonData);
+
+        deleteAccountApi = new DefaultDeleteAccountApi(objectMapper, client);
     }
 
     @Test
     void shouldConstructJsonRequest() throws Exception {
-        when(objectMapper.writeValueAsString(deleteAccountRequest)).thenReturn("{\"key\": \"value\"}");
-
-        DefaultDeleteAccountApi deleteAccountApi = new DefaultDeleteAccountApi(objectMapper, client);
         deleteAccountApi.deleteAccount(deleteAccountRequest);
-
         verify(objectMapper, times(1)).writeValueAsString(deleteAccountRequest);
     }
 
     @Test
     void shouldSetProvidedDataAsRequestEntity() throws Exception {
-        String expectedJson = "\"key\": \"value\"";
-        when(objectMapper.writeValueAsString(deleteAccountRequest)).thenReturn(expectedJson);
-
-        DefaultDeleteAccountApi deleteAccountApi = new DefaultDeleteAccountApi(objectMapper, client);
         deleteAccountApi.deleteAccount(deleteAccountRequest);
 
         ArgumentCaptor<HttpPost> postRequestCaptor =ArgumentCaptor.forClass(HttpPost.class);
@@ -56,17 +56,12 @@ public class DefaultDeleteAccountApiTest {
         HttpPost postRequest = postRequestCaptor.getValue();
         String body = EntityUtils.toString(postRequest.getEntity(), StandardCharsets.UTF_8);
 
-        assertEquals(expectedJson, body);
+        assertEquals(jsonData, body);
     }
 
     @Test
     void shouldMakeHttpRequest() throws Exception {
-        String expectedJson = "\"key\": \"value\"";
-        when(objectMapper.writeValueAsString(deleteAccountRequest)).thenReturn(expectedJson);
-
-        DefaultDeleteAccountApi deleteAccountApi = new DefaultDeleteAccountApi(objectMapper, client);
         deleteAccountApi.deleteAccount(deleteAccountRequest);
-
         verify(client, times(1)).execute(any(HttpPost.class));
     }
 }
