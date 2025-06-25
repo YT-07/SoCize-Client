@@ -23,7 +23,8 @@ public class DefaultHttpClientProvider implements HttpClientProvider {
             .setDefaultRequestConfig(requestConfig)
             .build();
         
-        
+        logger.info("Http client successfully started.");
+
         Thread httpClientClosingTask = new Thread(() -> {
 
             try {
