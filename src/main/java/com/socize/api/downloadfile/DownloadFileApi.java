@@ -11,6 +11,7 @@ public interface DownloadFileApi {
      * 
      * @param request the api request
      * @return the api response
+     * @throws Exception if any exception occurs
      */
-    CloseableHttpResponse downloadFile(DownloadFileRequest request);
+    CloseableHttpResponse downloadFile(DownloadFileRequest request) throws Exception;
 }
