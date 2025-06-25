@@ -24,7 +24,9 @@ public class DefaultGetDownloadableFilesApi implements GetDownloadableFilesApi {
         HttpPost request = new HttpPost("localhost/SoCize-Server/API/GetFileRecords.php");
 
         String json = objectMapper.writeValueAsString(getDownloadableFilesRequest);
+
         StringEntity entity = new StringEntity(json, StandardCharsets.UTF_8);
+        entity.setContentType("application/json");
         request.setEntity(entity);
 
         return client.execute(request);

@@ -11,6 +11,7 @@ public interface DeleteFileApi {
      * 
      * @param request the api request
      * @return the api response
+     * @throws Exception if any exception occurs
      */
-    CloseableHttpResponse deleteFile(DeleteFileRequest request);
+    CloseableHttpResponse deleteFile(DeleteFileRequest request) throws Exception;
 }
