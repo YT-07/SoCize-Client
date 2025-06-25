@@ -11,6 +11,7 @@ public interface UploadFileApi {
      * 
      * @param request the api request
      * @return the api response
+     * @throws Exception if any exception occurs
      */
-    CloseableHttpResponse uploadFile(UploadFileRequest request);
+    CloseableHttpResponse uploadFile(UploadFileRequest request) throws Exception;
 }
