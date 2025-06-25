@@ -3,6 +3,8 @@ package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.socize.api.serverhealthcheck.DefaultServerHealthcheckApi;
 import com.socize.api.serverhealthcheck.ServerHealthcheckApi;
+import com.socize.api.utilities.httpclientprovider.DefaultHttpClientProvider;
+import com.socize.api.utilities.httpclientprovider.HttpClientProvider;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.admin.serverhealthcheck.ServerHealthcheckController;
@@ -25,7 +27,8 @@ public class DefaultServerHealthcheckControllerFactory implements SceneControlle
         TextStyler textStyler = DefaultTextStyler.getInstance();
 
         ObjectMapper objectMapper = DefaultObjectMapperProvider.getInstance().getObjectMapper();
-        ServerHealthcheckApi serverHealthcheckApi = new DefaultServerHealthcheckApi();
+        HttpClientProvider httpClientProvider = DefaultHttpClientProvider.getInstance();
+        ServerHealthcheckApi serverHealthcheckApi = new DefaultServerHealthcheckApi(objectMapper, httpClientProvider.getClient());
 
         ServerHealthcheckModel serverHealthcheckModel = new DefaultServerHealthcheckModel(objectMapper, serverHealthcheckApi);
 
