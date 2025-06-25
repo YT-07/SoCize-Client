@@ -11,6 +11,7 @@ public interface DeleteAccountApi {
      * 
      * @param request the api request
      * @return the api response
+     * @throws Exception if any exception occurs
      */
-    CloseableHttpResponse deleteAccount(DeleteAccountRequest request);
+    CloseableHttpResponse deleteAccount(DeleteAccountRequest request) throws Exception;
 }
