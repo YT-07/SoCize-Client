@@ -9,11 +9,15 @@ import org.slf4j.LoggerFactory;
 import com.socize.api.logout.DefaultLogoutApi;
 import com.socize.api.logout.LogoutApi;
 import com.socize.api.logout.dto.LogoutRequest;
+import com.socize.api.utilities.httpclientprovider.DefaultHttpClientProvider;
+import com.socize.api.utilities.httpclientprovider.HttpClientProvider;
 import com.socize.pages.fileserver.shared.fileserverpage.DefaultFileServerPageManager;
 import com.socize.pages.fileserver.shared.fileserverpage.FileServerPageManager;
 import com.socize.pages.fileserver.shared.fileserverpage.fileserverpagestatus.DefaultFileServerPageStatus;
 import com.socize.pages.fileserver.shared.session.DefaultSessionManager;
 import com.socize.pages.fileserver.shared.session.SessionManager;
+import com.socize.utilities.objectmapper.DefaultObjectMapperProvider;
+import com.socize.utilities.objectmapper.ObjectMapperProvider;
 
 public class DefaultLogoutService implements LogoutService {
     private static final Logger logger = LoggerFactory.getLogger(DefaultLogoutService.class);
@@ -30,11 +34,21 @@ public class DefaultLogoutService implements LogoutService {
     }
 
     private static class SingletonInstanceHolder {
-        private static final DefaultLogoutService INSTANCE = new DefaultLogoutService(
-            new DefaultLogoutApi(),
-            DefaultSessionManager.getInstance(),
-            DefaultFileServerPageManager.getInstance()
-        );
+        private static final DefaultLogoutService INSTANCE;
+
+        static {
+            ObjectMapperProvider objectMapperProvider = DefaultObjectMapperProvider.getInstance();
+            HttpClientProvider httpClientProvider = DefaultHttpClientProvider.getInstance();
+            SessionManager sessionManager = DefaultSessionManager.getInstance();
+            FileServerPageManager fileServerPageManager = DefaultFileServerPageManager.getInstance();
+
+            LogoutApi logoutApi = new DefaultLogoutApi(
+                objectMapperProvider.getObjectMapper(), 
+                httpClientProvider.getClient()
+            );
+
+            INSTANCE = new DefaultLogoutService(logoutApi, sessionManager, fileServerPageManager);
+        }
     }
 
     public static DefaultLogoutService getInstance() {
@@ -43,16 +57,12 @@ public class DefaultLogoutService implements LogoutService {
 
     @Override
     public void logout(LogoutRequest logoutRequest) {
-        CloseableHttpResponse response = logoutApi.logout(logoutRequest);
-        HttpEntity entity = response.getEntity();
-
-        try {
+        try(CloseableHttpResponse response = logoutApi.logout(logoutRequest)) {
+            HttpEntity entity = response.getEntity();
 
             if(entity != null) {
                 EntityUtils.consume(entity);
             }
-
-            response.close();
 
         } catch (Exception e) {
             logger.error("Exception occured while closing http response for logout api.", e);
