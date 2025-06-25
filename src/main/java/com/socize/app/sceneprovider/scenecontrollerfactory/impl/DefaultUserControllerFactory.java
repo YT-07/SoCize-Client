@@ -9,6 +9,8 @@ import com.socize.api.getdownloadablefiles.DefaultGetDownloadableFilesApi;
 import com.socize.api.getdownloadablefiles.GetDownloadableFilesApi;
 import com.socize.api.uploadfile.DefaultUploadFileApi;
 import com.socize.api.uploadfile.UploadFileApi;
+import com.socize.api.utilities.httpclientprovider.DefaultHttpClientProvider;
+import com.socize.api.utilities.httpclientprovider.HttpClientProvider;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.shared.session.DefaultSessionManager;
@@ -34,11 +36,13 @@ public class DefaultUserControllerFactory implements SceneControllerFactory {
         LogoutService logoutService = DefaultLogoutService.getInstance();
         ObjectMapper objectMapper = DefaultObjectMapperProvider.getInstance().getObjectMapper();
         DownloadFileStrategyFactory downloadFileStrategyFactory = new DefaultDownloadFileStrategyFactory();
+        HttpClientProvider httpClientProvider = DefaultHttpClientProvider.getInstance();
 
-        GetDownloadableFilesApi getDownloadableFilesApi = new DefaultGetDownloadableFilesApi();
-        DeleteFileApi deleteFileApi = new DefaultDeleteFileApi();
-        DownloadFileApi downloadFileApi = new DefaultDownloadFileApi();
-        UploadFileApi uploadFileApi = new DefaultUploadFileApi();
+        GetDownloadableFilesApi getDownloadableFilesApi = new DefaultGetDownloadableFilesApi(objectMapper, httpClientProvider.getClient());
+        DeleteFileApi deleteFileApi = new DefaultDeleteFileApi(objectMapper, httpClientProvider.getClient());
+        DownloadFileApi downloadFileApi = new DefaultDownloadFileApi(objectMapper, httpClientProvider.getClient());
+
+        UploadFileApi uploadFileApi = new DefaultUploadFileApi(httpClientProvider.getClient());
 
         UserModel userModel = new DefaultUserModel(
             logoutService, 

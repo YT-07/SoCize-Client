@@ -2,6 +2,8 @@ package com.socize.app.sceneprovider.scenecontrollerfactory.impl;
 
 import com.socize.api.signup.DefaultSignUpApi;
 import com.socize.api.signup.SignUpApi;
+import com.socize.api.utilities.httpclientprovider.DefaultHttpClientProvider;
+import com.socize.api.utilities.httpclientprovider.HttpClientProvider;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.shared.fileserverpage.DefaultFileServerPageManager;
@@ -18,8 +20,10 @@ public class DefaultSignUpControllerFactory implements SceneControllerFactory {
     public PageController createDefault() {
         FileServerPageManager fileServerPageManager = DefaultFileServerPageManager.getInstance();
         
-        SignUpApi signUpApi = new DefaultSignUpApi();
         ObjectMapperProvider objectMapperProvider = DefaultObjectMapperProvider.getInstance();
+        HttpClientProvider httpClientProvider = DefaultHttpClientProvider.getInstance();
+
+        SignUpApi signUpApi = new DefaultSignUpApi(objectMapperProvider.getObjectMapper(), httpClientProvider.getClient());
         SignUpModel signUpModel = new DefaultSignUpModel(signUpApi, objectMapperProvider.getObjectMapper());
 
         return new SignUpController(fileServerPageManager, signUpModel);

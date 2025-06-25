@@ -11,6 +11,7 @@ public interface SignUpApi {
      * 
      * @param signUpRequest the sign up request that contains all necessary sign up data
      * @return the api response
+     * @throws Exception if any exception occur
      */
-    CloseableHttpResponse signup(SignUpRequest signUpRequest);
+    CloseableHttpResponse signup(SignUpRequest signUpRequest) throws Exception;
 }

@@ -11,6 +11,7 @@ public interface GetAccountDetailsApi {
      * 
      * @param request the api request
      * @return the api response
+     * @throws Exception if any exception occurs
      */
-    CloseableHttpResponse getAccountDetails(GetAccountDetailsRequest request);
+    CloseableHttpResponse getAccountDetails(GetAccountDetailsRequest request) throws Exception;
 }

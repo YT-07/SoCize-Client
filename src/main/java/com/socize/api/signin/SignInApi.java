@@ -11,6 +11,7 @@ public interface SignInApi {
      * 
      * @param signInRequest the sign in request that contains all required data to sign in
      * @return the api response
+     * @throws Exception if any exception occur
      */
-    CloseableHttpResponse signin(SignInRequest signInRequest);
+    CloseableHttpResponse signin(SignInRequest signInRequest) throws Exception;
 }

@@ -7,6 +7,8 @@ import com.socize.api.getaccountdetails.DefaultGetAccountDetailsApi;
 import com.socize.api.getaccountdetails.GetAccountDetailsApi;
 import com.socize.api.getuseraccounts.DefaultGetUserAccountsApi;
 import com.socize.api.getuseraccounts.GetUserAccountsApi;
+import com.socize.api.utilities.httpclientprovider.DefaultHttpClientProvider;
+import com.socize.api.utilities.httpclientprovider.HttpClientProvider;
 import com.socize.app.sceneprovider.scenecontrollerfactory.spi.SceneControllerFactory;
 import com.socize.pages.PageController;
 import com.socize.pages.fileserver.admin.usermanagement.UserManagementController;
@@ -27,11 +29,12 @@ public class DefaultUserManagementControllerFactory implements SceneControllerFa
         SessionManager sessionManager = DefaultSessionManager.getInstance();
         TextStyler textStyler = DefaultTextStyler.getInstance();
         LogoutService logoutService = DefaultLogoutService.getInstance();
-
-        GetUserAccountsApi getUserAccountsApi = new DefaultGetUserAccountsApi();
-        GetAccountDetailsApi getAccountDetailsApi = new DefaultGetAccountDetailsApi();
-        DeleteAccountApi deleteAccountApi = new DefaultDeleteAccountApi();
         ObjectMapper objectMapper = DefaultObjectMapperProvider.getInstance().getObjectMapper();
+        HttpClientProvider httpClientProvider = DefaultHttpClientProvider.getInstance();
+
+        GetUserAccountsApi getUserAccountsApi = new DefaultGetUserAccountsApi(objectMapper, httpClientProvider.getClient());
+        GetAccountDetailsApi getAccountDetailsApi = new DefaultGetAccountDetailsApi(objectMapper, httpClientProvider.getClient());
+        DeleteAccountApi deleteAccountApi = new DefaultDeleteAccountApi(objectMapper, httpClientProvider.getClient());
 
         UserManagementModel userManagementModel = new DefaultUserManagementModel(
             getUserAccountsApi, 
