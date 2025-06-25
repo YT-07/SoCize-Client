@@ -11,6 +11,7 @@ public interface ServerHealthcheckApi {
      * 
      * @param request the api request
      * @return the api response
+     * @throws Exception if any exception occurs
      */
-    CloseableHttpResponse getServerStatus(ServerHealthcheckRequest request);
+    CloseableHttpResponse getServerStatus(ServerHealthcheckRequest request) throws Exception;
 }
