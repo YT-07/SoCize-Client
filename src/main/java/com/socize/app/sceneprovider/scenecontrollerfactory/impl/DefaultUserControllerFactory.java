@@ -39,7 +39,7 @@ public class DefaultUserControllerFactory implements SceneControllerFactory {
         HttpClientProvider httpClientProvider = DefaultHttpClientProvider.getInstance();
 
         GetDownloadableFilesApi getDownloadableFilesApi = new DefaultGetDownloadableFilesApi(objectMapper, httpClientProvider.getClient());
-        DeleteFileApi deleteFileApi = new DefaultDeleteFileApi();
+        DeleteFileApi deleteFileApi = new DefaultDeleteFileApi(objectMapper, httpClientProvider.getClient());
         DownloadFileApi downloadFileApi = new DefaultDownloadFileApi();
 
         UploadFileApi uploadFileApi = new DefaultUploadFileApi(httpClientProvider.getClient());
