@@ -21,7 +21,7 @@ public class DefaultServerHealthcheckApi implements ServerHealthcheckApi {
 
     @Override
     public CloseableHttpResponse getServerStatus(ServerHealthcheckRequest healthcheckRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/ServerHealth.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/ServerHealth.php");
 
         String json = objectMapper.writeValueAsString(healthcheckRequest);
 

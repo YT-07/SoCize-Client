@@ -21,7 +21,7 @@ public class DefaultGetUserAccountsApi implements GetUserAccountsApi {
 
     @Override
     public CloseableHttpResponse getUserAccounts(GetUserAccountsRequest getAccountRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/AdminViewUser.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/AdminViewUser.php");
 
         String json = objectMapper.writeValueAsString(getAccountRequest);
 

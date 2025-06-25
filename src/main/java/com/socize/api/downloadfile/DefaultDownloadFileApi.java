@@ -21,7 +21,7 @@ public class DefaultDownloadFileApi implements DownloadFileApi {
 
     @Override
     public CloseableHttpResponse downloadFile(DownloadFileRequest downloadRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/FileDownload.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/FileDownload.php");
 
         String json = objectMapper.writeValueAsString(downloadRequest);
 

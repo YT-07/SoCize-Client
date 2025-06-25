@@ -21,7 +21,7 @@ public class DefaultUploadFileApi implements UploadFileApi {
 
     @Override
     public CloseableHttpResponse uploadFile(UploadFileRequest uploadRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/FileUpload.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/FileUpload.php");
 
         MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
 

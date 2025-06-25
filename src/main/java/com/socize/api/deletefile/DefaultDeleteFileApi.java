@@ -21,7 +21,7 @@ public class DefaultDeleteFileApi implements DeleteFileApi {
 
     @Override
     public CloseableHttpResponse deleteFile(DeleteFileRequest deleteRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/DeleteFileData.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/DeleteFileData.php");
 
         String json = objectMapper.writeValueAsString(deleteRequest);
 

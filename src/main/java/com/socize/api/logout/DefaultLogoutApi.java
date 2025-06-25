@@ -21,7 +21,7 @@ public class DefaultLogoutApi implements LogoutApi {
     
     @Override
     public CloseableHttpResponse logout(LogoutRequest logoutRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/logout.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/logout.php");
 
         String json = objectMapper.writeValueAsString(logoutRequest);
 

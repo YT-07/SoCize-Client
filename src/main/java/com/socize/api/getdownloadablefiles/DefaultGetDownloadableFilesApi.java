@@ -21,7 +21,7 @@ public class DefaultGetDownloadableFilesApi implements GetDownloadableFilesApi {
 
     @Override
     public CloseableHttpResponse getDownloadableFiles(GetDownloadableFilesRequest getDownloadableFilesRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/GetFileRecords.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/GetFileRecords.php");
 
         String json = objectMapper.writeValueAsString(getDownloadableFilesRequest);
 

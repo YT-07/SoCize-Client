@@ -21,7 +21,7 @@ public class DefaultSignUpApi implements SignUpApi {
 
     @Override
     public CloseableHttpResponse signup(SignUpRequest signUpRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/SignUp.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/SignUp.php");
 
         String json = objectMapper.writeValueAsString(signUpRequest);
         

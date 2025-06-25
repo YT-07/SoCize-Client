@@ -21,7 +21,7 @@ public class DefaultDeleteAccountApi implements DeleteAccountApi {
 
     @Override
     public CloseableHttpResponse deleteAccount(DeleteAccountRequest deleteRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/DeleteUser.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/DeleteUser.php");
 
         String json = objectMapper.writeValueAsString(deleteRequest);
 

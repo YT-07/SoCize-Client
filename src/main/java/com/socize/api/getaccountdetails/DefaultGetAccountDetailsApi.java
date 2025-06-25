@@ -21,7 +21,7 @@ public class DefaultGetAccountDetailsApi implements GetAccountDetailsApi {
 
     @Override
     public CloseableHttpResponse getAccountDetails(GetAccountDetailsRequest getDetailsRequest) throws Exception {
-        HttpPost request = new HttpPost("localhost/SoCize-Server/API/AccountDetails.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/AccountDetails.php");
 
         String json = objectMapper.writeValueAsString(getDetailsRequest);
 
