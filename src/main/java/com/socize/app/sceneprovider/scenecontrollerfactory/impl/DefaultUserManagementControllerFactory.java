@@ -34,7 +34,7 @@ public class DefaultUserManagementControllerFactory implements SceneControllerFa
 
         GetUserAccountsApi getUserAccountsApi = new DefaultGetUserAccountsApi(objectMapper, httpClientProvider.getClient());
         GetAccountDetailsApi getAccountDetailsApi = new DefaultGetAccountDetailsApi(objectMapper, httpClientProvider.getClient());
-        DeleteAccountApi deleteAccountApi = new DefaultDeleteAccountApi();
+        DeleteAccountApi deleteAccountApi = new DefaultDeleteAccountApi(objectMapper, httpClientProvider.getClient());
 
         UserManagementModel userManagementModel = new DefaultUserManagementModel(
             getUserAccountsApi, 
