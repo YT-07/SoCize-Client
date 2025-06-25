@@ -11,6 +11,7 @@ public interface GetUserAccountsApi {
      * 
      * @param request the api request
      * @return the api response
+     * @throws Exception if any exception occurs
      */
-    CloseableHttpResponse getUserAccounts(GetUserAccountsRequest request);
+    CloseableHttpResponse getUserAccounts(GetUserAccountsRequest request) throws Exception;
 }
