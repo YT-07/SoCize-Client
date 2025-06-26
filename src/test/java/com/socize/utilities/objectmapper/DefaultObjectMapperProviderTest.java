@@ -1,11 +1,10 @@
-package com.socize.utilities.objectmapper.impl;
+package com.socize.utilities.objectmapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.socize.utilities.objectmapper.DefaultObjectMapperProvider;
 
 public class DefaultObjectMapperProviderTest {
     
