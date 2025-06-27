@@ -1,7 +1,9 @@
 # SoCize - File Encryption App
 
 **Final Year Project in [Asia Pacific University](https://apspace.apu.edu.my/)**  
-This project is a module for social media applications, it aims to address privacy and security concern that comes when sharing data in a social media application. It focuses on encrypting files before uploading them to a server, simulating secure file sharing and storage. The app provides an interface to encrypt/decrypt files locally and an interface to interact with a file storage server.
+This project is a module for social media applications, it aims to address privacy and security concern that comes when sharing data in a social media application. It focuses on encrypting files before uploading them to a server, simulating secure file sharing and storage. The app provides an interface to encrypt/decrypt files locally and an interface to interact with a file storage server.  
+
+**Note**: The actual server-side implementation (for file storage, uploading, and managing files) is located in a separate GitHub repository [here](https://github.com/Kur3nai/SoCize-Server). This repository only contains the client-side code and interface for interacting with the server.
 
 ## Table of Contents
 - [Introduction](#introduction)
