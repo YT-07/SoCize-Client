@@ -69,3 +69,12 @@ If you want to run tests (unit tests or integration tests), use the following Ma
 mvn clean test
 ```
 This will run the tests defined in the project.
+
+## Contributors
+This project was developed as part of a university assignment. The following individuals contributed to the development of this project:
+
+- **Yen Tze** - Main Developer  
+[Github Profile](https://github.com/YT-07)
+
+- **Shatchiin** - UI Designer  
+[Github Profile](https://github.com/ItzJustPercy)
