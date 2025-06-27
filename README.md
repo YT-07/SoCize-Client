@@ -3,6 +3,15 @@
 **Final Year Project in [Asia Pacific University](https://apspace.apu.edu.my/)**  
 This project is a module for social media applications, it aims to address privacy and security concern that comes when sharing data in a social media application. It focuses on encrypting files before uploading them to a server, simulating secure file sharing and storage. The app provides an interface to encrypt/decrypt files locally and an interface to interact with a file storage server.
 
+## Table of Contents
+- [Introduction](#introduction)
+    - [Features](#features)
+- [Installation Guide](#installation-guide)
+    - [Prerequisites](#prerequisites)
+    - [Steps to run the application](#steps-to-run-the-application)
+    - [Running Tests](#running-tests)
+- [Contributors](#contributors)
+
 ## Introduction
 This application simulates a secure file handling system for social media platforms. It enables users to:
 - Encrypt a file locally before uploading it to a server.
