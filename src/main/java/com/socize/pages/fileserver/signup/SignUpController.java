@@ -10,9 +10,12 @@ import com.socize.pages.fileserver.shared.fileserverpage.fileserverpagestatus.De
 import com.socize.pages.fileserver.signup.dto.SignUpResult;
 import com.socize.pages.fileserver.signup.dto.SignUpValidationError;
 import com.socize.pages.fileserver.signup.model.SignUpModel;
+import com.socize.utilities.textstyler.TextStyler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -53,14 +56,16 @@ public class SignUpController extends PageController implements Initializable {
     private Text phoneNumberErrorText;
 
     @FXML
-    private Text signUpFeedbackText;
+    private Label signupFeedbackField;
 
     private final FileServerPageManager fileServerPageManager;
     private final SignUpModel signUpModel;
+    private final TextStyler textStyler;
 
-    public SignUpController(FileServerPageManager fileServerPageManager, SignUpModel signUpModel) {
+    public SignUpController(FileServerPageManager fileServerPageManager, SignUpModel signUpModel, TextStyler textStyler) {
         this.fileServerPageManager = fileServerPageManager;
         this.signUpModel = signUpModel;
+        this.textStyler = textStyler;
     }
 
     @Override
@@ -102,7 +107,7 @@ public class SignUpController extends PageController implements Initializable {
         passwordErrorText.setText(null);
         emailErrorText.setText(null);
         phoneNumberErrorText.setText(null);
-        signUpFeedbackText.setText(null);
+        signupFeedbackField.setText(null);
     }
 
     /**
@@ -112,13 +117,12 @@ public class SignUpController extends PageController implements Initializable {
      */
     private void displayFeedbackMessages(SignUpResult result) {
         if(result.success()) {
-            signUpFeedbackText.setText("Successfully signed up!");
-
+            textStyler.showSuccessMessage(signupFeedbackField, "Successfully signed up!");
             return;
         }
 
         if(result.errorMessage() != null) {
-            signUpFeedbackText.setText(result.errorMessage());
+            textStyler.showErrorMessage(signupFeedbackField, result.errorMessage());
         }
 
         SignUpValidationError validationError = result.validationError();
@@ -155,7 +159,7 @@ public class SignUpController extends PageController implements Initializable {
         passwordErrorText.setText(null);
         emailErrorText.setText(null);
         phoneNumberErrorText.setText(null);
-        signUpFeedbackText.setText(null);
+        signupFeedbackField.setText(null);
     }
 
 }

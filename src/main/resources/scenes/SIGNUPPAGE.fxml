@@ -98,11 +98,7 @@
                         <Font name="System Bold" size="1.0" />
                      </font>
                   </Button>
-                  <Text fx:id="signUpFeedbackText" fill="RED" layoutX="73.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="94.81509399414062">
-                     <font>
-                        <Font name="Tw Cen MT" size="11.0" />
-                     </font>
-                  </Text>
+                  <Label fx:id="signupFeedbackField" layoutX="41.0" layoutY="351.0" maxHeight="39.0" maxWidth="159.0" wrapText="true" />
                </children>
             </AnchorPane>
             <Button fx:id="homeButton" layoutX="433.0" layoutY="14.0" mnemonicParsing="false" styleClass="common-button" text="Home">
