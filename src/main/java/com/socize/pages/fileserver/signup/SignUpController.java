@@ -13,6 +13,7 @@ import com.socize.pages.fileserver.signup.model.SignUpModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -53,7 +54,7 @@ public class SignUpController extends PageController implements Initializable {
     private Text phoneNumberErrorText;
 
     @FXML
-    private Text signUpFeedbackText;
+    private Label signupFeedbackField;
 
     private final FileServerPageManager fileServerPageManager;
     private final SignUpModel signUpModel;
@@ -102,7 +103,7 @@ public class SignUpController extends PageController implements Initializable {
         passwordErrorText.setText(null);
         emailErrorText.setText(null);
         phoneNumberErrorText.setText(null);
-        signUpFeedbackText.setText(null);
+        signupFeedbackField.setText(null);
     }
 
     /**
@@ -112,13 +113,13 @@ public class SignUpController extends PageController implements Initializable {
      */
     private void displayFeedbackMessages(SignUpResult result) {
         if(result.success()) {
-            signUpFeedbackText.setText("Successfully signed up!");
+            signupFeedbackField.setText("Successfully signed up!");
 
             return;
         }
 
         if(result.errorMessage() != null) {
-            signUpFeedbackText.setText(result.errorMessage());
+            signupFeedbackField.setText(result.errorMessage());
         }
 
         SignUpValidationError validationError = result.validationError();
@@ -155,7 +156,7 @@ public class SignUpController extends PageController implements Initializable {
         passwordErrorText.setText(null);
         emailErrorText.setText(null);
         phoneNumberErrorText.setText(null);
-        signUpFeedbackText.setText(null);
+        signupFeedbackField.setText(null);
     }
 
 }
