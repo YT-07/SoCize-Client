@@ -13,6 +13,8 @@ import com.socize.pages.fileserver.signup.model.DefaultSignUpModel;
 import com.socize.pages.fileserver.signup.model.SignUpModel;
 import com.socize.utilities.objectmapper.DefaultObjectMapperProvider;
 import com.socize.utilities.objectmapper.ObjectMapperProvider;
+import com.socize.utilities.textstyler.DefaultTextStyler;
+import com.socize.utilities.textstyler.TextStyler;
 
 public class DefaultSignUpControllerFactory implements SceneControllerFactory {
 
@@ -25,8 +27,9 @@ public class DefaultSignUpControllerFactory implements SceneControllerFactory {
 
         SignUpApi signUpApi = new DefaultSignUpApi(objectMapperProvider.getObjectMapper(), httpClientProvider.getClient());
         SignUpModel signUpModel = new DefaultSignUpModel(signUpApi, objectMapperProvider.getObjectMapper());
+        TextStyler textStyler = DefaultTextStyler.getInstance();
 
-        return new SignUpController(fileServerPageManager, signUpModel);
+        return new SignUpController(fileServerPageManager, signUpModel, textStyler);
     }
     
 }
