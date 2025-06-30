@@ -117,14 +117,6 @@ public class DefaultDecryptionService implements DecryptionService {
             SecretKey key = readEncryptionKey(encryptionKeyFile, encryptionKeySizeInBytes);
             readIvAndDecrypt(fileToDecrypt, fileToSave, key, decryptionRollbackTask);
 
-            // IMPORTANT NOTE
-            // The reason #completeEncryption() is placed here and every catch block instead of using a finally block
-            // is that in the case of a critical error such as StackOverflowError or OutOfMemoryError happening,
-            // this function will not be handling it as it may lead to undefined behaviors and is meant for the JVM to handle it,
-            // and thus we'll use a shutdown hook to gracefully terminate instead
-            // but if we put #completeEncryption() in a finally block, it may clear out the rollback tasks stored in the stack,
-            // which will prevent the JVM from executing the rollback procedure, so we'll place #completeEncryption()
-            // at where the encryption process is considered complete instead.
             completeDecryption();
 
             // Exceptions need to have user friendly messages as they'll be displayed directly to the user
