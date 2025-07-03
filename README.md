@@ -1,6 +1,7 @@
 # SoCize - File Encryption App
 
 **Final Year Project in [Asia Pacific University](https://apspace.apu.edu.my/)**  
+
 This project is a module for social media applications, it aims to address privacy and security concern that comes when sharing data in a social media application. It focuses on encrypting files before uploading them to a server, simulating secure file sharing and storage. The app provides an interface to encrypt/decrypt files locally and an interface to interact with a file storage server.  
 
 **Note**: The actual server-side implementation (for file storage, uploading, and managing files) is located in a separate GitHub repository [here](https://github.com/Kur3nai/SoCize-Server). This repository only contains the client-side code and interface for interacting with the server.
@@ -31,7 +32,7 @@ Follow these steps to setup the project locally.
 
 ### Prerequisites
 - Java 21+ (The project uses external libraries such as JavaFX and some java features)
-- Maven (For managing dependencies and building the project)
+- Maven (For managing dependencies and building the project, installation guide [here](https://maven.apache.org/install.html))
 
 Make sure you have Java 21+ installed and configured in your environment. You can check your Java version by running:
 ```console
@@ -89,3 +90,6 @@ This project was developed as part of a university assignment. The following ind
 
 - **Shatchiin** - UI Designer  
 [Github Profile](https://github.com/ItzJustPercy)
+
+- **Alif** - UI Designer  
+[Github Profile](https://github.com/alifdinie)
