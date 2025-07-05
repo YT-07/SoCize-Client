@@ -21,7 +21,7 @@ public class DefaultSignInApi implements SignInApi {
 
     @Override
     public CloseableHttpResponse signin(SignInRequest signInRequest) throws Exception {
-        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/login.php");
+        HttpPost request = new HttpPost("http://localhost/SoCize-Server/API/LogIn.php");
 
         String json = objectMapper.writeValueAsString(signInRequest);
 
